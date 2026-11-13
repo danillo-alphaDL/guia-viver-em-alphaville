@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Cena } from "@/components/Cena";
 import { CardArtigo, CardCondominio } from "@/components/Cards";
 import { LinkRastreado } from "@/components/LinkRastreado";
-import { artigos, condominios } from "@/lib/content";
-import { linkAlphaDL, linkWhatsApp, vitrineAlphaDL } from "@/lib/alphadl";
+import { condominios } from "@/lib/content";
+import { leituras, linkAlphaDL, linkWhatsApp, vitrineAlphaDL } from "@/lib/alphadl";
 import { FAIXAS } from "@/lib/lead";
 import { meta } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -15,7 +15,11 @@ export const metadata = {
 
 export default async function Home() {
   const conds = condominios().slice(0, 3);
-  const materias = artigos().slice(0, 3);
+  const destaques = [
+    { ...leituras("viver")[0], rotulo: "Viver" },
+    { ...leituras("condominios")[0], rotulo: "Condomínios" },
+    { ...leituras("comprar")[0], rotulo: "Comprar" },
+  ].filter((l) => l.caminho);
   const vitrine = await vitrineAlphaDL();
   const whats = linkWhatsApp("Olá! Vim do Guia Viver em Alphaville e gostaria de falar com um especialista.");
 
@@ -151,28 +155,31 @@ export default async function Home() {
             </LinkRastreado>
           </div>
           {vitrine.length ? (
+            <>
             <div className="vitrine">
-              {vitrine.slice(0, 3).map((im, i) => (
-                <LinkRastreado key={im.url} className="imovel" href={linkAlphaDL(im.url, { campanha: "home", conteudo: "vitrine-card" })} ctaId={`home-vitrine-${i}`} evento="outbound_alphadl">
-                  <Cena nome={["i1", "i2", "i3"][i]} foto={im.imagem ? { src: im.imagem, alt: im.titulo } : undefined} credito={false}>
+              {vitrine.map((im, i) => (
+                <LinkRastreado key={im.caminho} className="imovel" href={linkAlphaDL(im.caminho, { campanha: "home", conteudo: "vitrine-card" })} ctaId={`home-vitrine-${i}`} evento="outbound_alphadl">
+                  <Cena nome={["i1", "i2", "i3"][i % 3]}>
                     <span className="selo-dl">Alpha DL</span>
                   </Cena>
                   <div>
-                    <span className="rot dourado">{im.condominio}</span>
+                    <span className="rot dourado">{im.local}</span>
                     <h3>{im.titulo}</h3>
                   </div>
                   <div className="specs num">
-                    {im.specs.map((s) => (
-                      <span key={s}>{s}</span>
+                    {im.specs.map((e) => (
+                      <span key={e}>{e}</span>
                     ))}
                   </div>
                   <div className="preco">
-                    <b className="num">{im.preco ?? "Sob consulta"}</b>
+                    <b className="num">{im.preco}</b>
                     <small>{im.finalidade === "venda" ? "Venda" : "Locação"}</small>
                   </div>
                 </LinkRastreado>
               ))}
             </div>
+            <p className="nota-vitrine">Preços e disponibilidade conforme o portfólio da Alpha DL. As imagens são ilustrativas: as fotos de cada casa são apresentadas no atendimento.</p>
+            </>
           ) : (
             <div className="vazio">
               <p>
@@ -226,23 +233,26 @@ export default async function Home() {
         </div>
       </section>
 
-      {materias.length > 0 && (
-        <section className="claro" style={{ paddingTop: 0 }} aria-labelledby="h-jornal">
-          <div className="wrap">
-            <div className="cab-sec" style={{ borderTop: "1px solid var(--linha-clara)", paddingTop: "clamp(48px,6vw,80px)" }}>
-              <div>
-                <span className="rot bronze">Jornal</span>
-                <h2 id="h-jornal">Para decidir bem</h2>
-              </div>
-            </div>
-            <div className="jornal">
-              {materias.map((a) => (
-                <CardArtigo key={a.slug} a={a} />
-              ))}
+      <section className="claro" style={{ paddingTop: 0 }} aria-labelledby="h-jornal">
+        <div className="wrap">
+          <div className="cab-sec" style={{ borderTop: "1px solid var(--linha-clara)", paddingTop: "clamp(48px,6vw,80px)" }}>
+            <div>
+              <span className="rot bronze">Leituras no blog da Alpha DL</span>
+              <h2 id="h-jornal">Para decidir bem</h2>
             </div>
           </div>
-        </section>
-      )}
+          <div className="jornal">
+            {destaques.map((l, i) => (
+              <LinkRastreado key={l.caminho} className="materia" href={linkAlphaDL(l.caminho, { campanha: "home", conteudo: "leituras" })} ctaId={`home-leitura-${i}`} evento="outbound_alphadl">
+                <Cena nome={["j1", "j2", "j3"][i]} credito={false} />
+                <span className="rot bronze">{l.rotulo}</span>
+                <h3>{l.titulo}</h3>
+                <p>Abre em alphadl.com.br</p>
+              </LinkRastreado>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="dl escuro" aria-labelledby="h-dl">
         <div className="wrap">

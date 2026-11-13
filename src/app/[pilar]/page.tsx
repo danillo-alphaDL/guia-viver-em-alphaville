@@ -5,6 +5,8 @@ import { Migalha } from "@/components/Migalha";
 import { CardArtigo, CardCondominio } from "@/components/Cards";
 import { Cta } from "@/components/Cta";
 import { artigosDoPilar, condominios } from "@/lib/content";
+import { LinkRastreado } from "@/components/LinkRastreado";
+import { leituras, linkAlphaDL } from "@/lib/alphadl";
 import { meta } from "@/lib/seo";
 import { listaPilares, pilares, type Pilar } from "@/lib/site";
 
@@ -26,7 +28,8 @@ export default async function PaginaPilar({ params }: Props) {
   const p = pilares[pilar];
   const lista = artigosDoPilar(pilar);
   const conds = pilar === "condominios" ? condominios() : [];
-  const vazio = lista.length === 0 && conds.length === 0;
+  const lidas = leituras(pilar);
+  const vazio = pilar === "condominios" && conds.length === 0;
 
   return (
     <>
@@ -75,12 +78,29 @@ export default async function PaginaPilar({ params }: Props) {
           )}
           {vazio && (
             <div className="vazio">
-              <span className="rot bronze">Em produção</span>
-              <p>
-                Os conteúdos desta seção estão em apuração e revisão. Publicamos só depois de verificar cada informação. Enquanto isso, um especialista da Alpha DL
-                responde às suas dúvidas.
-              </p>
+              <span className="rot bronze">Fichas em apuração</span>
+              <p>As fichas dos residenciais estão em apuração. Só publicamos uma ficha depois de verificar cada dado com fonte e data.</p>
             </div>
+          )}
+          {lidas.length > 0 && (
+            <section style={{ padding: 0 }} aria-labelledby="h-leituras">
+              <div className="cab-sec">
+                <div>
+                  <span className="rot bronze">No blog da Alpha DL</span>
+                  <h2 id="h-leituras">Leituras recomendadas</h2>
+                </div>
+              </div>
+              <ul className="leituras">
+                {lidas.map((l, i) => (
+                  <li key={l.caminho}>
+                    <LinkRastreado href={linkAlphaDL(l.caminho, { campanha: `pilar-${pilar}`, conteudo: "leituras" })} ctaId={`leitura-${pilar}-${i}`} evento="outbound_alphadl">
+                      <span>{l.titulo}</span>
+                      <small>alphadl.com.br</small>
+                    </LinkRastreado>
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
           <Cta tipo={pilar === "condominios" ? "comparador" : "selecao-personalizada"} origem={`pilar-${pilar}`} />
         </div>

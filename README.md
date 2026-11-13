@@ -28,7 +28,7 @@ GUIA_MOSTRAR_RASCUNHOS=1 npm run dev
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4, com consentimento | nenhuma medição |
 | `NEXT_PUBLIC_WHATSAPP_ALPHADL` | WhatsApp do atendimento | usa o número do site da Alpha DL |
 | `LEAD_WEBHOOK_URL` / `LEAD_WEBHOOK_TOKEN` | CRM que recebe os leads | o formulário avisa que o envio não está ativo |
-| `ALPHADL_FEED_URL` | Feed JSON de imóveis para a vitrine da home | a vitrine vira um link para alphadl.com.br |
+| `ALPHADL_FEED_URL` | Endereço do portfólio de imóveis da Alpha DL | usa `https://www.alphadl.com.br/portfolio-alphadl-60-imoveis.json` |
 
 ## Conteúdo
 
@@ -47,6 +47,12 @@ GUIA_MOSTRAR_RASCUNHOS=1 npm run dev
 - `atualizadoEm` é preenchido à mão, só quando o conteúdo muda de fato. O sitemap usa essa data.
 
 Fluxo de status: `ideia → em-pesquisa → em-producao → em-revisao-factual → em-originalidade → em-revisao-seo → aguardando-aprovacao → publicado → em-atualizacao`.
+
+## Relação com o blog da Alpha DL
+
+- A vitrine da home lê o portfólio da Alpha DL a cada hora e mostra as 3 casas de maior valor (a partir de R$ 3 milhões, em Barueri ou Santana de Parnaíba), com preço. Se a leitura falhar, a seção mostra só o link para alphadl.com.br.
+- `content/leituras.json` lista artigos do blog da Alpha DL por seção. Eles aparecem como "Leituras recomendadas", com link rastreado.
+- O guia pode tratar dos mesmos temas do blog, desde que cada artigo seja original. Para reduzir a disputa entre os dois sites no Google, dê ao artigo do guia um ângulo próprio e ligue um ao outro.
 
 ## Imagens
 
