@@ -62,6 +62,7 @@ As imagens atuais são ilustrações conceituais em SVG (`src/lib/cena.ts`). Par
 
 - [`docs/01-analise-estrategica.md`](docs/01-analise-estrategica.md): estratégia, riscos, KPIs e plano de 90 dias.
 - [`docs/02-angulos-editoriais.md`](docs/02-angulos-editoriais.md): como o guia se diferencia do blog da Alpha DL, tema por tema.
+- [`docs/03-publicacao.md`](docs/03-publicacao.md): passo a passo para publicar (domínio na HostGator, site na Vercel).
 - [`docs/pesquisa/keywords.csv`](docs/pesquisa/keywords.csv): qual site responde a cada busca. Volumes ainda não verificados.
 - [`docs/prototipo/proposta-visual.html`](docs/prototipo/proposta-visual.html): protótipo do visual "Noite em Alphaville".
 
