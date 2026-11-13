@@ -1,19 +1,24 @@
-termo,intencao,estagio,volume_mensal,fonte_volume,potencial_comercial,tipo_pagina,url_alvo,status_conteudo,evidencia
-morar em alphaville,informacional,descoberta,não verificado,,médio,artigo pilar,/viver/morar-em-alphaville,rascunho,hipótese
-quanto custa morar em alphaville,comercial,consideração,não verificado,,alto,artigo + ferramenta,/comprar/quanto-custa-morar-em-alphaville,rascunho,hipótese
-alphaville ou tamboré,comparativa,consideração,não verificado,,alto,comparativo,/condominios/alphaville-ou-tambore,rascunho,hipótese
-melhores condomínios de alphaville,comercial,consideração,não verificado,,muito alto,artigo de critérios,/condominios/como-escolher-condominio-em-alphaville,rascunho,hipótese
-melhor condomínio de alphaville para famílias,comercial,consideração,não verificado,,muito alto,artigo de critérios,/condominios/como-escolher-condominio-em-alphaville,rascunho,hipótese
-condomínios de luxo em alphaville,comercial,consideração,não verificado,,muito alto,pilar,/condominios,no ar,hipótese
-alphaville residencial 1,navegacional,consideração,não verificado,,muito alto,guia de residencial,/condominios/alphaville-residencial-1,em pesquisa,hipótese
-tamboré 1,navegacional,consideração,não verificado,,muito alto,guia de residencial,/condominios/tambore-1,em pesquisa,hipótese
-mudar de são paulo para alphaville,informacional,descoberta,não verificado,,alto,artigo,/viver/mudar-de-sao-paulo-para-alphaville,rascunho,hipótese
-escolas em alphaville,informacional,descoberta,não verificado,,médio,artigo,/viver/escolas-em-alphaville,em pesquisa,hipótese
-comprar casa em alphaville vale a pena,comercial,consideração,não verificado,,alto,artigo,/comprar/comprar-casa-em-alphaville-vale-a-pena,rascunho,hipótese
-casas de luxo em alphaville,transacional,decisão,não verificado,,muito alto,pilar + link Alpha DL,/comprar,no ar,hipótese
-mansões em alphaville,transacional,decisão,não verificado,,muito alto,pilar + link Alpha DL,/comprar,no ar,hipótese
-casas à venda em alphaville,transacional,decisão,não verificado,,muito alto,não disputar: página da Alpha DL,alphadl.com.br,,hipótese
-casas em alphaville acima de 5 milhões,transacional,decisão,não verificado,,muito alto,artigo de mercado,/mercado/como-avaliar-preco-de-casa-em-alphaville,rascunho,hipótese
-alugar ou comprar casa em alphaville,comparativa,consideração,não verificado,,alto,artigo,/alugar/alugar-ou-comprar-casa-em-alphaville,rascunho,hipótese
-casas para alugar em alphaville,transacional,decisão,não verificado,,alto,pilar + link Alpha DL,/alugar,no ar,hipótese
-casas de luxo mobiliadas para alugar,transacional,decisão,não verificado,,alto,artigo,/alugar/locacao-de-alto-padrao-em-alphaville,rascunho,hipótese
+termo,dono,intencao,estagio,volume_mensal,tipo_pagina,url_alvo,status_conteudo,evidencia
+morar em alphaville,Alpha DL,informacional,descoberta,não verificado,artigo pilar,alphadl.com.br/guia-morar-em-alphaville,no ar,hipótese
+custo de vida em alphaville / quanto custa morar em alphaville,Alpha DL,comercial,consideração,não verificado,artigo,alphadl.com.br/custo-de-vida-em-alphaville,no ar,hipótese
+alphaville ou tamboré,Alpha DL,comparativa,consideração,não verificado,comparativo,alphadl.com.br/alphaville-ou-tambore,no ar,hipótese
+como escolher condomínio em alphaville,Alpha DL,comercial,consideração,não verificado,artigo,alphadl.com.br/como-escolher-condominio-em-alphaville,no ar,hipótese
+escolas em alphaville,Alpha DL,informacional,descoberta,não verificado,artigo,alphadl.com.br/escolas-na-regiao-de-alphaville,no ar,hipótese
+comprar imóvel em alphaville,Alpha DL,comercial,consideração,não verificado,artigo pilar,alphadl.com.br/comprar-imovel-em-alphaville,no ar,hipótese
+comprar ou alugar em alphaville,Alpha DL,comparativa,consideração,não verificado,artigo,alphadl.com.br/comprar-ou-alugar-em-alphaville,no ar,hipótese
+alugar em alphaville garantias,Alpha DL,comercial,decisão,não verificado,artigo,alphadl.com.br/alugar-imovel-em-alphaville-garantias-documentos,no ar,hipótese
+valor do metro quadrado em alphaville,Alpha DL,informacional,consideração,não verificado,artigo,alphadl.com.br/preco-por-metro-quadrado-por-que-pode-enganar,no ar,hipótese
+casas à venda em alphaville,Alpha DL,transacional,decisão,não verificado,listagem,alphadl.com.br/casas-a-venda-em-alphaville,no ar,hipótese
+casas em alphaville de 3 a 5 milhões,Alpha DL,transacional,decisão,não verificado,listagem,alphadl.com.br/casas-em-alphaville-de-3-a-5-milhoes,no ar,hipótese
+morar em casa de alto padrão em alphaville,Guia,informacional,descoberta,não verificado,artigo,/viver/morar-em-casa-de-alto-padrao-em-alphaville,rascunho,hipótese
+custo de manter casa de alto padrão,Guia,comercial,consideração,não verificado,artigo + simulador,/comprar/custo-de-manter-casa-de-alto-padrao-em-alphaville,rascunho,hipótese
+visitar casas em alphaville e tamboré,Guia,comercial,decisão,não verificado,roteiro,/condominios/alphaville-ou-tambore-casas-de-alto-padrao,rascunho,hipótese
+melhores condomínios de alphaville,Guia,comercial,consideração,não verificado,artigo + comparador,/condominios/melhores-condominios-de-alphaville,rascunho,hipótese
+morar em alphaville e trabalhar em são paulo,Guia,informacional,consideração,não verificado,artigo,/viver/morar-em-alphaville-e-trabalhar-em-sao-paulo,rascunho,hipótese
+mansões em alphaville,Guia,comercial,decisão,não verificado,artigo,/comprar/mansoes-em-alphaville-o-que-avaliar,rascunho,hipótese
+alugar antes de comprar em alphaville,Guia,comercial,consideração,não verificado,artigo,/alugar/alugar-antes-de-comprar-em-alphaville,rascunho,hipótese
+condomínio perto de escola em alphaville,Guia,comercial,consideração,não verificado,artigo com dados próprios,/viver/residenciais-perto-de-escolas-em-alphaville,em pesquisa,hipótese
+locação executiva em alphaville,Guia,comercial,decisão,não verificado,artigo,/alugar/locacao-executiva-em-alphaville,rascunho,hipótese
+casas em alphaville acima de 5 milhões,Guia,comercial,consideração,não verificado,artigo de mercado,/mercado/casas-em-alphaville-acima-de-5-milhoes,rascunho,hipótese
+quanto custa morar em alphaville (simulador),Guia,comercial,consideração,não verificado,ferramenta,/ferramentas/custo-de-morar,no ar,hipótese
+comparador de condomínios de alphaville,Guia,comercial,consideração,não verificado,ferramenta,/ferramentas/comparador,no ar,hipótese

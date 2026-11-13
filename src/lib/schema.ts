@@ -58,6 +58,8 @@ export const artigoSchema = z
     cena: z.string().default("j1"),
     faq: z.array(z.object({ pergunta: z.string(), resposta: z.string() })).default([]),
     relacionados: z.array(z.string()).default([]),
+    /** Artigos do blog da Alpha DL que tratam do tema geral. O artigo do guia deve ter ângulo próprio e apontar para eles. */
+    leiturasAlphaDL: z.array(z.object({ titulo: z.string(), caminho: z.string().startsWith("/") })).default([]),
     notasInternas: z.string().optional(),
   })
   .superRefine((a, ctx) => {

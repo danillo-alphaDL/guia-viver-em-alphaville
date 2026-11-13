@@ -145,6 +145,20 @@ function PaginaArtigo({ a }: { a: Artigo }) {
               </div>
             </div>
             <aside className="lateral" aria-label="Leia também">
+              {a.leiturasAlphaDL.length > 0 && (
+                <div className="box-alphadl">
+                  <span className="rot bronze">No blog da Alpha DL</span>
+                  <ul>
+                    {a.leiturasAlphaDL.map((l, i) => (
+                      <li key={l.caminho}>
+                        <LinkRastreado href={linkAlphaDL(l.caminho, { campanha: "artigo", conteudo: a.slug })} ctaId={`leitura-${a.slug}-${i}`} evento="outbound_alphadl">
+                          {l.titulo}
+                        </LinkRastreado>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               {relacionados.length > 0 && <span className="rot bronze">Leia também</span>}
               {relacionados.map((r) => (
                 <CardArtigo key={r.slug} a={r} />
