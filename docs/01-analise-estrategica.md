@@ -49,14 +49,14 @@ Quem compra uma casa de R$ 8 milhões não decide pelo anúncio. Decide pelo con
 - **[Boa prática]** O Google declara avaliar a qualidade do conteúdo, e não o método de produção. Ao mesmo tempo, classifica como spam a produção em escala de páginas sem valor ("scaled content abuse"). Isso pune exatamente os concorrentes que fabricam páginas de bairro em massa e favorece conteúdo original, com autoria real e verificação.
 - **[Hipótese]** Buscas conversacionais ("qual condomínio de Alphaville é melhor para família com filhos pequenos?") crescem com AI Overviews, AI Mode, ChatGPT e Perplexity. Essas perguntas exigem comparação e dado estruturado, que é exatamente o que os concorrentes não têm.
 
-### 1.4 O ativo que só a Alphaville DL tem
+### 1.4 O ativo que só a Alpha DL tem
 
 O diferencial defensável não é texto. É **dado proprietário e experiência real**:
-- Histórico de anúncios, visitas e negociações da Alphaville DL (anonimizado e agregado).
+- Histórico de anúncios, visitas e negociações da Alpha DL (anonimizado e agregado).
 - Corretores com CRECI que conhecem os condomínios por dentro.
 - Perguntas reais que clientes fazem no atendimento.
 
-Sem esse insumo, o portal vira mais um guia genérico. **Decisão do conselho:** o portal só se justifica se a Alphaville DL disponibilizar pelo menos um especialista identificado e acesso a dados agregados. **[Pendente: confirmar com você]**
+Sem esse insumo, o portal vira mais um guia genérico. **Decisão do conselho:** o portal só se justifica se a Alpha DL disponibilizar pelo menos um especialista identificado e acesso a dados agregados. **[Pendente: confirmar com você]**
 
 ---
 
@@ -71,14 +71,14 @@ Sem esse insumo, o portal vira mais um guia genérico. **Decisão do conselho:**
 | Guia editorial com opinião fundamentada | Portal de classificados |
 | Comparativos com critérios declarados | Ranking pago ou "top 10" sem metodologia |
 | Dado com fonte e data | Preço "médio" sem origem |
-| Transparentes sobre a relação com a Alphaville DL | Site "neutro" que esconde o vínculo comercial |
+| Transparentes sobre a relação com a Alpha DL | Site "neutro" que esconde o vínculo comercial |
 | Conteúdo sobre a vida real (escola, trânsito, rotina) | Lista de adjetivos de luxo |
 
 **Tom de voz:** consultor experiente conversando com um cliente exigente. Frases curtas, números com fonte, vantagens *e* limitações de cada lugar. Sem superlativos vazios ("o mais exclusivo", "imperdível").
 
-**Transparência comercial [Boa prática]:** todo rodapé e toda página "Sobre" dizem: *"O Guia Viver em Alphaville é um projeto editorial mantido pela Alphaville DL, imobiliária da região. Nossos comparativos seguem critérios públicos e não são patrocinados por condomínios ou incorporadoras."* Declarar o vínculo aumenta a confiança. Escondê-lo seria um risco reputacional e de diretrizes.
+**Transparência comercial [Boa prática]:** todo rodapé e toda página "Sobre" dizem: *"O Guia Viver em Alphaville é um projeto editorial mantido pela Alpha DL, imobiliária da região. Nossos comparativos seguem critérios públicos e não são patrocinados por condomínios ou incorporadoras."* Declarar o vínculo aumenta a confiança. Escondê-lo seria um risco reputacional e de diretrizes.
 
-**Desambiguação de entidade [Boa prática, Verificado]:** existem "Alphaville" em várias cidades (Brasília/DF, Salvador, Goiânia, entre outras), e a busca por "Alphaville DL" retornou resultados do DF. O portal sempre qualifica: *Alphaville (Barueri e Santana de Parnaíba, SP)*. Isso também entra nos dados estruturados (`Place` com `containedInPlace`).
+**Desambiguação de entidade [Boa prática, Verificado]:** existem "Alphaville" em várias cidades (Brasília/DF, Salvador, Goiânia, entre outras), e a busca por "Alpha DL" retornou resultados do DF. O portal sempre qualifica: *Alphaville (Barueri e Santana de Parnaíba, SP)*. Isso também entra nos dados estruturados (`Place` com `containedInPlace`).
 
 ---
 
@@ -92,7 +92,7 @@ Sem esse insumo, o portal vira mais um guia genérico. **Decisão do conselho:**
 | Imovelweb, Wimóveis | Portal | Páginas por condomínio e filtro (ex.: "Tamboré 3, com elevador") | Páginas geradas por filtro, sem conteúdo | Guia de condomínio com ficha verificada, contexto e comparação |
 | QuintoAndar Guias | Editorial de proptech | Escala de conteúdo, boa UX | Genérico, foco em locação de médio padrão | Profundidade no alto padrão |
 | Exame e mídia | Editorial | Autoridade | Matérias pontuais e datadas | Conteúdo perene e atualizado com data real |
-| Imobiliárias locais | Comercial | Inventário e confiança local | Pouco conteúdo útil | Conteúdo útil + ponte transparente para a Alphaville DL |
+| Imobiliárias locais | Comercial | Inventário e confiança local | Pouco conteúdo útil | Conteúdo útil + ponte transparente para a Alpha DL |
 | alphaville.net.br (citado em referência da Wikipedia) | Diretório local | Serviços e comércio | Não trata a decisão imobiliária | Pilar D com curadoria, não diretório |
 
 ### 3.2 O que **não** vamos copiar
@@ -101,7 +101,7 @@ Sem esse insumo, o portal vira mais um guia genérico. **Decisão do conselho:**
 - "Top 10 melhores condomínios" sem critérios públicos.
 
 ### 3.3 Próximo passo [Pendente]
-Validar a análise com dados: no Search Console da Alphaville DL, ver quais consultas já trazem impressões. No Keyword Planner, ver volumes. No Semrush ou Ahrefs (se houver assinatura), ver as palavras dos concorrentes.
+Validar a análise com dados: no Search Console da Alpha DL, ver quais consultas já trazem impressões. No Keyword Planner, ver volumes. No Semrush ou Ahrefs (se houver assinatura), ver as palavras dos concorrentes.
 
 ---
 
@@ -183,13 +183,13 @@ Esse marcador traduz visualmente a regra "não inventar dados" e é o elemento q
 - Um **inventário editorial** (`content/inventario.csv`, gerado do frontmatter) lista palavra-chave principal × URL. O build falha se duas páginas declararem a mesma palavra-chave principal (prevenção de canibalização).
 
 ### 5.3 Relação com alphadl.com.br
-| Guia (este portal) | Alphaville DL |
+| Guia (este portal) | Alpha DL |
 |---|---|
 | Responde "onde e por quê" | Responde "qual imóvel e quando" |
 | Guia do Tamboré 1: história, regras, perfil, prós e contras | Listagem de imóveis disponíveis no Tamboré 1 |
 | Comparativos e ferramentas | Atendimento, visitas e negociação |
 
-- Links do guia para a DL são **contextuais** ("Veja casas disponíveis no Tamboré 1 na Alphaville DL") e levam UTMs (`utm_source=guiaviveremalphaville&utm_medium=referral&utm_campaign={cluster}&utm_content={slug}`).
+- Links do guia para a DL são **contextuais** ("Veja casas disponíveis no Tamboré 1 na Alpha DL") e levam UTMs (`utm_source=guiaviveremalphaville&utm_medium=referral&utm_campaign={cluster}&utm_content={slug}`).
 - **Nenhum redirecionamento automático** e nenhuma página que exista só para encaminhar tráfego.
 - **Não duplicar conteúdo.** Se a DL já tem textos sobre condomínios, o guia não os republica. Os dois sites terão textos distintos, com propósitos distintos. **[Pendente: auditar textos da DL]**
 
@@ -230,7 +230,7 @@ HTML semântico com SSG/ISR, sitemap automático com `lastmod` **real por págin
 ### 6.3 Dados estruturados (só o que é visível na página)
 | Página | Schema |
 |---|---|
-| Site | `WebSite`, `Organization` (com `parentOrganization` = Alphaville DL) |
+| Site | `WebSite`, `Organization` (com `parentOrganization` = Alpha DL) |
 | Artigo | `Article` com `author` (`Person` real, com página de autor), `datePublished`, `dateModified` |
 | Condomínio | `Place` / `Residence` com `address`, `geo`, `containedInPlace` (Barueri ou Santana de Parnaíba) |
 | Navegação | `BreadcrumbList` |
@@ -271,7 +271,7 @@ Implementação: cada conteúdo é um arquivo MDX com frontmatter validado. **O 
 ### 7.4 Autoria (E-E-A-T)
 - Autores reais com página própria: nome, foto, CRECI quando aplicável, áreas de atuação e conteúdos assinados.
 - **Proibido** autor fictício, foto gerada por IA ou credencial inventada. **[Verificado]** O Google passou a citar explicitamente esse comportamento como sinal negativo.
-- **[Pendente]** Quem serão os autores e revisores? Precisamos de pelo menos um corretor da Alphaville DL e um editor.
+- **[Pendente]** Quem serão os autores e revisores? Precisamos de pelo menos um corretor da Alpha DL e um editor.
 
 ### 7.5 Os 12 primeiros conteúdos (proposta, sujeita à validação de demanda)
 | # | Conteúdo | Pilar | Por que primeiro | Dependência |
@@ -291,7 +291,7 @@ Implementação: cada conteúdo é um arquivo MDX com frontmatter validado. **O 
 
 ---
 
-## 8. Estrutura de conversão para a Alphaville DL
+## 8. Estrutura de conversão para a Alpha DL
 
 ### 8.1 Princípios comportamentais aplicados (com nível de evidência)
 | Princípio | Base | Aplicação | Evidência |

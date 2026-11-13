@@ -1,0 +1,24 @@
+{
+  "slug": "tambore-1",
+  "nome": "Tamboré 1",
+  "regiao": "tambore",
+  "status": "em-pesquisa",
+  "resumo": "Guia do Tamboré 1 em apuração. A ficha será publicada depois que cada dado for verificado com fonte e data.",
+  "campos": {
+    "municipio": { "valor": null, "estado": "a-verificar" },
+    "lotes": { "valor": null, "estado": "a-verificar" },
+    "loteTipico": { "valor": null, "estado": "a-verificar" },
+    "taxaCondominial": { "valor": null, "estado": "a-verificar" },
+    "faixaPreco": { "valor": null, "estado": "a-verificar" },
+    "faixaAluguel": { "valor": null, "estado": "a-verificar" },
+    "clube": { "valor": null, "estado": "a-verificar" },
+    "acessoSaoPaulo": { "valor": null, "estado": "a-verificar" }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": null,
+  "cena": "c3",
+  "notasInternas": "Preencher com: município (prefeitura), nº de lotes e regras (associação), taxa (boleto de referência), faixas de preço (base Alpha DL, com n da amostra), tempo até a Marginal (medição própria com data e horário). Prós e contras: escrever com o corretor que atende o residencial."
+}
