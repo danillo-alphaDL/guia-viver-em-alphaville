@@ -26,7 +26,7 @@ GUIA_MOSTRAR_RASCUNHOS=1 npm run dev
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | URL pública (canonical, sitemap) | usa `https://www.guiaviveremalphaville.com.br` |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4, com consentimento | nenhuma medição |
-| `NEXT_PUBLIC_WHATSAPP_ALPHADL` | WhatsApp do atendimento | botões de WhatsApp não aparecem |
+| `NEXT_PUBLIC_WHATSAPP_ALPHADL` | WhatsApp do atendimento | usa o número do site da Alpha DL |
 | `LEAD_WEBHOOK_URL` / `LEAD_WEBHOOK_TOKEN` | CRM que recebe os leads | o formulário avisa que o envio não está ativo |
 | `ALPHADL_FEED_URL` | Feed JSON de imóveis para a vitrine da home | a vitrine vira um link para alphadl.com.br |
 

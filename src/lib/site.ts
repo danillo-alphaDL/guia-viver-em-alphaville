@@ -11,7 +11,8 @@ export const site = {
     url: "https://alphadl.com.br",
   },
   regiao: "Alphaville e Tamboré, em Barueri e Santana de Parnaíba (SP)",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_ALPHADL || "",
+  // Mesmo número do atendimento em alphadl.com.br
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_ALPHADL || "5511913312662",
   gaId: process.env.NEXT_PUBLIC_GA_ID || "",
 } as const;
 
