@@ -1,0 +1,721 @@
+<title>Guia Viver em Alphaville</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Conceito "Alameda": horizontalidade, espaço e sombra verde. Faixas largas, colunas de leitura estreitas, fichas com selo de proveniência. */
+:root{
+  --pedra:#F4F4F1; --papel:#FBFBF9; --nevoa:#E6E8E3; --linha:#D3D7D0;
+  --grafite:#1D2321; --grafite-2:#4A524E; --musgo:#2E4A3E; --musgo-claro:#DCE6E0;
+  --latao:#8C6D3F; --latao-fundo:#F1EADF; --sobre-musgo:#F4F4F1;
+  --alerta:#8A3B2E; --alerta-fundo:#F5E4E0;
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-texto:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --t-xs:.78rem; --t-sm:.9rem; --t-md:1.0625rem; --t-lg:1.3rem; --t-xl:1.9rem; --t-2xl:clamp(2.2rem,5.2vw,3.6rem);
+  --raio:3px; --largura:1180px; --leitura:40rem;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --pedra:#141716; --papel:#191D1B; --nevoa:#1F2422; --linha:#2E3532;
+  --grafite:#E9EBE7; --grafite-2:#A9B1AC; --musgo:#8DB5A2; --musgo-claro:#22302A;
+  --latao:#C9A46A; --latao-fundo:#2A2419; --sobre-musgo:#101412;
+  --alerta:#E39A8B; --alerta-fundo:#2E1D19; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --pedra:#141716; --papel:#191D1B; --nevoa:#1F2422; --linha:#2E3532;
+  --grafite:#E9EBE7; --grafite-2:#A9B1AC; --musgo:#8DB5A2; --musgo-claro:#22302A;
+  --latao:#C9A46A; --latao-fundo:#2A2419; --sobre-musgo:#101412;
+  --alerta:#E39A8B; --alerta-fundo:#2E1D19; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--pedra);color:var(--grafite);font-family:var(--f-texto);font-size:var(--t-md);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--musgo);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--latao);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;line-height:1.12;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--largura);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--grafite-2)}
+.num{font-variant-numeric:tabular-nums}
+
+/* Barra do protótipo (não faz parte do site) */
+.proto{background:var(--grafite);color:var(--pedra);font-size:var(--t-sm)}
+.proto .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding-block:10px}
+.proto strong{font-weight:600;margin-right:auto}
+.proto nav{display:flex;flex-wrap:wrap;gap:4px}
+.proto a{color:var(--pedra);text-decoration:none;padding:5px 10px;border-radius:999px;border:1px solid transparent;opacity:.75}
+.proto a[aria-current="page"]{border-color:currentColor;opacity:1}
+.proto a:hover{opacity:1}
+.aviso{background:var(--latao-fundo);color:var(--grafite);font-size:var(--t-xs)}
+.aviso .wrap{padding-block:7px}
+
+/* Cabeçalho do portal */
+.topo{border-bottom:1px solid var(--linha);background:var(--pedra)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;flex-wrap:wrap}
+.marca{display:flex;flex-direction:column;text-decoration:none;color:var(--grafite);line-height:1}
+.marca small{font-size:.62rem;letter-spacing:.32em;font-weight:600;color:var(--latao);margin-bottom:5px}
+.marca span{font-family:var(--f-display);font-size:1.55rem;font-weight:500;letter-spacing:-.01em}
+.marca span i{font-style:italic;color:var(--musgo)}
+.menu{display:flex;flex-wrap:wrap;gap:4px 22px;font-size:var(--t-sm);font-weight:500}
+.menu a{color:var(--grafite);text-decoration:none}
+.menu a:hover{color:var(--musgo)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 var(--t-sm)/1 var(--f-texto);padding:13px 20px;border-radius:var(--raio);border:1px solid var(--musgo);background:var(--musgo);color:var(--sobre-musgo);text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.sec{background:transparent;color:var(--musgo)}
+.btn.sec:hover{background:var(--musgo-claro)}
+
+/* Placeholder fotográfico honesto */
+.foto{position:relative;background:
+  linear-gradient(180deg,transparent 58%,color-mix(in srgb,var(--musgo) 35%,transparent) 58% 62%,transparent 62%),
+  repeating-linear-gradient(90deg,transparent 0 46px,color-mix(in srgb,var(--grafite) 7%,transparent) 46px 47px),
+  linear-gradient(160deg,var(--musgo-claro),var(--nevoa) 70%);
+  border-radius:var(--raio);overflow:hidden;max-width:100%}
+.foto::after{content:attr(data-legenda);position:absolute;left:12px;bottom:10px;right:12px;font-size:.72rem;letter-spacing:.06em;color:var(--grafite-2)}
+
+/* Selos de proveniência: a assinatura do portal */
+.selo{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;letter-spacing:.02em;padding:3px 8px;border-radius:999px;white-space:nowrap;line-height:1.4}
+.selo::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.selo.ver{color:var(--latao);background:var(--latao-fundo)}
+.selo.est{color:var(--grafite-2);background:transparent;border:1px dashed var(--grafite-2)}
+.selo.pend{color:var(--alerta);background:var(--alerta-fundo)}
+
+section{padding-block:clamp(48px,7vw,88px)}
+.sec-cab{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.sec-cab h2{font-size:var(--t-xl)}
+
+/* HOME */
+.hero{padding-block:clamp(40px,6vw,72px) clamp(40px,6vw,80px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.hero h1{font-size:var(--t-2xl);margin-block:14px 18px}
+.hero h1 em{color:var(--musgo)}
+.hero .lead{font-size:1.15rem;color:var(--grafite-2);max-width:34rem}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero .foto{aspect-ratio:4/5}
+.locais{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:28px;font-size:var(--t-sm);color:var(--grafite-2)}
+.locais span::before{content:"— ";color:var(--latao)}
+
+.decisoes{background:var(--papel);border-block:1px solid var(--linha)}
+.grade4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.decisao{padding:28px 24px;border-left:1px solid var(--linha);display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--grafite)}
+.decisao:first-child{border-left:0;padding-left:0}
+.decisao h3{font-size:1.35rem}
+.decisao p{font-size:var(--t-sm);color:var(--grafite-2)}
+.decisao .ir{margin-top:auto;font-size:var(--t-sm);font-weight:600;color:var(--musgo)}
+.decisao:hover h3{color:var(--musgo)}
+
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.card{display:flex;flex-direction:column;gap:14px;color:var(--grafite);text-decoration:none}
+.card .foto{aspect-ratio:3/2}
+.card h3{font-size:1.4rem}
+.card:hover h3{color:var(--musgo)}
+.card p{font-size:var(--t-sm);color:var(--grafite-2)}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;border-top:1px solid var(--linha);padding-top:12px;font-size:var(--t-xs)}
+.mini dt{color:var(--grafite-2);text-transform:uppercase;letter-spacing:.08em}
+.mini dd{margin:0;font-weight:600}
+
+.faixa-musgo{background:var(--musgo);color:var(--sobre-musgo)}
+.faixa-musgo .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.faixa-musgo h2{font-size:var(--t-xl)}
+.faixa-musgo p{opacity:.85;margin-top:12px}
+.faixa-musgo .eyebrow{color:inherit;opacity:.7}
+.faixa-musgo .btn{background:var(--sobre-musgo);color:var(--musgo);border-color:var(--sobre-musgo);margin-top:24px}
+.recibo{background:var(--sobre-musgo);color:var(--grafite);border-radius:var(--raio);padding:24px;font-size:var(--t-sm)}
+.recibo .linha{display:flex;justify-content:space-between;gap:12px;padding-block:8px;border-bottom:1px solid var(--linha)}
+.recibo .total{border-bottom:0;font-weight:700;font-size:1.05rem;padding-top:14px}
+
+.lista{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 48px}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding-block:20px;border-top:1px solid var(--linha);text-decoration:none;color:var(--grafite)}
+.item .pilar{font-size:var(--t-xs);font-weight:600;color:var(--latao);text-transform:uppercase;letter-spacing:.1em;width:6.5rem}
+.item h3{font-family:var(--f-texto);font-size:1.05rem;font-weight:600;line-height:1.35}
+.item:hover h3{color:var(--musgo)}
+.item p{font-size:var(--t-xs);color:var(--grafite-2);margin-top:4px}
+
+.transp{background:var(--nevoa)}
+.transp .wrap{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:32px}
+.transp p{max-width:var(--leitura);color:var(--grafite-2)}
+.transp p + p{margin-top:12px}
+
+.rodape{background:var(--grafite);color:var(--pedra);font-size:var(--t-sm)}
+.rodape .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:32px;padding-block:56px}
+.rodape a{color:var(--pedra);opacity:.75;text-decoration:none;display:block;padding-block:3px}
+.rodape a:hover{opacity:1}
+.rodape h4{font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;opacity:.6;font-weight:600}
+.rodape .marca{color:var(--pedra)}
+.rodape .marca span i{color:inherit}
+.rodape .legal{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--pedra) 18%,transparent);padding-top:20px;opacity:.65;font-size:var(--t-xs)}
+
+/* ARTIGO */
+.migalha{font-size:var(--t-xs);color:var(--grafite-2);display:flex;flex-wrap:wrap;gap:6px}
+.migalha a{color:var(--grafite-2)}
+.art-cab{max-width:52rem;margin-inline:auto;padding-top:48px}
+.art-cab h1{font-size:var(--t-2xl);margin-block:16px}
+.art-cab .lead{font-size:1.2rem;color:var(--grafite-2)}
+.autoria{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;margin-top:28px;padding-block:16px;border-block:1px solid var(--linha);font-size:var(--t-sm)}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--musgo-claro);display:grid;place-items:center;font-weight:700;color:var(--musgo);font-size:var(--t-sm)}
+.autor{display:flex;gap:10px;align-items:center}
+.autor small{display:block;color:var(--grafite-2);font-size:var(--t-xs)}
+.art-corpo{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,var(--leitura)) minmax(0,1fr);gap:48px;max-width:var(--largura);margin-inline:auto;padding-block:40px 72px}
+.indice{position:sticky;top:20px;align-self:start;font-size:var(--t-sm)}
+.indice ol{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}
+.indice a{color:var(--grafite-2);text-decoration:none}
+.indice a:hover{color:var(--musgo)}
+.texto{display:flex;flex-direction:column;gap:20px}
+.texto h2{font-size:1.7rem;margin-top:24px}
+.texto p{font-size:1.075rem;line-height:1.75}
+.resposta{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:22px 24px}
+.resposta .eyebrow{color:var(--musgo);margin-bottom:8px}
+.tabela-box{overflow-x:auto;border:1px solid var(--linha);border-radius:var(--raio)}
+table{border-collapse:collapse;width:100%;font-size:var(--t-sm);min-width:30rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--linha);vertical-align:top}
+thead th{font-size:var(--t-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--grafite-2);background:var(--papel)}
+tbody tr:last-child td{border-bottom:0}
+.cta-ctx{border-top:2px solid var(--musgo);padding-top:20px;display:flex;flex-direction:column;gap:12px}
+.cta-ctx h3{font-size:1.35rem}
+.cta-ctx p{font-size:var(--t-sm);color:var(--grafite-2)}
+.fontes{font-size:var(--t-sm);color:var(--grafite-2);border-top:1px solid var(--linha);padding-top:20px}
+.fontes ol{padding-left:18px;margin:8px 0 0;display:grid;gap:6px}
+.lateral{align-self:start;position:sticky;top:20px}
+details{border-top:1px solid var(--linha);padding-block:14px}
+details summary{cursor:pointer;font-weight:600}
+details p{margin-top:10px;font-size:var(--t-sm);color:var(--grafite-2)}
+
+/* CONDOMÍNIO */
+.cond-hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,5vw,56px);align-items:end}
+.cond-hero h1{font-size:var(--t-2xl);margin-block:12px}
+.cond-hero .foto{aspect-ratio:16/10}
+.ficha{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio)}
+.ficha-cab{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding:18px 22px;border-bottom:1px solid var(--linha)}
+.ficha-cab h2{font-size:1.4rem}
+.ficha dl{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.campo{padding:18px 22px;border-bottom:1px solid var(--linha);border-right:1px solid var(--linha);display:flex;flex-direction:column;gap:6px}
+.campo:nth-child(3n){border-right:0}
+.campo dt{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--grafite-2)}
+.campo dd{margin:0;font-size:1.15rem;font-weight:600}
+.campo .origem{font-size:.7rem;color:var(--grafite-2)}
+.ficha-rodape{padding:14px 22px;font-size:var(--t-xs);color:var(--grafite-2);display:flex;flex-wrap:wrap;gap:8px 18px}
+.dois{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.pros h3,.contras h3{font-size:1.3rem;margin-bottom:14px}
+.pros ul,.contras ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.pros li,.contras li{padding-left:22px;position:relative;font-size:var(--t-sm)}
+.pros li::before{content:"+";position:absolute;left:0;color:var(--musgo);font-weight:700}
+.contras li::before{content:"−";position:absolute;left:0;color:var(--alerta);font-weight:700}
+.perfil{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.perfil div{border:1px solid var(--linha);border-radius:var(--raio);padding:16px}
+.perfil strong{display:block;font-family:var(--f-display);font-size:1.25rem;font-weight:500}
+.perfil span{font-size:var(--t-xs);color:var(--grafite-2)}
+.especialista{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;border:1px solid var(--linha);border-radius:var(--raio);padding:22px;background:var(--papel)}
+.especialista .avatar{width:56px;height:56px;font-size:1rem}
+
+/* COMPARATIVO */
+.comp td:first-child,.comp th:first-child{width:28%;font-weight:600}
+.comp td{font-variant-numeric:tabular-nums}
+.comp .val{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.criterios{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--linha);background:var(--papel);border-radius:999px;padding:7px 14px;font:500 var(--t-sm) var(--f-texto);color:var(--grafite);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--musgo);border-color:var(--musgo);color:var(--sobre-musgo)}
+
+/* FERRAMENTA */
+.ferr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
+.form{display:grid;gap:18px}
+.seg{display:inline-flex;border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden}
+.seg button{border:0;background:var(--papel);padding:10px 18px;font:600 var(--t-sm) var(--f-texto);color:var(--grafite);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--musgo);color:var(--sobre-musgo)}
+label{display:grid;gap:6px;font-size:var(--t-sm);font-weight:600}
+label small{font-weight:400;color:var(--grafite-2)}
+.campo-in{display:flex;align-items:center;border:1px solid var(--linha);border-radius:var(--raio);background:var(--papel)}
+.campo-in span{padding-inline:12px;color:var(--grafite-2);font-size:var(--t-sm)}
+.campo-in input{border:0;background:transparent;font:500 1rem var(--f-texto);color:var(--grafite);padding:12px 12px 12px 0;width:100%;min-width:0;font-variant-numeric:tabular-nums}
+.campo-in:focus-within{outline:2px solid var(--latao);outline-offset:2px}
+.resultado{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:28px;position:sticky;top:20px}
+.resultado .grande{font-family:var(--f-display);font-size:clamp(2.2rem,5vw,3rem);font-weight:500;line-height:1;margin-block:8px 4px}
+.barra{display:flex;height:14px;border-radius:2px;overflow:hidden;margin-block:22px 14px;background:var(--nevoa)}
+.barra i{display:block;height:100%}
+.legenda{display:grid;gap:8px;font-size:var(--t-sm)}
+.legenda div{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:10px;align-items:center}
+.legenda b{width:12px;height:12px;border-radius:2px}
+.nota{font-size:var(--t-xs);color:var(--grafite-2);margin-top:18px;border-top:1px solid var(--linha);padding-top:14px}
+
+/* SISTEMA */
+.paleta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.cor{border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;font-size:var(--t-xs)}
+.cor div{height:84px}
+.cor p{padding:10px 12px}
+.cor p strong{display:block;font-size:var(--t-sm)}
+.escala{display:grid;gap:18px}
+.escala div{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:16px;align-items:baseline;border-top:1px solid var(--linha);padding-top:14px}
+.escala small{color:var(--grafite-2);font-size:var(--t-xs)}
+.ctas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.ctas ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:var(--t-sm)}
+.nao li{text-decoration:line-through;color:var(--grafite-2)}
+
+@media (max-width:900px){
+  .hero .wrap,.cond-hero .wrap,.faixa-musgo .wrap,.ferr,.transp .wrap{grid-template-columns:minmax(0,1fr)}
+  .hero .foto{aspect-ratio:16/10;order:-1}
+  .grade4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .decisao:nth-child(3){border-left:0;padding-left:0}
+  .decisao{border-top:1px solid var(--linha)}
+  .decisao:nth-child(-n+2){border-top:0}
+  .cards{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .lista{grid-template-columns:minmax(0,1fr)}
+  .art-corpo{grid-template-columns:minmax(0,1fr)}
+  .indice,.lateral{position:static}
+  .indice{border-block:1px solid var(--linha);padding-block:16px}
+  .ficha dl{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .campo:nth-child(3n){border-right:1px solid var(--linha)}
+  .campo:nth-child(2n){border-right:0}
+  .perfil{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .rodape .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .rodape .wrap > div:first-child{grid-column:1/-1}
+  .paleta{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .resultado{position:static}
+}
+@media (max-width:560px){
+  .grade4,.cards,.dois,.ctas{grid-template-columns:minmax(0,1fr)}
+  .decisao{border-left:0;padding-left:0;border-top:1px solid var(--linha)}
+  .decisao:nth-child(2){border-top:1px solid var(--linha)}
+  .ficha dl{grid-template-columns:minmax(0,1fr)}
+  .campo{border-right:0!important}
+  .especialista{grid-template-columns:auto minmax(0,1fr)}
+  .especialista .btn{grid-column:1/-1;justify-content:center}
+  .item{grid-template-columns:minmax(0,1fr);gap:4px}
+  .paleta{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .menu{gap:4px 16px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .view{animation:entra .35s ease-out}
+  @keyframes entra{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+</style>
+
+<div class="proto" role="region" aria-label="Navegação do protótipo">
+  <div class="wrap">
+    <strong>Proposta visual · v0.1 para aprovação</strong>
+    <nav id="proto-nav" aria-label="Templates">
+      <a href="#home">Homepage</a>
+      <a href="#artigo">Artigo</a>
+      <a href="#condominio">Condomínio</a>
+      <a href="#comparativo">Comparativo</a>
+      <a href="#ferramenta">Ferramenta</a>
+      <a href="#sistema">Design system</a>
+    </nav>
+  </div>
+</div>
+<div class="aviso"><div class="wrap">Protótipo de layout. Nomes de autores, números e dados de condomínios são <strong>ilustrativos</strong> e não serão publicados. Fotos são espaços reservados para ensaio próprio licenciado.</div></div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#home" aria-label="Guia Viver em Alphaville, início"><small>GUIA</small><span>Viver em <i>Alphaville</i></span></a>
+    <nav class="menu" aria-label="Principal">
+      <a href="#artigo">Comprar</a><a href="#artigo">Alugar</a><a href="#condominio">Condomínios</a><a href="#artigo">Viver</a><a href="#artigo">Mercado</a><a href="#ferramenta">Ferramentas</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HOME ============ -->
+<div class="view" id="v-home" data-view="home">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Guia editorial independente · Alphaville e Tamboré</p>
+        <h1>O guia para descobrir, escolher e viver <em>o melhor de Alphaville</em>.</h1>
+        <p class="lead">Condomínios comparados com critérios públicos, custos reais de morar e respostas de quem conhece a região por dentro. Antes de olhar casas, entenda onde você quer viver.</p>
+        <div class="acoes">
+          <a class="btn" href="#ferramenta">Simule o custo de morar</a>
+          <a class="btn sec" href="#condominio">Conheça os condomínios</a>
+        </div>
+        <div class="locais"><span>Barueri</span><span>Santana de Parnaíba</span><span>Residenciais Alphaville</span><span>Tamboré</span></div>
+      </div>
+      <div class="foto" data-legenda="Ensaio próprio · alameda arborizada, luz de fim de tarde (a produzir)" role="img" aria-label="Espaço reservado para fotografia de alameda residencial"></div>
+    </div>
+  </section>
+
+  <section class="decisoes" aria-labelledby="h-decisao">
+    <div class="wrap">
+      <div class="sec-cab"><div><p class="eyebrow">Comece pela sua decisão</p><h2 id="h-decisao">Em que momento você está?</h2></div></div>
+      <div class="grade4">
+        <a class="decisao" href="#artigo"><span class="eyebrow">Comprar</span><h3>Quanto custa uma casa em Alphaville</h3><p>Faixas de investimento, custos de aquisição e o que muda entre condomínios.</p><span class="ir">Ler o guia de compra →</span></a>
+        <a class="decisao" href="#artigo"><span class="eyebrow">Alugar</span><h3>Locação de alto padrão, sem surpresas</h3><p>Garantias, contratos, casas mobiliadas e o custo mensal completo.</p><span class="ir">Ler o guia de locação →</span></a>
+        <a class="decisao" href="#comparativo"><span class="eyebrow">Escolher</span><h3>Alphaville ou Tamboré?</h3><p>Diferenças práticas de localização, perfil dos lotes e rotina.</p><span class="ir">Ver o comparativo →</span></a>
+        <a class="decisao" href="#artigo"><span class="eyebrow">Mudar</span><h3>Saindo de São Paulo com a família</h3><p>Escolas, deslocamento até a capital e a rotina de quem já fez a mudança.</p><span class="ir">Ler o guia de mudança →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-cond">
+    <div class="wrap">
+      <div class="sec-cab"><div><p class="eyebrow">Guias de condomínio</p><h2 id="h-cond">Cada residencial, com ficha verificada</h2></div><a href="#condominio">Ver todos os condomínios →</a></div>
+      <div class="cards">
+        <a class="card" href="#condominio">
+          <div class="foto" data-legenda="Portaria · foto autorizada (a produzir)"></div>
+          <span class="eyebrow">Barueri</span><h3>Residencial modelo A</h3>
+          <p>Lotes amplos e ruas silenciosas. Bom para famílias que priorizam espaço.</p>
+          <dl class="mini"><dt>Lotes</dt><dd class="num">≈ 000</dd><dt>Dados</dt><dd><span class="selo ver">Verificado 10/2026</span></dd></dl>
+        </a>
+        <a class="card" href="#condominio">
+          <div class="foto" data-legenda="Área verde · foto autorizada (a produzir)"></div>
+          <span class="eyebrow">Santana de Parnaíba</span><h3>Residencial modelo B</h3>
+          <p>Acesso rápido a escolas e comércio. Menos privacidade nas vias principais.</p>
+          <dl class="mini"><dt>Lotes</dt><dd class="num">≈ 000</dd><dt>Dados</dt><dd><span class="selo ver">Verificado 09/2026</span></dd></dl>
+        </a>
+        <a class="card" href="#condominio">
+          <div class="foto" data-legenda="Clube · foto autorizada (a produzir)"></div>
+          <span class="eyebrow">Barueri</span><h3>Residencial modelo C</h3>
+          <p>Clube interno completo. Taxa condominial acima da média da região.</p>
+          <dl class="mini"><dt>Lotes</dt><dd class="num">≈ 000</dd><dt>Dados</dt><dd><span class="selo est">Estimativa</span></dd></dl>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faixa-musgo" aria-labelledby="h-custo">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Ferramenta gratuita</p>
+        <h2 id="h-custo">Quanto custa, de verdade, morar aqui?</h2>
+        <p>Some parcela ou aluguel, condomínio, IPTU e manutenção e veja o custo mensal e anual. Sem cadastro: o resultado aparece na hora.</p>
+        <a class="btn" href="#ferramenta">Fazer minha simulação</a>
+      </div>
+      <div class="recibo" aria-label="Exemplo de resultado">
+        <p class="eyebrow">Exemplo de simulação · valores ilustrativos</p>
+        <div class="linha"><span>Aluguel</span><span class="num">R$ 30.000</span></div>
+        <div class="linha"><span>Condomínio</span><span class="num">R$ 2.400</span></div>
+        <div class="linha"><span>IPTU (mensal)</span><span class="num">R$ 1.500</span></div>
+        <div class="linha"><span>Manutenção estimada</span><span class="num">R$ 1.200</span></div>
+        <div class="linha total"><span>Total mensal</span><span class="num">R$ 35.100</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-rec">
+    <div class="wrap">
+      <div class="sec-cab"><div><p class="eyebrow">Publicados recentemente</p><h2 id="h-rec">Para decidir com calma</h2></div></div>
+      <div class="lista">
+        <a class="item" href="#artigo"><span class="pilar">Viver</span><div><h3>Morar em Alphaville: o guia para decidir se é para você</h3><p>Atualizado em nov. 2026 · 14 min</p></div></a>
+        <a class="item" href="#artigo"><span class="pilar">Comprar</span><div><h3>Comprar casa em Alphaville vale a pena? O que os dados mostram</h3><p>Atualizado em nov. 2026 · 11 min</p></div></a>
+        <a class="item" href="#artigo"><span class="pilar">Alugar</span><div><h3>Alugar ou comprar uma casa em Alphaville: como fazer a conta</h3><p>Publicado em out. 2026 · 9 min</p></div></a>
+        <a class="item" href="#artigo"><span class="pilar">Viver</span><div><h3>Escolas em Alphaville e Tamboré: como comparar</h3><p>Publicado em out. 2026 · 12 min</p></div></a>
+        <a class="item" href="#artigo"><span class="pilar">Condomínios</span><div><h3>Como escolher um condomínio: nossa metodologia</h3><p>Publicado em out. 2026 · 7 min</p></div></a>
+        <a class="item" href="#artigo"><span class="pilar">Mercado</span><div><h3>Relatório trimestral do mercado residencial de alto padrão</h3><p>Em produção · previsto para jan. 2027</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="transp" aria-labelledby="h-transp">
+    <div class="wrap">
+      <div><p class="eyebrow">Transparência</p><h2 id="h-transp" style="font-size:1.6rem;margin-top:8px">Quem faz este guia</h2></div>
+      <div>
+        <p>O Guia Viver em Alphaville é um projeto editorial mantido pela Alphaville DL, imobiliária da região. Quando você quiser ver imóveis ou falar com um especialista, levamos você até o atendimento da Alphaville DL.</p>
+        <p>Nossos comparativos seguem <a href="#artigo">critérios públicos</a>, não são patrocinados por condomínios ou incorporadoras, e cada dado mostra a fonte e a data em que foi verificado.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ARTIGO ============ -->
+<div class="view" id="v-artigo" data-view="artigo" hidden>
+  <div class="wrap">
+    <header class="art-cab">
+      <nav class="migalha" aria-label="Trilha"><a href="#home">Início</a>/<a href="#comparativo">Condomínios</a>/<span>Alphaville ou Tamboré</span></nav>
+      <h1>Alphaville ou Tamboré: diferenças práticas para decidir onde morar</h1>
+      <p class="lead">Os dois ficam lado a lado, entre Barueri e Santana de Parnaíba, e costumam aparecer na mesma busca. A escolha depende menos do nome e mais do residencial, da rotina da família e do tipo de casa que você procura.</p>
+      <div class="autoria">
+        <div class="autor"><div class="avatar" aria-hidden="true">NA</div><div><strong>Nome do autor</strong><small>Corretor · CRECI 000000 · Alphaville DL</small></div></div>
+        <div><small class="eyebrow">Revisão factual</small><br>Nome do revisor</div>
+        <div><small class="eyebrow">Atualizado</small><br><time datetime="2026-11-10">10 nov. 2026</time></div>
+      </div>
+    </header>
+  </div>
+  <div class="art-corpo wrap">
+    <nav class="indice" aria-label="Neste guia">
+      <p class="eyebrow">Neste guia</p>
+      <ol><li><a href="#artigo">Resposta curta</a></li><li><a href="#artigo">Localização e acesso</a></li><li><a href="#artigo">Perfil dos residenciais</a></li><li><a href="#artigo">Custos</a></li><li><a href="#artigo">Perguntas frequentes</a></li><li><a href="#artigo">Fontes</a></li></ol>
+    </nav>
+    <article class="texto">
+      <div class="resposta">
+        <p class="eyebrow">Resposta curta</p>
+        <p>Estrutura do bloco de resposta direta: duas ou três frases que respondem à pergunta do título sozinhas, sem depender do resto do texto. É o trecho que leitores apressados e sistemas de busca com IA tendem a aproveitar.</p>
+      </div>
+      <h2>Localização e acesso</h2>
+      <p>O texto definitivo será escrito por um especialista da região. Aqui ele aparece só para mostrar ritmo de leitura: parágrafos curtos, coluna de aproximadamente 65 caracteres, intertítulos que funcionam como perguntas e dados sempre acompanhados de fonte.</p>
+      <h2>Perfil dos residenciais</h2>
+      <p>Tabelas resumem a comparação. Cada célula com dado factual carrega o selo de proveniência, para o leitor saber o que foi verificado e o que é estimativa.</p>
+      <div class="tabela-box">
+        <table>
+          <thead><tr><th scope="col">Critério</th><th scope="col">Alphaville</th><th scope="col">Tamboré</th></tr></thead>
+          <tbody>
+            <tr><td>Municípios</td><td>Barueri e Santana de Parnaíba <span class="selo ver">Verificado</span></td><td>Barueri e Santana de Parnaíba <span class="selo ver">Verificado</span></td></tr>
+            <tr><td>Tamanho típico de lote</td><td class="num">000–000 m² <span class="selo est">Estimativa</span></td><td class="num">000–000 m² <span class="selo est">Estimativa</span></td></tr>
+            <tr><td>Taxa condominial</td><td>— <span class="selo pend">A verificar</span></td><td>— <span class="selo pend">A verificar</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <section class="cta-ctx" aria-label="Próximo passo" style="padding-block:20px 0">
+        <p class="eyebrow">Próximo passo</p>
+        <h3>Converse com quem conhece os dois lados</h3>
+        <p>Um especialista da Alphaville DL compara oportunidades reais nos residenciais que combinam com o seu perfil. Sem compromisso.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn" href="#ferramenta">Receber uma seleção para meu perfil</a><a class="btn sec" href="#comparativo">Comparar condomínios</a></div>
+      </section>
+      <h2>Perguntas frequentes</h2>
+      <div>
+        <details><summary>Alphaville e Tamboré são bairros diferentes?</summary><p>Resposta objetiva, com fonte primária. Só entra na página se a pergunta aparecer em pesquisas reais ou no atendimento.</p></details>
+        <details><summary>Qual dos dois é melhor para quem trabalha em São Paulo?</summary><p>Resposta com tempos de deslocamento medidos e data da medição.</p></details>
+      </div>
+      <div class="fontes">
+        <p class="eyebrow">Fontes</p>
+        <ol><li>Prefeitura de Barueri, dado X, acessado em dd/mm/aaaa.</li><li>Associação do residencial, regulamento interno, versão de aaaa.</li></ol>
+        <p style="margin-top:12px">Encontrou um erro? <a href="#artigo">Envie uma correção</a>. Revisamos em até 5 dias úteis.</p>
+      </div>
+    </article>
+    <aside class="lateral" aria-label="Relacionados">
+      <p class="eyebrow">Relacionados</p>
+      <div class="lista" style="grid-template-columns:minmax(0,1fr);margin-top:10px">
+        <a class="item" href="#condominio" style="grid-template-columns:minmax(0,1fr)"><div><h3>Guia do residencial modelo A</h3><p>Condomínios</p></div></a>
+        <a class="item" href="#ferramenta" style="grid-template-columns:minmax(0,1fr)"><div><h3>Simulador de custo de morar</h3><p>Ferramenta</p></div></a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ============ CONDOMÍNIO ============ -->
+<div class="view" id="v-condominio" data-view="condominio" hidden>
+  <section class="cond-hero" style="padding-bottom:32px">
+    <div class="wrap">
+      <div>
+        <nav class="migalha" aria-label="Trilha"><a href="#home">Início</a>/<a href="#condominio">Condomínios</a>/<span>Residencial modelo A</span></nav>
+        <h1>Residencial modelo A</h1>
+        <p class="lead" style="color:var(--grafite-2);font-size:1.15rem">Para quem procura lote amplo e rua silenciosa e aceita depender do carro para quase tudo.</p>
+        <p style="margin-top:14px;font-size:var(--t-sm);color:var(--grafite-2)">Barueri, SP · Guia atualizado em <time datetime="2026-10-28">28 out. 2026</time></p>
+      </div>
+      <div class="foto" data-legenda="Vista da alameda principal · foto autorizada pela associação (a produzir)"></div>
+    </div>
+  </section>
+  <div class="wrap" style="display:grid;gap:56px;padding-bottom:80px">
+    <div class="ficha">
+      <div class="ficha-cab"><h2>Ficha do residencial</h2><span style="display:flex;gap:6px;flex-wrap:wrap"><span class="selo ver">Verificado</span><span class="selo est">Estimativa</span><span class="selo pend">A verificar</span></span></div>
+      <dl>
+        <div class="campo"><dt>Município</dt><dd>Barueri</dd><span class="origem"><span class="selo ver">Prefeitura · 10/2026</span></span></div>
+        <div class="campo"><dt>Lotes residenciais</dt><dd class="num">000</dd><span class="origem"><span class="selo ver">Associação · 09/2026</span></span></div>
+        <div class="campo"><dt>Área típica de lote</dt><dd class="num">000–000 m²</dd><span class="origem"><span class="selo est">Amostra de anúncios · n=00</span></span></div>
+        <div class="campo"><dt>Taxa condominial</dt><dd class="num">R$ 0.000/mês</dd><span class="origem"><span class="selo ver">Boleto de referência · 08/2026</span></span></div>
+        <div class="campo"><dt>Faixa de preço de casas</dt><dd class="num">R$ 0–00 mi</dd><span class="origem"><span class="selo est">Base Alphaville DL · 2º sem. 2026</span></span></div>
+        <div class="campo"><dt>Distância até a Marginal</dt><dd>—</dd><span class="origem"><span class="selo pend">Medição pendente</span></span></div>
+      </dl>
+      <div class="ficha-rodape"><span>Como verificamos: <a href="#artigo">metodologia</a></span><span>Próxima revisão: abr. 2027</span><span>Dado errado? <a href="#condominio">Envie uma correção</a></span></div>
+    </div>
+
+    <div class="dois">
+      <div class="pros"><h3>Por que as famílias escolhem</h3><ul><li>Lotes maiores que a média dos residenciais vizinhos.</li><li>Ruas internas com pouco tráfego de passagem.</li><li>Clube e áreas verdes dentro do perímetro.</li></ul></div>
+      <div class="contras"><h3>O que pesar antes</h3><ul><li>Taxa condominial acima da média da região.</li><li>Acesso único concentra o trânsito nos horários escolares.</li><li>Pouca oferta de casas para locação.</li></ul></div>
+    </div>
+
+    <div>
+      <p class="eyebrow" style="margin-bottom:12px">Perfil das casas</p>
+      <div class="perfil">
+        <div><strong>4–6</strong><span>suítes, mais comum</span></div>
+        <div><strong class="num">000 m²</strong><span>área construída típica</span></div>
+        <div><strong>Térrea e sobrado</strong><span>tipologias</span></div>
+        <div><strong>Moderna</strong><span>linguagem predominante</span></div>
+      </div>
+    </div>
+
+    <div class="especialista">
+      <div class="avatar" aria-hidden="true">NA</div>
+      <div><p class="eyebrow">Quem conhece este residencial</p><p style="margin-top:4px"><strong>Nome do especialista</strong>, Alphaville DL. Informações sobre oportunidades que ainda não estão anunciadas.</p></div>
+      <a class="btn" href="#ferramenta">Ver casas neste residencial</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COMPARATIVO ============ -->
+<div class="view" id="v-comparativo" data-view="comparativo" hidden>
+  <section style="padding-bottom:24px"><div class="wrap">
+    <nav class="migalha" aria-label="Trilha"><a href="#home">Início</a>/<a href="#condominio">Condomínios</a>/<span>Comparador</span></nav>
+    <h1 style="font-size:var(--t-2xl);margin-block:14px">Compare residenciais lado a lado</h1>
+    <p style="color:var(--grafite-2);max-width:var(--leitura)">Mesmos critérios para todos os condomínios, com fonte e data em cada dado. Escolha o que importa para você e a tabela destaca esses pontos.</p>
+    <div class="criterios" style="margin-top:22px" role="group" aria-label="Prioridades">
+      <button class="chip" type="button" aria-pressed="true" data-crit="espaco">Espaço</button>
+      <button class="chip" type="button" aria-pressed="false" data-crit="privacidade">Privacidade</button>
+      <button class="chip" type="button" aria-pressed="false" data-crit="mobilidade">Mobilidade</button>
+      <button class="chip" type="button" aria-pressed="true" data-crit="custo">Custo mensal</button>
+      <button class="chip" type="button" aria-pressed="false" data-crit="lazer">Lazer</button>
+    </div>
+  </div></section>
+  <div class="wrap" style="padding-bottom:80px;display:grid;gap:32px">
+    <div class="tabela-box">
+      <table class="comp">
+        <thead><tr><th scope="col">Critério</th><th scope="col">Residencial modelo A</th><th scope="col">Residencial modelo B</th><th scope="col">Residencial modelo C</th></tr></thead>
+        <tbody id="comp-corpo">
+          <tr data-crit="espaco"><td>Área típica de lote</td><td><div class="val">000–000 m²<span class="selo est">Estimativa</span></div></td><td><div class="val">000–000 m²<span class="selo est">Estimativa</span></div></td><td><div class="val">000–000 m²<span class="selo est">Estimativa</span></div></td></tr>
+          <tr data-crit="custo"><td>Taxa condominial</td><td><div class="val">R$ 0.000<span class="selo ver">08/2026</span></div></td><td><div class="val">R$ 0.000<span class="selo ver">07/2026</span></div></td><td><div class="val">—<span class="selo pend">A verificar</span></div></td></tr>
+          <tr data-crit="privacidade"><td>Vias de passagem internas</td><td><div class="val">Poucas<span class="selo ver">Visita 10/2026</span></div></td><td><div class="val">Moderadas<span class="selo ver">Visita 10/2026</span></div></td><td><div class="val">Poucas<span class="selo ver">Visita 09/2026</span></div></td></tr>
+          <tr data-crit="mobilidade"><td>Tempo até a Marginal (pico)</td><td><div class="val">00 min<span class="selo est">Medição única</span></div></td><td><div class="val">00 min<span class="selo est">Medição única</span></div></td><td><div class="val">—<span class="selo pend">A verificar</span></div></td></tr>
+          <tr data-crit="lazer"><td>Clube interno</td><td><div class="val">Sim<span class="selo ver">Associação</span></div></td><td><div class="val">Não</div></td><td><div class="val">Sim<span class="selo ver">Associação</span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="especialista">
+      <div class="avatar" aria-hidden="true">DL</div>
+      <div><p class="eyebrow">Próximo passo</p><p style="margin-top:4px">Converse com um especialista para comparar oportunidades reais nesses residenciais.</p></div>
+      <a class="btn" href="#ferramenta">Conversar com um especialista</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FERRAMENTA ============ -->
+<div class="view" id="v-ferramenta" data-view="ferramenta" hidden>
+  <section style="padding-bottom:24px"><div class="wrap">
+    <nav class="migalha" aria-label="Trilha"><a href="#home">Início</a>/<a href="#ferramenta">Ferramentas</a>/<span>Custo de morar</span></nav>
+    <h1 style="font-size:var(--t-2xl);margin-block:14px">Quanto custa morar em Alphaville</h1>
+    <p style="color:var(--grafite-2);max-width:var(--leitura)">Preencha com os valores do imóvel que você está avaliando. Nada é enviado: a conta é feita no seu navegador.</p>
+  </div></section>
+  <div class="wrap" style="padding-bottom:80px">
+    <div class="ferr">
+      <form class="form" id="calc" novalidate>
+        <div>
+          <p style="font-size:var(--t-sm);font-weight:600;margin-bottom:6px">Você vai</p>
+          <div class="seg" role="group" aria-label="Modalidade">
+            <button type="button" id="m-alugar" aria-pressed="true">Alugar</button>
+            <button type="button" id="m-comprar" aria-pressed="false">Comprar</button>
+          </div>
+        </div>
+        <label for="v-principal"><span id="rot-principal">Aluguel mensal</span><small id="ajuda-principal">Valor do contrato, sem condomínio e IPTU.</small>
+          <span class="campo-in"><span>R$</span><input id="v-principal" inputmode="numeric" value="30.000"></span></label>
+        <label for="v-cond">Condomínio mensal<small>Peça o último boleto ao proprietário ou à imobiliária.</small>
+          <span class="campo-in"><span>R$</span><input id="v-cond" inputmode="numeric" value="2.400"></span></label>
+        <label for="v-iptu">IPTU anual<small>Consulte o carnê do imóvel na prefeitura.</small>
+          <span class="campo-in"><span>R$</span><input id="v-iptu" inputmode="numeric" value="18.000"></span></label>
+        <label for="v-manut">Manutenção mensal<small>Jardim, piscina, pequenos reparos. Estimativa sua.</small>
+          <span class="campo-in"><span>R$</span><input id="v-manut" inputmode="numeric" value="1.200"></span></label>
+        <label for="v-outros">Outras despesas mensais<small>Energia, água, funcionários, seguro.</small>
+          <span class="campo-in"><span>R$</span><input id="v-outros" inputmode="numeric" value="4.000"></span></label>
+      </form>
+      <div class="resultado" aria-live="polite">
+        <p class="eyebrow">Custo mensal estimado</p>
+        <p class="grande num" id="r-mensal">R$ 0</p>
+        <p class="num" style="color:var(--grafite-2);font-size:var(--t-sm)" id="r-anual">R$ 0 por ano</p>
+        <div class="barra" id="r-barra" aria-hidden="true"></div>
+        <div class="legenda" id="r-legenda"></div>
+        <p class="nota" id="r-nota">Valores iniciais são exemplos, não dados de mercado. Na versão final, cada valor de referência por condomínio terá selo de proveniência.</p>
+        <div style="display:grid;gap:10px;margin-top:20px">
+          <a class="btn" href="#ferramenta" style="justify-content:center">Receber imóveis dentro deste orçamento</a>
+          <p style="font-size:var(--t-xs);color:var(--grafite-2);text-align:center">Opcional. O resultado acima continua disponível sem cadastro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SISTEMA ============ -->
+<div class="view" id="v-sistema" data-view="sistema" hidden>
+  <section><div class="wrap" style="display:grid;gap:56px">
+    <div><p class="eyebrow">Design system · conceito "Alameda"</p><h1 style="font-size:var(--t-2xl);margin-top:12px">Horizontal, espaçoso, sombreado</h1><p style="color:var(--grafite-2);max-width:var(--leitura);margin-top:14px">Alphaville se organiza em alamedas arborizadas e lotes generosos. A identidade traduz isso em faixas largas, colunas de leitura estreitas e um verde-musgo no lugar do preto-e-dourado comum ao "luxo imobiliário".</p></div>
+    <div><h2 style="font-size:var(--t-xl);margin-bottom:18px">Cores</h2>
+      <div class="paleta">
+        <div class="cor"><div style="background:var(--pedra)"></div><p><strong>Pedra</strong>Fundo</p></div>
+        <div class="cor"><div style="background:var(--grafite)"></div><p><strong>Grafite</strong>Texto</p></div>
+        <div class="cor"><div style="background:var(--musgo)"></div><p><strong>Musgo</strong>Marca e ação</p></div>
+        <div class="cor"><div style="background:var(--latao)"></div><p><strong>Latão</strong>Detalhe e verificação</p></div>
+        <div class="cor"><div style="background:var(--nevoa)"></div><p><strong>Névoa</strong>Superfícies</p></div>
+      </div></div>
+    <div><h2 style="font-size:var(--t-xl);margin-bottom:18px">Tipografia</h2>
+      <div class="escala">
+        <div><small>Display · Bodoni Moda</small><span style="font-family:var(--f-display);font-size:var(--t-2xl);line-height:1.1">Viver em <i style="color:var(--musgo)">Alphaville</i></span></div>
+        <div><small>Título de seção</small><span style="font-family:var(--f-display);font-size:var(--t-xl)">Cada residencial, com ficha verificada</span></div>
+        <div><small>Texto · Hanken Grotesk</small><span>Parágrafos de leitura longa, com 17px no celular e números tabulares em fichas e tabelas: R$ 2.400 · 1.250 m².</span></div>
+        <div><small>Rótulo</small><span class="eyebrow">Guia de condomínio · Barueri</span></div>
+      </div></div>
+    <div><h2 style="font-size:var(--t-xl);margin-bottom:18px">Selos de proveniência</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:10px"><span class="selo ver">Verificado · fonte · data</span><span class="selo est">Estimativa · método</span><span class="selo pend">A verificar · nunca publicado</span></div>
+      <p style="color:var(--grafite-2);margin-top:12px;max-width:var(--leitura);font-size:var(--t-sm)">Todo dado factual em fichas, tabelas e ferramentas leva um destes selos. É a regra "não inventar dados" transformada em interface.</p></div>
+    <div><h2 style="font-size:var(--t-xl);margin-bottom:18px">Chamadas para ação</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px"><a class="btn" href="#sistema">Receber uma seleção para meu perfil</a><a class="btn sec" href="#sistema">Comparar condomínios</a></div>
+      <div class="ctas">
+        <div><p class="eyebrow">Usamos</p><ul><li>Explore imóveis disponíveis neste condomínio</li><li>Converse com um especialista na região</li><li>Solicite uma análise personalizada</li></ul></div>
+        <div class="nao"><p class="eyebrow">Não usamos</p><ul><li>COMPRE AGORA!</li><li>Últimas unidades</li><li>Oferta imperdível</li></ul></div>
+      </div></div>
+  </div></section>
+</div>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div><a class="marca" href="#home"><small style="color:inherit;opacity:.6">GUIA</small><span>Viver em <i>Alphaville</i></span></a><p style="margin-top:16px;opacity:.75;max-width:22rem">Projeto editorial mantido pela Alphaville DL. Não afiliado à Alphaville Urbanismo S.A. nem às associações dos residenciais.</p></div>
+    <div><h4>Explorar</h4><a href="#artigo">Comprar</a><a href="#artigo">Alugar</a><a href="#condominio">Condomínios</a><a href="#artigo">Viver</a><a href="#artigo">Mercado</a></div>
+    <div><h4>Ferramentas</h4><a href="#ferramenta">Custo de morar</a><a href="#comparativo">Comparador</a><a href="#ferramenta">Condomínio ideal</a><a href="#ferramenta">Seleção personalizada</a></div>
+    <div><h4>O guia</h4><a href="#home">Sobre</a><a href="#artigo">Metodologia</a><a href="#artigo">Política editorial</a><a href="#home">Privacidade (LGPD)</a><a href="#home">Correções</a></div>
+    <p class="legal">© 2026 Guia Viver em Alphaville · Conteúdo original. Reprodução só com autorização.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var views=["home","artigo","condominio","comparativo","ferramenta","sistema"];
+  function show(){
+    var h=(location.hash||"#home").slice(1); if(views.indexOf(h)<0) h="home";
+    document.querySelectorAll(".view").forEach(function(v){v.hidden=v.dataset.view!==h});
+    document.querySelectorAll("#proto-nav a").forEach(function(a){a.toggleAttribute("aria-current",a.getAttribute("href")==="#"+h); if(a.getAttribute("href")==="#"+h)a.setAttribute("aria-current","page")});
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",show); show();
+
+  // Comparador: destaque de critérios
+  function aplicaCrit(){
+    var ativos={}; document.querySelectorAll(".chip").forEach(function(c){ativos[c.dataset.crit]=c.getAttribute("aria-pressed")==="true"});
+    document.querySelectorAll("#comp-corpo tr").forEach(function(tr){tr.style.background=ativos[tr.dataset.crit]?"var(--musgo-claro)":""});
+  }
+  document.querySelectorAll(".chip").forEach(function(c){c.addEventListener("click",function(){c.setAttribute("aria-pressed",c.getAttribute("aria-pressed")==="true"?"false":"true");aplicaCrit()})});
+  aplicaCrit();
+
+  // Calculadora de custo
+  var modo="alugar";
+  var fmt=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+  function num(id){var v=document.getElementById(id).value.replace(/\./g,"").replace(",",".").replace(/[^\d.]/g,"");return parseFloat(v)||0}
+  var cores=["var(--musgo)","var(--latao)","var(--grafite-2)","var(--linha)","var(--musgo-claro)"];
+  function calc(){
+    var principal=num("v-principal");
+    var mensalPrincipal = modo==="alugar" ? principal : 0;
+    var itens=[
+      [modo==="alugar"?"Aluguel":"Custo de oportunidade (não incluído)", mensalPrincipal],
+      ["Condomínio", num("v-cond")],
+      ["IPTU", num("v-iptu")/12],
+      ["Manutenção", num("v-manut")],
+      ["Outras despesas", num("v-outros")]
+    ];
+    if(modo==="comprar") itens.shift();
+    var total=itens.reduce(function(s,i){return s+i[1]},0);
+    document.getElementById("r-mensal").textContent=fmt.format(total);
+    document.getElementById("r-anual").textContent=fmt.format(total*12)+" por ano";
+    var barra=document.getElementById("r-barra"), leg=document.getElementById("r-legenda");
+    barra.innerHTML=""; leg.innerHTML="";
+    itens.forEach(function(it,i){
+      var p= total? it[1]/total*100 : 0;
+      var seg=document.createElement("i"); seg.style.width=p+"%"; seg.style.background=cores[i]; barra.appendChild(seg);
+      var row=document.createElement("div");
+      var b=document.createElement("b"); b.style.background=cores[i];
+      var n=document.createElement("span"); n.textContent=it[0];
+      var v=document.createElement("span"); v.className="num"; v.textContent=fmt.format(it[1]);
+      row.append(b,n,v); leg.appendChild(row);
+    });
+    document.getElementById("r-nota").textContent = modo==="comprar"
+      ? "Na compra, o total mostra só os custos recorrentes de manter o imóvel. Financiamento, ITBI e escritura entram na versão completa, com premissas declaradas. Valores iniciais são exemplos."
+      : "Valores iniciais são exemplos, não dados de mercado. Na versão final, cada valor de referência por condomínio terá selo de proveniência.";
+  }
+  function setModo(m){
+    modo=m;
+    document.getElementById("m-alugar").setAttribute("aria-pressed",m==="alugar");
+    document.getElementById("m-comprar").setAttribute("aria-pressed",m==="comprar");
+    document.getElementById("rot-principal").textContent= m==="alugar"?"Aluguel mensal":"Valor do imóvel";
+    document.getElementById("ajuda-principal").textContent= m==="alugar"?"Valor do contrato, sem condomínio e IPTU.":"Preço de compra. Usado na versão completa para ITBI e financiamento.";
+    document.getElementById("v-principal").value= m==="alugar"?"30.000":"6.500.000";
+    calc();
+  }
+  document.getElementById("m-alugar").addEventListener("click",function(){setModo("alugar")});
+  document.getElementById("m-comprar").addEventListener("click",function(){setModo("comprar")});
+  document.querySelectorAll("#calc input").forEach(function(i){
+    i.addEventListener("input",calc);
+    i.addEventListener("blur",function(){var n=num(i.id); i.value=n?n.toLocaleString("pt-BR"):""});
+  });
+  document.getElementById("calc").addEventListener("submit",function(e){e.preventDefault()});
+  calc();
+})();
+</script>
