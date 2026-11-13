@@ -7,7 +7,7 @@ palavraChavePrincipal: "casas em alphaville acima de 5 milhões"
 palavrasSecundarias: ["casas de alto padrão em alphaville preço", "casas de 5 a 10 milhões em alphaville", "preço de casa de luxo em alphaville"]
 intencao: comercial
 estagio: consideracao
-status: em-producao
+status: em-revisao-factual
 autor: redacao
 resumo: "Acima de R$ 5 milhões, o preço de uma casa em Alphaville depende cada vez menos do tamanho e cada vez mais do terreno, do residencial e da qualidade do projeto. Entender o que costuma mudar de uma faixa para a outra ajuda a saber o que procurar e o que negociar em cada patamar."
 cta: { tipo: especialista, contexto: "casas acima de R$ 5 milhões em Alphaville" }
@@ -17,8 +17,10 @@ leiturasAlphaDL:
   - { titulo: "Casas em Alphaville de R$ 3 a 5 milhões", caminho: "/casas-em-alphaville-de-3-a-5-milhoes" }
   - { titulo: "Valor do metro quadrado em Barueri e Alphaville", caminho: "/preco-por-metro-quadrado-por-que-pode-enganar" }
   - { titulo: "Condomínios de Alphaville: preço das casas por residencial", caminho: "/condominios" }
-revisarAte: 2027-02-13
-notasInternas: "Ângulo: as faixas ACIMA de R$ 5 mi (a Alpha DL já tem páginas até 1 mi, até 3 mi e de 3 a 5 mi, então este continua a série sem repetir). Valor do m² e precificação são dos artigos da Alpha DL, linkados. Só publicar com dados: número de casas anunciadas por faixa e por residencial na carteira da Alpha DL, com data, sempre como preço PEDIDO. Não descrever faixas sem amostra."
+fontes:
+  - { titulo: "Portfólio de imóveis à venda da Alpha DL (60 imóveis, 35 casas em Barueri e Santana de Parnaíba)", url: "https://www.alphadl.com.br/imoveis", acessadoEm: 2026-11-13 }
+revisarAte: 2027-01-13
+notasInternas: "Ângulo: as faixas ACIMA de R$ 5 mi (a Alpha DL já tem páginas até 1 mi, até 3 mi e de 3 a 5 mi, então este continua a série sem repetir). Valor do m² e precificação são dos artigos da Alpha DL, linkados. Contagem por faixa preenchida em 13/11/2026 a partir de portfolio-alphadl-60-imoveis.json (60 de cerca de 104 imóveis da carteira). Refazer a contagem a cada atualização do portfólio e antes de publicar. Vários anúncios trazem só Alphaville como local, sem o residencial, então não dá para contar por residencial. Falta: diferença entre preço pedido e fechado."
 ---
 
 ## Depois dos R$ 5 milhões, a lógica muda
@@ -29,29 +31,51 @@ Nas faixas mais baixas, casas parecidas têm preços parecidos. A partir de cert
 - **Residencial:** alguns concentram os lotes maiores e as casas mais caras.
 - **Projeto e estado:** arquitetura, acabamentos, idade e sistemas da casa.
 
-Os valores a seguir são preços pedidos em anúncios, e não preços de fechamento.
+## Quantas casas há em cada faixa
+
+Contamos as casas à venda em Barueri e Santana de Parnaíba no portfólio publicado da Alpha DL, consultado em 13/11/2026. São 35 casas. Os valores são preços pedidos nos anúncios, e não preços de fechamento.
+
+| Faixa de preço pedido | Casas | Área anunciada |
+|---|---|---|
+| Até R$ 3 milhões | 13 | 198 a 506 m² |
+| De R$ 3 a 5 milhões | 14 | 230 a 620 m² |
+| De R$ 5 a 8 milhões | 5 | 380 a 610 m² |
+| De R$ 8 a 12 milhões | 1 | 615 m² |
+| De R$ 12 a 20 milhões | 1 | 1.274 m² |
+| Acima de R$ 20 milhões | 1 | 1.012 m² |
+
+Duas leituras cabem nessa tabela:
+
+- **A oferta afunila rápido.** Das 35 casas, 8 pedem R$ 5 milhões ou mais, e só 3 passam de R$ 8 milhões.
+- **A área explica pouco.** A faixa de R$ 3 a 5 milhões tem casas de até 620 m², e a de R$ 5 a 8 milhões começa em 380 m². O que separa as faixas é terreno, residencial e projeto.
+
+<Nota>
+A amostra é pequena e vem de uma única carteira, que reúne parte dos imóveis da Alpha DL. Ela mostra a distribuição desses anúncios, e não o mercado inteiro. Acima de R$ 8 milhões há uma casa por faixa, o que não permite descrever um padrão.
+</Nota>
 
 ## De R$ 5 a 8 milhões
 
-<Apurar>número de casas anunciadas, residenciais mais frequentes, faixas de área de terreno e de construção, com base na carteira da Alpha DL e data</Apurar>
+São 5 casas, com preços pedidos de R$ 5,75 milhões a R$ 7,99 milhões, 4 ou 5 quartos e áreas de 380 a 610 m². Quatro ficam em Santana de Parnaíba e uma em Barueri, entre Alphaville, Gênesis II e Cidade Tamboré.
 
 O que observar: nessa faixa convivem casas novas em terrenos menores e casas mais antigas em terrenos maiores. Compare o que cada uma entrega e some o custo de eventuais reformas.
 
 ## De R$ 8 a 12 milhões
 
-<Apurar>mesmos dados para a faixa</Apurar>
+Há 1 casa anunciada: R$ 10,9 milhões, 615 m², 5 quartos, no Gênesis II, em Santana de Parnaíba.
 
 O que observar: o terreno e o projeto começam a pesar mais que a metragem. Verifique a autoria do projeto e a qualidade da execução.
 
 ## De R$ 12 a 20 milhões
 
-<Apurar>mesmos dados para a faixa</Apurar>
+Há 1 casa anunciada: R$ 14,999 milhões, 1.274 m², 4 quartos, em Tamboré, Barueri.
 
 O que observar: casas com infraestrutura completa de lazer e de serviços. O custo de operação cresce junto. Veja [quanto custa manter uma casa de alto padrão](/comprar/custo-de-manter-casa-de-alto-padrao-em-alphaville).
 
 ## Acima de R$ 20 milhões
 
-Poucos imóveis, muitas vezes fora dos anúncios públicos. A análise muda de natureza. Veja [o que avaliar em mansões de Alphaville](/comprar/mansoes-em-alphaville-o-que-avaliar).
+Há 1 casa anunciada: R$ 28 milhões, 1.012 m², 5 quartos, no Alphaville Residencial 2, em Barueri.
+
+Nesse patamar, parte das casas nem chega aos anúncios públicos, e a análise muda de natureza. Veja [o que avaliar em mansões de Alphaville](/comprar/mansoes-em-alphaville-o-que-avaliar).
 
 ## Como usar as faixas
 
