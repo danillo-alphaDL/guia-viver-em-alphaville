@@ -55,13 +55,14 @@ As imagens atuais são ilustrações conceituais em SVG (`src/lib/cena.ts`). Par
 ## Documentos
 
 - [`docs/01-analise-estrategica.md`](docs/01-analise-estrategica.md): estratégia, riscos, KPIs e plano de 90 dias.
+- [`docs/pesquisa/keywords.csv`](docs/pesquisa/keywords.csv): mapa de palavras-chave e páginas-alvo. Volumes ainda não verificados.
 - [`docs/prototipo/proposta-visual.html`](docs/prototipo/proposta-visual.html): protótipo do visual "Noite em Alphaville".
 
 ## Antes do lançamento
 
 - [ ] Consulta ao INPI sobre o uso de "Alphaville" no nome e registro do domínio.
 - [ ] Autores e revisores reais em `content/autores` (nome, CRECI, bio).
-- [ ] Dados verificados nas fichas e revisão dos 3 artigos em rascunho.
+- [ ] Dados verificados nas fichas e revisão dos 10 artigos em rascunho.
 - [ ] Revisão jurídica de `/privacidade` (dados do controlador e canal do titular).
 - [ ] Variáveis de ambiente configuradas e formulário testado com o CRM real.
 - [ ] Fotografia profissional licenciada.

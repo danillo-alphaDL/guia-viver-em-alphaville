@@ -9,6 +9,7 @@ import { Selo, ValorDado } from "@/components/Selo";
 import { AvisoRascunho } from "@/components/Rascunho";
 import { CardArtigo, dataBR } from "@/components/Cards";
 import { LinkRastreado } from "@/components/LinkRastreado";
+import { LeituraEngajada } from "@/components/LeituraEngajada";
 import { artigo, artigoPorSlug, artigos, autor as buscaAutor, condominio, condominios, type Artigo, type CondominioComp } from "@/lib/content";
 import { CAMPOS_CONDOMINIO, type CampoCondominio } from "@/lib/schema";
 import { ldArtigo, ldCondominio, ldFaq, meta } from "@/lib/seo";
@@ -152,6 +153,7 @@ function PaginaArtigo({ a }: { a: Artigo }) {
           </div>
         </div>
       </div>
+      <LeituraEngajada slug={a.slug} pilar={a.pilar} />
       <JsonLd dados={[ldArtigo(a, au), ldFaq(a.faq)]} />
     </article>
   );
