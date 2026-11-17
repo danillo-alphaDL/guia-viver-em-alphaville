@@ -87,18 +87,80 @@ export function selecionarVitrine(portfolio: ImovelPortfolio[], quantos = 3): Im
     }));
 }
 
-/**
- * Lê o portfólio da Alpha DL e revalida a cada hora.
- * Se a leitura falhar, devolve lista vazia e a home mostra só o link para alphadl.com.br (nunca inventa imóveis).
- */
-export async function vitrineAlphaDL(): Promise<ImovelVitrine[]> {
+/** Lê o portfólio público da Alpha DL e revalida a cada hora. Falha devolve lista vazia (nunca inventa imóveis). */
+export async function portfolioAlphaDL(): Promise<ImovelPortfolio[]> {
   const url = process.env.ALPHADL_FEED_URL || FEED_PADRAO;
   try {
     const r = await fetch(url, { next: { revalidate: 3600 }, signal: AbortSignal.timeout(8000) });
     if (!r.ok) return [];
     const dados = (await r.json()) as ImovelPortfolio[];
-    return Array.isArray(dados) ? selecionarVitrine(dados) : [];
+    return Array.isArray(dados) ? dados : [];
   } catch {
     return [];
   }
+}
+
+export async function vitrineAlphaDL(): Promise<ImovelVitrine[]> {
+  return selecionarVitrine(await portfolioAlphaDL());
+}
+
+/* ---------- Casas de um residencial ---------- */
+
+export type ImovelResidencial = ImovelVitrine & { tipo: string; precoNumero: number; codigo: string };
+
+const normaliza = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\bum\b/g, "1")
+    .replace(/\bdois\b/g, "2")
+    .replace(/\bnove\b/g, "9")
+    .replace(/\bzero\b/g, "0")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+
+/**
+ * Imóveis do portfólio cujo residencial (campo condomínio, ou bairro quando ele já nomeia o residencial)
+ * é este. A descrição do anúncio não conta: só o residencial cadastrado.
+ */
+export async function imoveisDoResidencial(nome: string): Promise<ImovelResidencial[]> {
+  const alvo = normaliza(nome);
+  const lista = await portfolioAlphaDL();
+  return lista
+    .map((p, idx) => ({ p, idx }))
+    .filter(({ p }) => p.fin === "venda" && (p.tipo === "casa" || p.tipo === "terreno"))
+    .filter(({ p }) => normaliza(p.condominio || "") === alvo || normaliza(p.bairro || "") === alvo)
+    .sort((a, b) => b.p.preco - a.p.preco)
+    .map(({ p, idx }) => ({
+      tipo: p.tipo,
+      precoNumero: p.preco,
+      codigo: `ADL-${String(idx + 1).padStart(4, "0")}`,
+      titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
+      local: `${p.condominio || p.bairro} · ${p.cidade}`,
+      caminho: caminhoImovel(p, idx),
+      preco: `R$ ${p.preco.toLocaleString("pt-BR")}`,
+      finalidade: "venda" as const,
+      specs:
+        p.tipo === "terreno"
+          ? [`${p.area.toLocaleString("pt-BR")} m² de terreno`]
+          : [`${p.q} quartos`, ...(p.ban ? [`${p.ban} banheiros`] : []), `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],
+    }));
+}
+
+/** Página do residencial no site da Alpha DL (mesmo endereço, salvo exceções). */
+const RESIDENCIAL_NA_ALPHADL: Record<string, string | null> = {
+  "alphaville-burle-marx": "residencial-burle-marx",
+  "valville-1": "valville",
+  "alphaville-residencial-6": null,
+  "tambore-1": null,
+  "tambore-2": null,
+  "tambore-3": null,
+  "tambore-10": null,
+  "tambore-11": null,
+};
+
+export function caminhoResidencialAlphaDL(slug: string) {
+  const s = slug in RESIDENCIAL_NA_ALPHADL ? RESIDENCIAL_NA_ALPHADL[slug] : slug;
+  return s ? `/condominios/${s}` : "/imoveis";
 }

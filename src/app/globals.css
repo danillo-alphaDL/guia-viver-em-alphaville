@@ -467,3 +467,63 @@ html{scroll-behavior:smooth}
 @media (max-width:980px){.ficha dl .campo:last-child:nth-child(3n+1){grid-column:auto}.ficha dl .campo:last-child:nth-child(2n+1){grid-column:1/-1}}
 @media (max-width:600px){.ficha dl .campo:last-child:nth-child(2n+1){grid-column:auto}}
 .selo{white-space:normal;max-width:100%}
+
+/* ===== Guia de residencial ===== */
+.res-hero{position:relative;color:var(--sobre-noite);padding:0;min-height:min(86vh,760px);display:flex;align-items:flex-end}
+.res-hero .cena{position:absolute;inset:0}
+.res-hero .cena::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,9,9,.85) 0%,rgba(8,9,9,.45) 50%,rgba(8,9,9,.1) 100%),linear-gradient(180deg,rgba(8,9,9,.6) 0%,rgba(8,9,9,0) 30%,rgba(8,9,9,.85) 100%);z-index:1}
+.res-hero .wrap{position:relative;z-index:3;width:100%;padding-block:150px 64px;display:grid;gap:18px;justify-items:start}
+.res-hero h1{font-size:clamp(2.8rem,7vw,5.8rem);max-width:14ch}
+.res-hero .lead{max-width:36rem;color:var(--sobre-noite-2);font-size:1.15rem}
+.res-chips{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.res-chips li{border:1px solid var(--linha-escura);background:rgba(14,16,15,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:10px 16px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.res-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.res-casas .cab-sec h2{font-size:clamp(2rem,4vw,3.2rem)}
+.res-sem-casas{border:1px solid var(--linha-escura);background:var(--noite-2);padding:clamp(28px,4vw,48px);display:grid;gap:8px;max-width:52rem;color:var(--sobre-noite-2);font-size:1.05rem}
+.res-numeros{padding-bottom:clamp(40px,6vw,72px)}
+.res-numeros h2,.res-viver h2,.res-faq h2,.res-outros h2,.res-final h2{font-size:clamp(2rem,4vw,3.2rem)}
+.res-atualizado{font-size:.85rem}
+.res-grade{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;border-top:1px solid var(--tinta)}
+.res-dado{padding:28px 28px 28px 0;border-bottom:1px solid var(--linha-clara);display:grid;gap:10px;align-content:start;min-width:0}
+.res-dado dt{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--tinta-2)}
+.res-dado dd{margin:0;font-family:var(--f-display);font-size:clamp(2rem,3.4vw,2.8rem);font-weight:300;line-height:1.05;overflow-wrap:anywhere}
+.res-dado.longo{grid-column:1/-1}
+.res-dado.longo dd{font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.3;max-width:48rem}
+.res-fonte{font-size:.74rem;color:var(--tinta-2);letter-spacing:.02em}
+.res-fonte span{color:var(--bronze);margin-right:2px}
+.res-faltando{margin-top:22px;font-size:.88rem;color:var(--tinta-2);max-width:52rem}
+.res-faltando a{color:var(--tinta);text-underline-offset:3px}
+.res-viver{padding-top:clamp(40px,6vw,72px)}
+.res-viver .wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:start}
+.res-viver-texto{display:grid;gap:20px}
+.res-viver-texto > p{font-size:1.15rem;line-height:1.8;max-width:var(--leitura)}
+.res-municipio{background:var(--marfim-2);border:1px solid var(--linha-clara);padding:28px;display:grid;gap:14px}
+.res-municipio p{font-size:.98rem;color:var(--tinta-2)}
+.res-municipio ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;border-top:1px solid var(--linha-clara);padding-top:14px}
+.res-municipio a{font-family:var(--f-display);font-size:1.15rem;text-decoration:underline;text-decoration-color:var(--champanhe);text-underline-offset:4px}
+.res-faq .wrap{display:grid;gap:14px}
+.res-faq-lista{margin-top:16px;max-width:52rem}
+.res-outros{padding-top:0}
+.res-outros .cab-sec{border-top:1px solid var(--linha-clara);padding-top:clamp(48px,6vw,80px)}
+.escuro-cards .cond{color:var(--sobre-noite)}
+.res-final .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
+.res-final h2{margin-block:14px 16px}
+.res-final .res-acoes{justify-content:flex-end}
+.res-barra{display:none}
+@media (max-width:980px){
+  .res-viver .wrap,.res-final .wrap{grid-template-columns:minmax(0,1fr)}
+  .res-final .res-acoes{justify-content:flex-start}
+}
+@media (max-width:700px){
+  .res-hero{min-height:0}
+  .res-hero .wrap{padding-block:130px 48px}
+  .res-acoes .btn{flex:1 1 100%}
+  .res-barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;align-items:center;justify-content:space-between;gap:12px;background:var(--noite);color:var(--sobre-noite);border-top:1px solid var(--linha-escura);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .res-barra span{font-family:var(--f-display);font-size:1.15rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .res-barra .btn{padding:13px 18px;flex:none}
+  body:has(.res-barra){padding-bottom:70px}
+}
+@media (max-width:700px){
+  .res-hero .cena::after{background:linear-gradient(180deg,rgba(8,9,9,.75) 0%,rgba(8,9,9,.6) 40%,rgba(8,9,9,.92) 100%)}
+  .escuro-cards .cond .cena,.res-outros .cond .cena{aspect-ratio:16/10}
+}
