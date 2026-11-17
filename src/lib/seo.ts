@@ -79,7 +79,9 @@ export const ldFaq = (faq: { pergunta: string; resposta: string }[]) =>
     : null;
 
 export const ldCondominio = (c: CondominioComp) => {
-  const municipio = c.campos.municipio?.estado === "verificado" ? c.campos.municipio.valor : null;
+  const valor = c.campos.municipio?.estado === "verificado" ? c.campos.municipio.valor : null;
+  // Residencial dividido entre dois municípios (ex.: "Barueri (1ª fase) e Santana de Parnaíba (2ª fase)") não cabe num endereço único.
+  const municipio = valor && !/[()]| e /.test(valor) ? valor : null;
   return {
     "@context": "https://schema.org",
     "@type": "Place",
