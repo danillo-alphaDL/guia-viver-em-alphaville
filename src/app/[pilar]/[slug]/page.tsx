@@ -78,10 +78,12 @@ function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeo
                 </div>
               </div>
             )}
-            <div>
-              <small>Revisão factual</small>
-              {rev ? rev.nome : "Pendente"}
-            </div>
+            {rev && (
+              <div>
+                <small>Revisão factual</small>
+                {rev.nome}
+              </div>
+            )}
             {(a.atualizadoEm || a.publicadoEm) && (
               <div>
                 <small>{a.atualizadoEm ? "Atualizado" : "Publicado"}</small>

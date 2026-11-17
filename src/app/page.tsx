@@ -4,7 +4,8 @@ import { Cena } from "@/components/Cena";
 import { BuscaHome } from "@/components/BuscaHome";
 import { LinkRastreado } from "@/components/LinkRastreado";
 import { JsonLd } from "@/components/JsonLd";
-import { condominios } from "@/lib/content";
+import { artigos, condominios } from "@/lib/content";
+import { CardArtigo } from "@/components/Cards";
 import {
   catalogoAlphaDL,
   contarPorResidencial,
@@ -31,6 +32,9 @@ export default async function Home() {
   const mercado = mercadoAgora(portfolio);
   const destaques = destaquesVariados(portfolio, 6);
   const residenciais = condominios().filter((c) => !c.rascunho);
+  const guias = artigos().filter((a) => !a.rascunho);
+  const principais = ["casas-em-alphaville-acima-de-5-milhoes", "melhores-condominios-de-alphaville", "custo-de-manter-casa-de-alto-padrao-em-alphaville"];
+  const guiasHome = [...principais.map((s) => guias.find((a) => a.slug === s)).filter(Boolean), ...guias.filter((a) => !principais.includes(a.slug))].slice(0, 6) as typeof guias;
   const contagem = contarPorResidencial(portfolio, residenciais.map((r) => r.nome));
   const whats = linkWhatsApp("Olá! Vim do Guia Viver em Alphaville e gostaria de falar com um especialista sobre casas na região.");
   const todas = catalogoAlphaDL({ fin: "venda", tipo: "casa" }, { campanha: "home", conteudo: "todas" });
@@ -334,6 +338,24 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {guiasHome.length > 0 && (
+        <section className="claro" aria-labelledby="h-guias">
+          <div className="wrap">
+            <div className="cab-sec">
+              <div>
+                <span className="rot bronze">Guias para decidir</span>
+                <h2 id="h-guias">O que saber antes de escolher a casa</h2>
+              </div>
+            </div>
+            <div className="lista-artigos">
+              {guiasHome.map((a) => (
+                <CardArtigo key={a.slug} a={a} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="equipe claro" aria-labelledby="h-equipe">
         <div className="wrap">

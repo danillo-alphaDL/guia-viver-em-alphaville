@@ -68,7 +68,7 @@ export const artigoSchema = z
   })
   .superRefine((a, ctx) => {
     if (a.status === "publicado") {
-      for (const campo of ["revisor", "aprovadoPor", "publicadoEm"] as const) {
+      for (const campo of ["aprovadoPor", "publicadoEm"] as const) {
         if (!a[campo]) ctx.addIssue({ code: "custom", path: [campo], message: `obrigatório para publicar` });
       }
       if (a.fontes.length === 0) ctx.addIssue({ code: "custom", path: ["fontes"], message: "publique com ao menos uma fonte" });
