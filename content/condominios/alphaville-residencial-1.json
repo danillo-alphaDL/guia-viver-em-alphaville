@@ -2,7 +2,7 @@
   "slug": "alphaville-residencial-1",
   "nome": "Alphaville Residencial 1",
   "regiao": "alphaville",
-  "status": "em-revisao-factual",
+  "status": "publicado",
   "resumo": "O Residencial 1 é o núcleo mais antigo de Alphaville. Foi lançado em 1975, dois anos depois do início do projeto do bairro, e fica em Barueri. A associação de moradores mantém um regulamento próprio, que vale ler antes de qualquer reforma.",
   "paraQuem": "O primeiro residencial de Alphaville, lançado em 1975 em Barueri.",
   "campos": {
@@ -56,8 +56,8 @@
   "pros": [],
   "contras": [],
   "especialista": null,
-  "atualizadoEm": null,
-  "revisarAte": "2027-03-02",
+  "atualizadoEm": "2026-11-17",
+  "revisarAte": "2027-05-17",
   "cena": "c1",
-  "notasInternas": "Associação (nome, CNPJ, fundação) conferida em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+  "notasInternas": "Publicado em 17/11/2026 por decisão do cliente (regra mínima de 3 campos verificados). Campos do registro da Alpha DL com data de 09/2026: reconfirmar na próxima revisão. Prós e contras: escrever com o corretor. Associação (nome, CNPJ, fundação) conferida em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
 }

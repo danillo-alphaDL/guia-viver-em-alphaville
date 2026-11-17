@@ -2,7 +2,7 @@
   "slug": "alphaville-residencial-9",
   "nome": "Alphaville Residencial 9",
   "regiao": "alphaville",
-  "status": "em-revisao-factual",
+  "status": "publicado",
   "resumo": "Com 870 lotes, o Residencial 9 é um dos maiores de Alphaville. Fica em Santana de Parnaíba e tem área de lazer própria, com quadras, salão de festas, pista de caminhada e playgrounds. Os Centros de Apoio I e II, com comércio e serviços, ficam nas imediações.",
   "paraQuem": "Um dos maiores residenciais de Alphaville, com 870 lotes e lazer próprio, em Santana de Parnaíba.",
   "campos": {
@@ -56,8 +56,8 @@
   "pros": [],
   "contras": [],
   "especialista": null,
-  "atualizadoEm": null,
-  "revisarAte": "2027-03-02",
+  "atualizadoEm": "2026-11-17",
+  "revisarAte": "2027-05-17",
   "cena": "c3",
-  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+  "notasInternas": "Publicado em 17/11/2026 por decisão do cliente (regra mínima de 3 campos verificados). Campos do registro da Alpha DL com data de 09/2026: reconfirmar na próxima revisão. Prós e contras: escrever com o corretor. Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
 }
