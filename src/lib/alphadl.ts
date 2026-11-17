@@ -236,12 +236,14 @@ export const milhoes = (v: number) => `R$ ${(v / 1_000_000).toLocaleString("pt-B
 
 
 /** Casas do portfólio numa faixa de preço, da mais cara para a mais barata. */
-export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number; tipo?: "casa" | "terreno" }, quantos = 3): Promise<ImovelResidencial[]> {
+export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number; quartosMin?: number; residenciais?: string[]; tipo?: "casa" | "terreno" }, quantos = 3): Promise<ImovelResidencial[]> {
   const lista = await portfolioAlphaDL();
   return lista
     .map((p, idx) => ({ p, idx }))
     .filter(({ p }) => p.fin === "venda" && p.tipo === (f.tipo ?? "casa") && ["Barueri", "Santana de Parnaíba"].includes(p.cidade))
     .filter(({ p }) => (!f.precoMin || p.preco >= f.precoMin) && (!f.precoMax || p.preco <= f.precoMax))
+    .filter(({ p }) => !f.quartosMin || p.q >= f.quartosMin)
+    .filter(({ p }) => !f.residenciais?.length || f.residenciais.map(normaliza).some((r) => r === normaliza(p.condominio || "") || r === normaliza(p.bairro || "")))
     .sort((a, b) => b.p.preco - a.p.preco)
     .slice(0, quantos)
     .map(({ p, idx }) => ({

@@ -17,6 +17,12 @@ const ok = (d?: Dado) => (d && d.estado === "verificado" && d.valor ? d : undefi
 
 /** Linha de fonte discreta, no lugar do selo colorido. */
 function Fonte({ d }: { d: Dado }) {
+  if (d.estado === "estimativa")
+    return (
+      <span className="res-fonte">
+        <span aria-hidden="true">≈</span> Estimativa: {d.metodo}
+      </span>
+    );
   return (
     <span className="res-fonte" title={d.fonte}>
       <span aria-hidden="true">✓</span> {d.fonte} · {mesAno(d.data)}
@@ -73,8 +79,9 @@ export async function GuiaResidencial({ c }: { c: CondominioComp }) {
   const linkResidencial = linkAlphaDL(caminhoAlpha, { campanha: "condominios", conteudo: c.slug });
   const whats = linkWhatsApp(`Olá! Vi o guia do ${c.nome} no Guia Viver em Alphaville e quero conhecer as casas disponíveis.`);
   const campos = Object.keys(CAMPOS_CONDOMINIO) as CampoCondominio[];
-  const verificados = campos.filter((k) => ok(c.campos[k]));
-  const faltando = campos.filter((k) => !ok(c.campos[k])).map((k) => CAMPOS_CONDOMINIO[k].toLowerCase());
+  const temValor = (d?: Dado) => !!d && !!d.valor && (d.estado === "verificado" || d.estado === "estimativa");
+  const verificados = campos.filter((k) => temValor(c.campos[k]));
+  const faltando = campos.filter((k) => !temValor(c.campos[k])).map((k) => CAMPOS_CONDOMINIO[k].toLowerCase());
   const chips = destaques(c);
   const faq = perguntas(c);
   const outros = condominios().filter((o) => o.slug !== c.slug && !o.rascunho).slice(0, 3);

@@ -37,8 +37,9 @@
       "data": "2026-09-02"
     },
     "taxaCondominial": {
-      "valor": null,
-      "estado": "a-verificar"
+      "valor": "R$ 1.300/mês (mediana)",
+      "estado": "estimativa",
+      "metodo": "mediana da taxa informada em 5 anúncios da Alpha DL, 11/2026 (de R$ 1.096 a R$ 1.300)"
     },
     "faixaPreco": {
       "valor": null,
