@@ -1,0 +1,65 @@
+{
+  "slug": "alphaville-residencial-zero",
+  "nome": "Alphaville Residencial Zero",
+  "regiao": "alphaville",
+  "status": "em-revisao-factual",
+  "resumo": "O Residencial Zero tem 550 lotes, implantados em duas fases: 355 em 1986, do lado de Barueri, e 195 em 1988, do lado de Santana de Parnaíba. Por isso, o município, e com ele o IPTU, o ITBI e o cartório, muda conforme a fase em que a casa está.",
+  "paraQuem": "Residencial de 550 lotes dividido entre Barueri e Santana de Parnaíba, conforme a fase.",
+  "campos": {
+    "municipio": {
+      "valor": "Barueri (1ª fase) e Santana de Parnaíba (2ª fase)",
+      "estado": "verificado",
+      "fonte": "Associação do residencial",
+      "data": "2026-09-02"
+    },
+    "implantacao": {
+      "valor": "1986 (1ª fase, 355 lotes) e 1988 (2ª fase, 195 lotes)",
+      "estado": "verificado",
+      "fonte": "Associação do residencial",
+      "data": "2026-09-02"
+    },
+    "lotes": {
+      "valor": "550",
+      "estado": "verificado",
+      "fonte": "Associação do residencial",
+      "data": "2026-09-02"
+    },
+    "associacao": {
+      "valor": "Associação Alphaville Residencial Zero",
+      "estado": "verificado",
+      "fonte": "Associação do residencial",
+      "data": "2026-09-02"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": "2027-03-02",
+  "cena": "c2",
+  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+}

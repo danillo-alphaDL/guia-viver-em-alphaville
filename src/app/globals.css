@@ -463,3 +463,6 @@ html{scroll-behavior:smooth}
 .box-alphadl ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .box-alphadl a{display:block;font-family:var(--f-display);font-size:1.15rem;line-height:1.25;text-decoration:underline;text-decoration-color:var(--champanhe);text-underline-offset:4px;text-decoration-thickness:1px}
 @media (max-width:980px){.box-alphadl{grid-column:1/-1}}
+.ficha dl .campo:last-child:nth-child(3n+1){grid-column:1/-1;border-right:0}
+@media (max-width:980px){.ficha dl .campo:last-child:nth-child(3n+1){grid-column:auto}.ficha dl .campo:last-child:nth-child(2n+1){grid-column:1/-1}}
+@media (max-width:600px){.ficha dl .campo:last-child:nth-child(2n+1){grid-column:auto}}

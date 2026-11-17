@@ -2,23 +2,62 @@
   "slug": "alphaville-residencial-1",
   "nome": "Alphaville Residencial 1",
   "regiao": "alphaville",
-  "status": "em-pesquisa",
-  "resumo": "Guia do Alphaville Residencial 1 em apuração. A ficha será publicada depois que cada dado for verificado com fonte e data.",
+  "status": "em-revisao-factual",
+  "resumo": "O Residencial 1 é o núcleo mais antigo de Alphaville. Foi lançado em 1975, dois anos depois do início do projeto do bairro, e fica em Barueri. A associação de moradores mantém um regulamento próprio, que vale ler antes de qualquer reforma.",
+  "paraQuem": "O primeiro residencial de Alphaville, lançado em 1975 em Barueri.",
   "campos": {
-    "municipio": { "valor": null, "estado": "a-verificar" },
-    "lotes": { "valor": null, "estado": "a-verificar" },
-    "loteTipico": { "valor": null, "estado": "a-verificar" },
-    "taxaCondominial": { "valor": null, "estado": "a-verificar" },
-    "faixaPreco": { "valor": null, "estado": "a-verificar" },
-    "faixaAluguel": { "valor": null, "estado": "a-verificar" },
-    "clube": { "valor": null, "estado": "a-verificar" },
-    "acessoSaoPaulo": { "valor": null, "estado": "a-verificar" }
+    "municipio": {
+      "valor": "Barueri",
+      "estado": "verificado",
+      "fonte": "Cadastro de imóveis da Alpha DL",
+      "data": "2026-09-02"
+    },
+    "implantacao": {
+      "valor": "1975",
+      "estado": "verificado",
+      "fonte": "Histórico do loteamento",
+      "data": "2026-09-02"
+    },
+    "lotes": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "associacao": {
+      "valor": "Associação Alphaville Residencial 1",
+      "estado": "verificado",
+      "fonte": "Site da associação",
+      "data": "2026-09-02"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
   },
   "pros": [],
   "contras": [],
   "especialista": null,
   "atualizadoEm": null,
-  "revisarAte": null,
+  "revisarAte": "2027-03-02",
   "cena": "c1",
-  "notasInternas": "Preencher com: município (prefeitura), nº de lotes e regras (associação), taxa (boleto de referência), faixas de preço (base Alpha DL, com n da amostra), tempo até a Marginal (medição própria com data e horário). Prós e contras: escrever com o corretor que atende o residencial."
+  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
 }

@@ -1,0 +1,61 @@
+{
+  "slug": "alphaville-residencial-3",
+  "nome": "Alphaville Residencial 3",
+  "regiao": "alphaville",
+  "status": "em-revisao-factual",
+  "resumo": "O Residencial 3 fica do lado de Santana de Parnaíba, com acesso pela Avenida Yojiro Takaoka. A associação de moradores foi fundada em janeiro de 1983, segundo o cadastro de CNPJ na Receita Federal.",
+  "paraQuem": "Residencial de casas em Santana de Parnaíba, com acesso pela Avenida Yojiro Takaoka.",
+  "campos": {
+    "municipio": {
+      "valor": "Santana de Parnaíba",
+      "estado": "verificado",
+      "fonte": "Mapa das OSC (Ipea)",
+      "data": "2026-09-02"
+    },
+    "implantacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "lotes": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "associacao": {
+      "valor": "Associação Alphaville Residencial 3, fundada em 1983",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ)",
+      "data": "2026-09-02"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": "2027-03-02",
+  "cena": "c2",
+  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+}

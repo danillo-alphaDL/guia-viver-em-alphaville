@@ -1,0 +1,63 @@
+{
+  "slug": "genesis-ii",
+  "nome": "Gênesis II",
+  "regiao": "alphaville",
+  "status": "em-revisao-factual",
+  "resumo": "O Gênesis II reúne 600 lotes em 337 mil m², com cerca de 60% da área preservada como vegetação nativa, segundo o material do empreendimento. Fica em Santana de Parnaíba e tem clube interno completo, além de lago, bosque e trilhas.",
+  "paraQuem": "Residencial de 600 lotes com 60% de área verde preservada e clube completo, em Santana de Parnaíba.",
+  "campos": {
+    "municipio": {
+      "valor": "Santana de Parnaíba",
+      "estado": "verificado",
+      "fonte": "Cadastro de imóveis da Alpha DL",
+      "data": "2026-09-02"
+    },
+    "implantacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "lotes": {
+      "valor": "600, em 337 mil m² (60% de vegetação nativa)",
+      "estado": "verificado",
+      "fonte": "Material do empreendimento",
+      "data": "2026-09-02"
+    },
+    "associacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": "Piscinas (uma aquecida e coberta), academia, quadras de tênis e poliesportiva, campo de futebol, salão de festas, espaço gourmet, brinquedoteca e playground",
+      "estado": "verificado",
+      "fonte": "Material do empreendimento",
+      "data": "2026-09-02"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": "2027-03-02",
+  "cena": "g1",
+  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+}
