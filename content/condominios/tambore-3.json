@@ -1,0 +1,60 @@
+{
+  "slug": "tambore-3",
+  "nome": "Tamboré 3",
+  "regiao": "tambore",
+  "status": "em-pesquisa",
+  "resumo": "O Tamboré 3 fica em Santana de Parnaíba e é administrado pela Associação Residencial Tamboré 3. A ficha completa está em apuração: só publicamos depois de verificar cada dado com fonte e data.",
+  "campos": {
+    "municipio": {
+      "valor": "Santana de Parnaíba",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ), via Mapa das OSC/Ipea",
+      "data": "2026-11-17"
+    },
+    "implantacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "lotes": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "associacao": {
+      "valor": "Associação Residencial Tamboré 3, CNPJ 65.700.809/0001-71, fundada em 20/06/1994",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ), via Mapa das OSC/Ipea",
+      "data": "2026-11-17"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": "2027-05-17",
+  "cena": "i2",
+  "notasInternas": "Associação e município conferidos em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. O município é o da sede da associação: confirmar que todos os lotes ficam nele. Faltam implantação, lotes, lazer, taxa e preços."
+}

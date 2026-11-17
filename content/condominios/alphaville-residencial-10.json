@@ -1,0 +1,60 @@
+{
+  "slug": "alphaville-residencial-10",
+  "nome": "Alphaville Residencial 10",
+  "regiao": "alphaville",
+  "status": "em-pesquisa",
+  "resumo": "O Alphaville Residencial 10 fica em Santana de Parnaíba e é administrado pela Sociedade Alphaville Residencial 10. A ficha completa está em apuração: só publicamos depois de verificar cada dado com fonte e data.",
+  "campos": {
+    "municipio": {
+      "valor": "Santana de Parnaíba",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ), via Mapa das OSC/Ipea",
+      "data": "2026-11-17"
+    },
+    "implantacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "lotes": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "associacao": {
+      "valor": "Sociedade Alphaville Residencial 10, CNPJ 60.553.286/0001-64, fundada em 06/07/1990",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ), via Mapa das OSC/Ipea",
+      "data": "2026-11-17"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": "2027-05-17",
+  "cena": "c5",
+  "notasInternas": "Associação e município conferidos em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. O município é o da sede da associação: confirmar que todos os lotes ficam nele. Faltam implantação, lotes, lazer, taxa e preços."
+}
