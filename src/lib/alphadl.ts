@@ -233,3 +233,26 @@ export function catalogoAlphaDL(f: { fin?: "venda" | "locacao"; tipo?: string; r
 }
 
 export const milhoes = (v: number) => `R$ ${(v / 1_000_000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} mi`;
+
+
+/** Casas do portfólio numa faixa de preço, da mais cara para a mais barata. */
+export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number; tipo?: "casa" | "terreno" }, quantos = 3): Promise<ImovelResidencial[]> {
+  const lista = await portfolioAlphaDL();
+  return lista
+    .map((p, idx) => ({ p, idx }))
+    .filter(({ p }) => p.fin === "venda" && p.tipo === (f.tipo ?? "casa") && ["Barueri", "Santana de Parnaíba"].includes(p.cidade))
+    .filter(({ p }) => (!f.precoMin || p.preco >= f.precoMin) && (!f.precoMax || p.preco <= f.precoMax))
+    .sort((a, b) => b.p.preco - a.p.preco)
+    .slice(0, quantos)
+    .map(({ p, idx }) => ({
+      tipo: p.tipo,
+      precoNumero: p.preco,
+      codigo: `ADL-${String(idx + 1).padStart(4, "0")}`,
+      titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
+      local: `${p.condominio || p.bairro} · ${p.cidade}`,
+      caminho: caminhoImovel(p, idx),
+      preco: `R$ ${p.preco.toLocaleString("pt-BR")}`,
+      finalidade: "venda" as const,
+      specs: p.tipo === "terreno" ? [`${p.area.toLocaleString("pt-BR")} m²`] : [`${p.q} quartos`, `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],
+    }));
+}
