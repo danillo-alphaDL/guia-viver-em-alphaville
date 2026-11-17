@@ -1,0 +1,63 @@
+{
+  "slug": "alphaville-residencial-9",
+  "nome": "Alphaville Residencial 9",
+  "regiao": "alphaville",
+  "status": "em-revisao-factual",
+  "resumo": "Com 870 lotes, o Residencial 9 é um dos maiores de Alphaville. Fica em Santana de Parnaíba e tem área de lazer própria, com quadras, salão de festas, pista de caminhada e playgrounds. Os Centros de Apoio I e II, com comércio e serviços, ficam nas imediações.",
+  "paraQuem": "Um dos maiores residenciais de Alphaville, com 870 lotes e lazer próprio, em Santana de Parnaíba.",
+  "campos": {
+    "municipio": {
+      "valor": "Santana de Parnaíba",
+      "estado": "verificado",
+      "fonte": "Cadastro de imóveis da Alpha DL",
+      "data": "2026-09-02"
+    },
+    "implantacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "lotes": {
+      "valor": "870",
+      "estado": "verificado",
+      "fonte": "Material do loteador",
+      "data": "2026-09-02"
+    },
+    "associacao": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "loteTipico": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "clube": {
+      "valor": "Quadras, salão de festas, sala de jogos, pista de cooper, playgrounds e praças",
+      "estado": "verificado",
+      "fonte": "Material do loteador",
+      "data": "2026-09-02"
+    },
+    "taxaCondominial": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaPreco": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "faixaAluguel": {
+      "valor": null,
+      "estado": "a-verificar"
+    },
+    "acessoSaoPaulo": {
+      "valor": null,
+      "estado": "a-verificar"
+    }
+  },
+  "pros": [],
+  "contras": [],
+  "especialista": null,
+  "atualizadoEm": null,
+  "revisarAte": "2027-03-02",
+  "cena": "c3",
+  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+}

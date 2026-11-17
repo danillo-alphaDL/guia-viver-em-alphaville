@@ -93,12 +93,14 @@ export type Dado = z.infer<typeof dadoSchema>;
 
 export const CAMPOS_CONDOMINIO = {
   municipio: "Município",
+  implantacao: "Implantação",
   lotes: "Lotes residenciais",
+  associacao: "Associação de moradores",
   loteTipico: "Lote típico",
+  clube: "Lazer interno",
   taxaCondominial: "Taxa condominial",
   faixaPreco: "Casas à venda",
   faixaAluguel: "Casas para alugar",
-  clube: "Clube interno",
   acessoSaoPaulo: "Até a Marginal (pico)",
 } as const;
 export type CampoCondominio = keyof typeof CAMPOS_CONDOMINIO;
