@@ -10,6 +10,7 @@ import { AvisoRascunho } from "@/components/Rascunho";
 import { CardArtigo, dataBR } from "@/components/Cards";
 import { LinkRastreado } from "@/components/LinkRastreado";
 import { LeituraEngajada } from "@/components/LeituraEngajada";
+import { GuiaResidencial } from "@/components/GuiaResidencial";
 import { artigo, artigoPorSlug, artigos, autor as buscaAutor, condominio, condominios, type Artigo, type CondominioComp } from "@/lib/content";
 import { CAMPOS_CONDOMINIO, type CampoCondominio } from "@/lib/schema";
 import { ldArtigo, ldCondominio, ldFaq, meta } from "@/lib/seo";
@@ -31,7 +32,7 @@ type Props = { params: Promise<{ pilar: string; slug: string }> };
 export async function generateMetadata({ params }: Props) {
   const { pilar, slug } = await params;
   const c = pilar === "condominios" ? condominio(slug) : undefined;
-  if (c) return meta({ titulo: `${c.nome}: guia do residencial`, descricao: c.resumo.slice(0, 160), caminho: c.url, rascunho: c.rascunho });
+  if (c) return meta({ titulo: `${c.nome}: como é morar, números e casas à venda`, descricao: (c.paraQuem ?? c.resumo).slice(0, 155), caminho: c.url, rascunho: c.rascunho });
   const a = artigo(pilar as Pilar, slug);
   if (!a) return {};
   return meta({ titulo: a.tituloSeo ?? a.titulo, descricao: a.descricao, caminho: a.url, rascunho: a.rascunho, tipo: "article", publicado: a.publicadoEm, atualizado: a.atualizadoEm });
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function Pagina({ params }: Props) {
   const { pilar, slug } = await params;
   const c = pilar === "condominios" ? condominio(slug) : undefined;
-  if (c) return <GuiaCondominio c={c} />;
+  if (c) return <GuiaResidencial c={c} />;
   const a = artigo(pilar as Pilar, slug);
   if (!a) notFound();
   return <PaginaArtigo a={a} />;
@@ -170,81 +171,5 @@ function PaginaArtigo({ a }: { a: Artigo }) {
       <LeituraEngajada slug={a.slug} pilar={a.pilar} />
       <JsonLd dados={[ldArtigo(a, au), ldFaq(a.faq)]} />
     </article>
-  );
-}
-
-function GuiaCondominio({ c }: { c: CondominioComp }) {
-  const esp = c.especialista ? buscaAutor(c.especialista) : undefined;
-  const campos = Object.keys(CAMPOS_CONDOMINIO) as CampoCondominio[];
-  return (
-    <>
-      {c.rascunho && <AvisoRascunho status={c.status} />}
-      <section className="pg-hero">
-        <Cena nome={c.cena} style={{ height: "clamp(480px,74vh,720px)" }} />
-        <div className="wrap" style={{ paddingBottom: 110 }}>
-          <Migalha itens={[{ nome: "Residenciais", caminho: "/condominios" }, { nome: c.nome, caminho: c.url }]} />
-          <h1>{c.nome}</h1>
-          <p className="lead">{c.paraQuem ?? c.resumo}</p>
-        </div>
-      </section>
-      <div className="claro">
-        <div className="wrap" style={{ display: "grid", gap: "clamp(56px,8vw,104px)", paddingBottom: 104 }}>
-          <div className="ficha">
-            <div className="ficha-cab">
-              <h2>Ficha do residencial</h2>
-              {c.atualizadoEm && <span className="sec-txt" style={{ fontSize: ".85rem" }}>Atualizada em {dataBR(c.atualizadoEm)}</span>}
-            </div>
-            <dl>
-              {campos.map((k) => {
-                const d = c.campos[k];
-                return (
-                  <div className="campo" key={k}>
-                    <dt>{CAMPOS_CONDOMINIO[k]}</dt>
-                    <dd className="num">
-                      <ValorDado dado={d} />
-                    </dd>
-                    <span style={{ alignSelf: "flex-start" }}>{d ? <Selo dado={d} /> : <span className="selo pend">Em apuração</span>}</span>
-                  </div>
-                );
-              })}
-            </dl>
-            <div className="ficha-rodape">
-              <span>
-                Como verificamos: <Link href="/metodologia">metodologia</Link>
-              </span>
-              {c.revisarAte && <span>Próxima revisão: {dataBR(c.revisarAte)}</span>}
-              <span>
-                Dado errado? <Link href="/politica-editorial">Peça uma correção</Link>
-              </span>
-            </div>
-          </div>
-          <p className="prosa" style={{ fontSize: "1.15rem" }}>{c.resumo}</p>
-          {(c.pros.length > 0 || c.contras.length > 0) && (
-            <div className="dois">
-              <div className="lista-pc pro">
-                <h2 style={{ fontSize: "2rem", marginBottom: 18 }}>Por que as famílias escolhem</h2>
-                <ul>{c.pros.map((p) => <li key={p}>{p}</li>)}</ul>
-              </div>
-              <div className="lista-pc contra">
-                <h2 style={{ fontSize: "2rem", marginBottom: 18 }}>O que pesar antes</h2>
-                <ul>{c.contras.map((p) => <li key={p}>{p}</li>)}</ul>
-              </div>
-            </div>
-          )}
-          <div className="especialista">
-            <div className="avatar" aria-hidden="true">DL</div>
-            <div>
-              <span className="rot dourado">Atendimento Alpha DL</span>
-              <h2 style={{ fontSize: "1.9rem", marginBlock: 8 }}>{esp ? `${esp.nome}, Alpha DL` : `Casas no ${c.nome}`}</h2>
-              <p>Um especialista apresenta as casas à venda e para alugar neste residencial.</p>
-            </div>
-            <LinkRastreado className="btn cheio" href={linkAlphaDL("/", { campanha: "condominios", conteudo: c.slug })} ctaId={`cond-${c.slug}`} evento="outbound_alphadl">
-              Ver casas neste residencial
-            </LinkRastreado>
-          </div>
-        </div>
-      </div>
-      <JsonLd dados={ldCondominio(c)} />
-    </>
   );
 }
