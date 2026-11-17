@@ -127,7 +127,7 @@ export const condominioSchema = z
       if (c.campos.municipio?.estado !== "verificado")
         ctx.addIssue({ code: "custom", path: ["campos", "municipio"], message: "município verificado é obrigatório" });
       const verificados = Object.values(c.campos).filter((d) => d.estado === "verificado").length;
-      if (verificados < 4) ctx.addIssue({ code: "custom", path: ["campos"], message: "publique com ao menos 4 campos verificados" });
+      if (verificados < 3) ctx.addIssue({ code: "custom", path: ["campos"], message: "publique com ao menos 3 campos verificados" });
       if (!c.atualizadoEm) ctx.addIssue({ code: "custom", path: ["atualizadoEm"], message: "obrigatório para publicar" });
     }
   });

@@ -16,7 +16,7 @@ Os textos do guia foram escritos do zero, sem copiar as páginas da Alpha DL.
 
 O código exige:
 - município verificado;
-- pelo menos 4 campos verificados;
+- pelo menos 3 campos verificados (regra definida pelo cliente em 17/11/2026, antes eram 4);
 - data de atualização (`atualizadoEm`).
 
 Também é preciso escrever, com o corretor que atende o residencial, os **prós e contras** e a frase **"para quem"**.
@@ -25,24 +25,24 @@ Também é preciso escrever, com o corretor que atende o residencial, os **prós
 
 | Residencial | Campos verificados | Falta para publicar |
 |---|---|---|
-| Alphaville Residencial Zero | município, implantação, lotes, associação (4) | Reconfirmar dados do registro da Alpha DL |
-| Gênesis II | município, lotes, associação, lazer (4) | Reconfirmar dados do registro da Alpha DL |
-| Alphaville Residencial 1 | município, implantação, associação (3) | 1 campo(s) |
-| Alphaville Residencial 2 | município, implantação, associação (3) | 1 campo(s) |
-| Alphaville Residencial 9 | município, lotes, lazer (3) | 1 campo(s) |
-| Alphaville Burle Marx | município, associação (2) | 2 campo(s) |
-| Alphaville Residencial 10 | município, associação (2) | 2 campo(s) |
-| Alphaville Residencial 3 | município, associação (2) | 2 campo(s) |
-| Alphaville Residencial 4 | município, associação (2) | 2 campo(s) |
-| Alphaville Residencial 5 | município, associação (2) | 2 campo(s) |
-| Alphaville Residencial 6 | município, associação (2) | 2 campo(s) |
-| Tamboré 10 | município, associação (2) | 2 campo(s) |
-| Tamboré 11 | município, associação (2) | 2 campo(s) |
-| Tamboré 2 | município, associação (2) | 2 campo(s) |
-| Tamboré 3 | município, associação (2) | 2 campo(s) |
-| Valville 1 | município, associação (2) | 2 campo(s) |
-| Valville 2 | município, associação (2) | 2 campo(s) |
-| Tamboré 1 | associação (1) | 3 campo(s) |
+| Alphaville Residencial Zero | município, implantação, lotes, associação (4) | **Publicada** |
+| Gênesis II | município, lotes, associação, lazer (4) | **Publicada** |
+| Alphaville Residencial 1 | município, implantação, associação (3) | **Publicada** |
+| Alphaville Residencial 2 | município, implantação, associação (3) | **Publicada** |
+| Alphaville Residencial 9 | município, lotes, lazer (3) | **Publicada** |
+| Alphaville Burle Marx | município, associação (2) | 1 campo(s) |
+| Alphaville Residencial 10 | município, associação (2) | 1 campo(s) |
+| Alphaville Residencial 3 | município, associação (2) | 1 campo(s) |
+| Alphaville Residencial 4 | município, associação (2) | 1 campo(s) |
+| Alphaville Residencial 5 | município, associação (2) | 1 campo(s) |
+| Alphaville Residencial 6 | município, associação (2) | 1 campo(s) |
+| Tamboré 10 | município, associação (2) | 1 campo(s) |
+| Tamboré 11 | município, associação (2) | 1 campo(s) |
+| Tamboré 2 | município, associação (2) | 1 campo(s) |
+| Tamboré 3 | município, associação (2) | 1 campo(s) |
+| Valville 1 | município, associação (2) | 1 campo(s) |
+| Valville 2 | município, associação (2) | 1 campo(s) |
+| Tamboré 1 | associação (1) | Município e mais 1 campo |
 
 ## Onde conseguir o que falta
 
