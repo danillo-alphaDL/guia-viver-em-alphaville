@@ -3,7 +3,7 @@
   "nome": "Tamboré 1",
   "regiao": "tambore",
   "status": "em-pesquisa",
-  "resumo": "Guia do Tamboré 1 em apuração. A ficha será publicada depois que cada dado for verificado com fonte e data.",
+  "resumo": "O Tamboré 1 é administrado pela Associação Fazenda Tamboré Residencial, registrada em julho de 1987, com sede em Barueri. A ficha completa está em apuração: só publicamos depois de verificar cada dado com fonte e data.",
   "campos": {
     "municipio": {
       "valor": null,
@@ -18,8 +18,10 @@
       "estado": "a-verificar"
     },
     "associacao": {
-      "valor": null,
-      "estado": "a-verificar"
+      "valor": "Associação Fazenda Tamboré Residencial, CNPJ 56.348.691/0001-73, fundada em 24/07/1987",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ), via Mapa das OSC/Ipea",
+      "data": "2026-11-17"
     },
     "loteTipico": {
       "valor": null,
@@ -52,5 +54,5 @@
   "atualizadoEm": null,
   "revisarAte": null,
   "cena": "c3",
-  "notasInternas": "Sem registro de fatos na Alpha DL para este residencial. Apurar do zero: município (prefeitura), lotes e associação (Receita Federal/associação), lazer. Preencher com: município (prefeitura), nº de lotes e regras (associação), taxa (boleto de referência), faixas de preço (base Alpha DL, com n da amostra), tempo até a Marginal (medição própria com data e horário). Prós e contras: escrever com o corretor que atende o residencial."
+  "notasInternas": "Associação (nome, CNPJ, fundação) conferida em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. Sem registro de fatos na Alpha DL para este residencial. Apurar do zero: município (prefeitura), lotes e associação (Receita Federal/associação), lazer. Preencher com: município (prefeitura), nº de lotes e regras (associação), taxa (boleto de referência), faixas de preço (base Alpha DL, com n da amostra), tempo até a Marginal (medição própria com data e horário). Prós e contras: escrever com o corretor que atende o residencial. Anúncios de imobiliárias citam 702 lotes, 1,86 milhão de m², lotes de 1.000 a 5.000 m² e implantação em maio de 1987 pela Tamboré S/A. Anúncio não é fonte: confirmar com a associação ou a matrícula do loteamento antes de usar. Município: a sede da associação fica em Barueri; confirmar que todos os lotes ficam em Barueri."
 }

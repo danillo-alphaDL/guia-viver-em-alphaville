@@ -23,8 +23,10 @@
       "data": "2026-09-02"
     },
     "associacao": {
-      "valor": null,
-      "estado": "a-verificar"
+      "valor": "Associação Gênesis II, CNPJ 07.045.028/0001-94, fundada em 27/10/2003",
+      "estado": "verificado",
+      "fonte": "Receita Federal (CNPJ), via Mapa das OSC/Ipea",
+      "data": "2026-11-17"
     },
     "loteTipico": {
       "valor": null,
@@ -59,5 +61,5 @@
   "atualizadoEm": null,
   "revisarAte": "2027-03-02",
   "cena": "g1",
-  "notasInternas": "Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
+  "notasInternas": "Associação (nome, CNPJ, fundação) conferida em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL."
 }
