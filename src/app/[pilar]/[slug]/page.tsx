@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Cena } from "@/components/Cena";
 import { Migalha } from "@/components/Migalha";
-import { Mdx } from "@/components/Mdx";
+import { Mdx, ancora } from "@/components/Mdx";
+import Image from "next/image";
 import { Cta } from "@/components/Cta";
 import { JsonLd } from "@/components/JsonLd";
 import { Selo, ValorDado } from "@/components/Selo";
@@ -14,8 +15,8 @@ import { GuiaResidencial } from "@/components/GuiaResidencial";
 import { artigo, artigoPorSlug, artigos, autor as buscaAutor, condominio, condominios, type Artigo, type CondominioComp } from "@/lib/content";
 import { CAMPOS_CONDOMINIO, type CampoCondominio } from "@/lib/schema";
 import { ldArtigo, ldCondominio, ldFaq, meta } from "@/lib/seo";
-import { linkAlphaDL } from "@/lib/alphadl";
-import { pilares, type Pilar } from "@/lib/site";
+import { imoveisPorFaixa, linkAlphaDL, linkWhatsApp } from "@/lib/alphadl";
+import { equipe, pilares, type Pilar } from "@/lib/site";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -44,10 +45,11 @@ export default async function Pagina({ params }: Props) {
   if (c) return <GuiaResidencial c={c} />;
   const a = artigo(pilar as Pilar, slug);
   if (!a) notFound();
-  return <PaginaArtigo a={a} />;
+  return <PaginaArtigo a={a} casas={a.vitrine ? await imoveisPorFaixa(a.vitrine, 3) : []} />;
 }
 
-function PaginaArtigo({ a }: { a: Artigo }) {
+function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeof imoveisPorFaixa>> }) {
+  const whats = linkWhatsApp(`Olá! Li o artigo "${a.titulo}" no Guia Viver em Alphaville e quero conversar com um especialista.`);
   const au = buscaAutor(a.autor);
   const rev = a.revisor ? buscaAutor(a.revisor) : undefined;
   const relacionados = a.relacionados.map(artigoPorSlug).filter(Boolean) as Artigo[];
@@ -97,7 +99,7 @@ function PaginaArtigo({ a }: { a: Artigo }) {
               <ol>
                 {titulos.map((t) => (
                   <li key={t}>
-                    <span>{t}</span>
+                    <a href={`#${ancora(t)}`}>{t}</a>
                   </li>
                 ))}
               </ol>
@@ -108,7 +110,40 @@ function PaginaArtigo({ a }: { a: Artigo }) {
                 <p>{a.resumo}</p>
               </div>
               <Mdx fonte={a.corpo} />
+              {a.vitrine && casas.length > 0 && (
+                <aside className="art-vitrine" aria-label={a.vitrine.titulo}>
+                  <span className="rot dourado">Seleção Alpha DL</span>
+                  <h2>{a.vitrine.titulo}</h2>
+                  <ul>
+                    {casas.map((im, i) => (
+                      <li key={im.caminho}>
+                        <LinkRastreado href={linkAlphaDL(im.caminho, { campanha: "artigo", conteudo: `${a.slug}-imovel` })} ctaId={`art-imovel-${a.slug}-${i}`} evento="outbound_alphadl">
+                          <span className="art-vitrine-local">{im.local}</span>
+                          <strong>{im.titulo}</strong>
+                          <span className="art-vitrine-specs">{im.specs.join(" · ")}</span>
+                          <b className="num">{im.preco}</b>
+                        </LinkRastreado>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="art-vitrine-nota">Preço pedido no anúncio, conforme o portfólio da Alpha DL. Clique para ver o anúncio.</p>
+                </aside>
+              )}
               <Cta tipo={a.cta.tipo} origem={a.slug} contexto={a.cta.contexto} />
+              <aside className="art-equipe" aria-label="Quem atende">
+                <div className="art-equipe-fotos">
+                  {equipe.map((p) => (
+                    <Image key={p.nome} src={p.foto} alt={`Foto de ${p.nome}`} width={96} height={120} sizes="72px" />
+                  ))}
+                </div>
+                <div>
+                  <span className="rot bronze">Quem atende</span>
+                  <p>
+                    {equipe.map((p) => `${p.nome} (${p.creci})`).join(" e ")}, sócios da Alpha DL, atendem quem chega pelo guia e acompanham visitas e
+                    negociação.
+                  </p>
+                </div>
+              </aside>
               {a.faq.length > 0 && (
                 <section style={{ padding: 0 }} aria-labelledby="h-faq">
                   <h2 id="h-faq">Perguntas frequentes</h2>
@@ -169,6 +204,18 @@ function PaginaArtigo({ a }: { a: Artigo }) {
         </div>
       </div>
       <LeituraEngajada slug={a.slug} pilar={a.pilar} />
+      <div className="res-barra">
+        <span>Fale com a Alpha DL</span>
+        {whats ? (
+          <LinkRastreado className="btn cheio" href={whats} ctaId={`art-barra-${a.slug}`} evento="whatsapp_click">
+            WhatsApp
+          </LinkRastreado>
+        ) : (
+          <Link className="btn cheio" href={`/selecao-personalizada?origem=${a.slug}`}>
+            Contato
+          </Link>
+        )}
+      </div>
       <JsonLd dados={[ldArtigo(a, au), ldFaq(a.faq)]} />
     </article>
   );

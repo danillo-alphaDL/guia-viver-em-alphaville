@@ -59,6 +59,10 @@ export const artigoSchema = z
     faq: z.array(z.object({ pergunta: z.string(), resposta: z.string() })).default([]),
     relacionados: z.array(z.string()).default([]),
     /** Artigos do blog da Alpha DL que tratam do tema geral. O artigo do guia deve ter ângulo próprio e apontar para eles. */
+    /** Casas do portfólio da Alpha DL mostradas no meio do artigo. */
+    vitrine: z
+      .object({ titulo: z.string(), precoMin: z.number().optional(), precoMax: z.number().optional(), tipo: z.enum(["casa", "terreno"]).default("casa") })
+      .optional(),
     leiturasAlphaDL: z.array(z.object({ titulo: z.string(), caminho: z.string().startsWith("/") })).default([]),
     notasInternas: z.string().optional(),
   })

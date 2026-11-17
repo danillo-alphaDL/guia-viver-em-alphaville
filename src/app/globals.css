@@ -608,3 +608,33 @@ h1{letter-spacing:-.015em}
 .mercado-numeros dd.faixa{font-size:clamp(1.6rem,3vw,2.5rem)}
 .mercado-numeros dd .nw{white-space:nowrap;font-size:1em;color:inherit}
 .mercado-numeros dd .e{font-size:.6em;color:var(--tinta-2)}
+
+/* ===== Artigos (17/11/2026) ===== */
+.indice a{color:var(--tinta-2);text-decoration:none;line-height:1.4}
+.indice a:hover{color:var(--tinta);text-decoration:underline;text-decoration-color:var(--champanhe)}
+.texto h2[id]{scroll-margin-top:24px}
+.art-vitrine{background:var(--noite);color:var(--sobre-noite);padding:clamp(24px,4vw,40px);display:grid;gap:14px}
+.art-vitrine h2{font-size:1.8rem;margin:0}
+.art-vitrine ul{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--linha-escura)}
+.art-vitrine a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 20px;padding:16px 0;border-bottom:1px solid var(--linha-escura);text-decoration:none}
+.art-vitrine a:hover strong{color:var(--champanhe)}
+.art-vitrine-local{grid-column:1/-1;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--champanhe);font-weight:600}
+.art-vitrine strong{font-family:var(--f-display);font-weight:500;font-size:1.3rem}
+.art-vitrine b{font-family:var(--f-display);font-weight:500;font-size:1.3rem;grid-row:2 / 4;grid-column:2;align-self:center}
+.art-vitrine-specs{font-size:.9rem;color:var(--sobre-noite-2)}
+.art-vitrine-nota{font-size:.84rem !important;color:var(--sobre-noite-2) !important}
+.art-equipe{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;border:1px solid var(--linha-clara);background:var(--marfim-2);padding:18px}
+.art-equipe-fotos{display:flex}
+.art-equipe-fotos img{width:56px;height:70px;object-fit:cover;border:2px solid var(--marfim-2)}
+.art-equipe-fotos img + img{margin-left:-10px}
+.art-equipe p{font-size:.98rem !important;line-height:1.6 !important;color:var(--tinta-2) !important;margin-top:6px}
+@media (max-width:700px){.art-equipe{grid-template-columns:minmax(0,1fr)}}
+/* correções do artigo */
+.texto .art-vitrine li,.texto .art-vitrine strong{color:var(--sobre-noite)}
+.texto .art-vitrine .art-vitrine-specs{color:var(--sobre-noite-2)}
+.texto .cta-art p{color:var(--sobre-noite-2)}
+.pg-hero{display:flex;align-items:flex-end;min-height:clamp(440px,64vh,620px)}
+.pg-hero .cena{position:absolute;inset:0;height:auto !important}
+.pg-hero .wrap{position:relative;padding-top:150px}
+.texto .tabela-box table{min-width:28rem}
+.texto td,.texto th{font-size:.98rem}
