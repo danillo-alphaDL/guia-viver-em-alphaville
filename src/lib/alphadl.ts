@@ -164,3 +164,72 @@ export function caminhoResidencialAlphaDL(slug: string) {
   const s = slug in RESIDENCIAL_NA_ALPHADL ? RESIDENCIAL_NA_ALPHADL[slug] : slug;
   return s ? `/condominios/${s}` : "/imoveis";
 }
+
+/* ---------- Números do mercado (portfólio da Alpha DL) ---------- */
+
+export type Mercado = {
+  casas: number;
+  mediana: number;
+  p25: number;
+  p75: number;
+  data: string;
+};
+
+const quantil = (v: number[], p: number) => {
+  const s = [...v].sort((a, b) => a - b);
+  const k = (s.length - 1) * p;
+  const f = Math.floor(k);
+  return s[f] + (s[Math.min(f + 1, s.length - 1)] - s[f]) * (k - f);
+};
+
+/** Casas à venda em Barueri e Santana de Parnaíba. Abaixo de 5 casas não há faixa (mesma regra do Radar da Alpha DL). */
+export function mercadoAgora(portfolio: ImovelPortfolio[]): Mercado | null {
+  const precos = portfolio
+    .filter((p) => p.tipo === "casa" && p.fin === "venda" && ["Barueri", "Santana de Parnaíba"].includes(p.cidade) && p.preco > 0)
+    .map((p) => p.preco);
+  if (precos.length < 5) return null;
+  return {
+    casas: precos.length,
+    mediana: quantil(precos, 0.5),
+    p25: quantil(precos, 0.25),
+    p75: quantil(precos, 0.75),
+    data: new Date().toISOString().slice(0, 10),
+  };
+}
+
+/** Destaques variados: as mais caras primeiro, uma por residencial antes de repetir. */
+export function destaquesVariados(portfolio: ImovelPortfolio[], quantos = 6): ImovelVitrine[] {
+  const todas = selecionarVitrine(portfolio, 40);
+  const vistos = new Set<string>();
+  const primeiro: ImovelVitrine[] = [];
+  const resto: ImovelVitrine[] = [];
+  for (const i of todas) (vistos.has(i.local) ? resto : (vistos.add(i.local), primeiro)).push(i);
+  return [...primeiro, ...resto].slice(0, quantos);
+}
+
+/** Quantas casas e terrenos à venda o portfólio tem em cada residencial (pelo nome cadastrado). */
+export function contarPorResidencial(portfolio: ImovelPortfolio[], nomes: string[]) {
+  const out: Record<string, number> = {};
+  for (const n of nomes) {
+    const alvo = normaliza(n);
+    out[n] = portfolio.filter(
+      (p) => p.fin === "venda" && (p.tipo === "casa" || p.tipo === "terreno") && (normaliza(p.condominio || "") === alvo || normaliza(p.bairro || "") === alvo),
+    ).length;
+  }
+  return out;
+}
+
+/** Endereço do catálogo da Alpha DL com filtros (parâmetros que o catálogo lê: fin, tipo, regiao, dorm, pmin, pmax). */
+export function catalogoAlphaDL(f: { fin?: "venda" | "locacao"; tipo?: string; regiao?: string; dorm?: number; pmin?: number; pmax?: number }, origem: Origem) {
+  const q = new URLSearchParams();
+  if (f.fin) q.set("fin", f.fin);
+  if (f.tipo) q.set("tipo", f.tipo);
+  if (f.regiao) q.set("regiao", f.regiao);
+  if (f.dorm) q.set("dorm", String(f.dorm));
+  if (f.pmin) q.set("pmin", String(f.pmin));
+  if (f.pmax) q.set("pmax", String(f.pmax));
+  const s = q.toString();
+  return linkAlphaDL(`/imoveis${s ? `?${s}` : ""}`, origem);
+}
+
+export const milhoes = (v: number) => `R$ ${(v / 1_000_000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} mi`;
