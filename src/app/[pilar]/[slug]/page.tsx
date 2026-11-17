@@ -45,7 +45,7 @@ export default async function Pagina({ params }: Props) {
   if (c) return <GuiaResidencial c={c} />;
   const a = artigo(pilar as Pilar, slug);
   if (!a) notFound();
-  return <PaginaArtigo a={a} casas={a.vitrine ? await imoveisPorFaixa(a.vitrine, 3) : []} />;
+  return <PaginaArtigo a={a} casas={a.vitrine ? await imoveisPorFaixa(a.vitrine, a.vitrine.residenciais ? 6 : 3) : []} />;
 }
 
 function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeof imoveisPorFaixa>> }) {
