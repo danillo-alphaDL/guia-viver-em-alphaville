@@ -9,18 +9,18 @@
   --champanhe:#C2A878; --bronze:#7A6240;
   --linha-escura:rgba(236,234,228,.16);
   --ok:#7A6240; --ok-fundo:#EAE3D6; --pend:#8A3B2E; --pend-fundo:#F2E2DE;
-  --f-display:var(--fonte-display),Garamond,"Times New Roman",serif;
-  --f-texto:var(--fonte-texto),"Futura","Avenir Next","Century Gothic",system-ui,sans-serif;
+  --f-display:var(--fonte-display),Georgia,"Times New Roman",serif;
+  --f-texto:var(--fonte-texto),system-ui,-apple-system,"Segoe UI",sans-serif;
   --largura:1240px; --leitura:39rem;
 }
 *{box-sizing:border-box}
-body{background:var(--marfim);color:var(--tinta);font-family:var(--f-texto);font-weight:300;font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{background:var(--marfim);color:var(--tinta);font-family:var(--f-texto);font-weight:400;font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:1px solid var(--champanhe);outline-offset:4px}
-h1,h2,h3{font-family:var(--f-display);font-weight:300;line-height:1.04;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.005em}
 p{margin:0}
 .wrap{max-width:var(--largura);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-.rot{font-family:var(--f-texto);font-size:.72rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase}
+.rot{font-family:var(--f-texto);font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .num{font-variant-numeric:tabular-nums lining-nums}
 .escuro{background:var(--noite);color:var(--sobre-noite)}
 .escuro .sec-txt{color:var(--sobre-noite-2)}
@@ -29,14 +29,14 @@ p{margin:0}
 section{padding-block:clamp(64px,9vw,128px)}
 
 /* Botões e links de ação */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font:400 .74rem/1 var(--f-texto);letter-spacing:.24em;text-transform:uppercase;padding:18px 30px;border:1px solid currentColor;background:transparent;color:inherit;text-decoration:none;cursor:pointer;transition:background .25s,color .25s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font:600 .84rem/1 var(--f-texto);letter-spacing:.08em;text-transform:uppercase;padding:18px 28px;border:1px solid currentColor;background:transparent;color:inherit;text-decoration:none;cursor:pointer;transition:background .25s,color .25s}
 .btn.cheio{background:var(--champanhe);border-color:var(--champanhe);color:var(--noite)}
 .btn.cheio:hover{background:var(--sobre-noite);border-color:var(--sobre-noite)}
 .escuro .btn:not(.cheio):hover{background:var(--sobre-noite);color:var(--noite)}
 .claro .btn:not(.cheio):hover,.btn.tinta:hover{background:var(--tinta);color:var(--marfim)}
 .btn.tinta{background:var(--tinta);color:var(--marfim);border-color:var(--tinta)}
 .btn.tinta:hover{background:transparent;color:var(--tinta)}
-.link-seta{font:400 .74rem/1 var(--f-texto);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;display:inline-flex;gap:12px;align-items:center;padding-bottom:6px;border-bottom:1px solid var(--champanhe)}
+.link-seta{font:600 .84rem/1 var(--f-texto);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:inline-flex;gap:12px;align-items:center;padding-bottom:6px;border-bottom:1px solid var(--champanhe)}
 .link-seta::after{content:"→";letter-spacing:0;transition:transform .25s}
 .link-seta:hover::after{transform:translateX(4px)}
 
@@ -51,7 +51,7 @@ section{padding-block:clamp(64px,9vw,128px)}
 .marca{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;line-height:1}
 .marca small{font-size:.58rem;letter-spacing:.5em;color:var(--champanhe);margin-bottom:6px;font-weight:400}
 .marca span{font-family:var(--f-display);font-size:1.6rem;font-weight:400;letter-spacing:.02em}
-.marca span i{font-weight:300}
+.marca span i{font-weight:400}
 .menu{display:flex;flex-wrap:wrap;gap:6px 28px}
 .menu a{text-decoration:none;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;opacity:.85;padding-block:4px;border-bottom:1px solid transparent}
 .menu a:hover{opacity:1;border-color:var(--champanhe)}
@@ -73,7 +73,7 @@ section{padding-block:clamp(64px,9vw,128px)}
 .busca .seg button{background:transparent;border:0;color:var(--sobre-noite-2);font:400 .72rem var(--f-texto);letter-spacing:.22em;text-transform:uppercase;padding:8px 10px;cursor:pointer;border-bottom:1px solid transparent}
 .busca .seg button[aria-pressed="true"]{color:var(--sobre-noite);border-color:var(--champanhe)}
 .busca label{display:flex;flex-direction:column;gap:4px;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sobre-noite-2)}
-.busca select{background:transparent;color:var(--sobre-noite);border:0;font:300 1rem var(--f-texto);letter-spacing:0;text-transform:none;padding:0;cursor:pointer;width:100%;appearance:none}
+.busca select{background:transparent;color:var(--sobre-noite);border:0;font:400 1rem var(--f-texto);letter-spacing:0;text-transform:none;padding:0;cursor:pointer;width:100%;appearance:none}
 .busca select option{color:#111}
 .busca .btn{border:0;border-radius:0;padding-inline:34px}
 .hero-rodape{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sobre-noite-2)}
@@ -152,7 +152,7 @@ section{padding-block:clamp(64px,9vw,128px)}
 .dl .acoes{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
 .dl .passos{display:grid;gap:0;border-top:1px solid var(--linha-escura)}
 .dl .passos > div{display:grid;grid-template-columns:3rem minmax(0,1fr);gap:16px;padding-block:22px;border-bottom:1px solid var(--linha-escura)}
-.dl .passos b{font-family:var(--f-display);font-weight:300;font-size:1.8rem;color:var(--champanhe);line-height:1}
+.dl .passos b{font-family:var(--f-display);font-weight:400;font-size:1.8rem;color:var(--champanhe);line-height:1}
 .dl .passos strong{display:block;font-weight:400;margin-bottom:4px}
 .dl .passos p{font-size:.9rem;color:var(--sobre-noite-2)}
 
@@ -276,11 +276,11 @@ details p{margin-top:12px;font-size:.98rem !important;color:var(--tinta-2)}
 .form label small{color:var(--tinta-2);font-size:.85rem}
 .campo-in{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--tinta);padding-bottom:6px}
 .campo-in span{font-size:.9rem;color:var(--tinta-2)}
-.campo-in input{border:0;background:transparent;font:300 1.9rem var(--f-display);color:var(--tinta);width:100%;min-width:0;padding:4px 0;font-variant-numeric:lining-nums tabular-nums}
+.campo-in input{border:0;background:transparent;font:400 1.9rem var(--f-display);color:var(--tinta);width:100%;min-width:0;padding:4px 0;font-variant-numeric:lining-nums tabular-nums}
 .campo-in input:focus{outline:none}
 .campo-in:focus-within{border-color:var(--bronze)}
 .resultado{background:var(--noite);color:var(--sobre-noite);padding:clamp(28px,4vw,48px);position:sticky;top:24px}
-.resultado .grande{font-family:var(--f-display);font-weight:300;font-size:clamp(3rem,6vw,4.6rem);line-height:1;margin-block:14px 6px}
+.resultado .grande{font-family:var(--f-display);font-weight:400;font-size:clamp(3rem,6vw,4.6rem);line-height:1;margin-block:14px 6px}
 .resultado .rot{color:var(--champanhe)}
 .barra{display:flex;height:6px;margin-block:30px 20px;background:var(--noite-3)}
 .barra i{display:block;height:100%}
@@ -413,7 +413,7 @@ html{scroll-behavior:smooth}
 .ferramenta-card p{color:var(--tinta-2);font-size:.95rem}
 .seletores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-block:28px}
 .seletores label{display:grid;gap:6px}
-.seletores select,.form.lead select,.form.lead input:not([type=radio]):not([type=checkbox]),.form.lead textarea{font:300 1.05rem var(--f-texto);color:var(--tinta);background:transparent;border:0;border-bottom:1px solid var(--tinta);padding:10px 0;width:100%;border-radius:0}
+.seletores select,.form.lead select,.form.lead input:not([type=radio]):not([type=checkbox]),.form.lead textarea{font:400 1.05rem var(--f-texto);color:var(--tinta);background:transparent;border:0;border-bottom:1px solid var(--tinta);padding:10px 0;width:100%;border-radius:0}
 .form.lead textarea{border:1px solid var(--linha-clara);padding:12px;resize:vertical}
 .form.lead :is(select,input,textarea):focus-visible{outline:0;border-color:var(--bronze);box-shadow:0 1px 0 var(--bronze)}
 .claro .criterios .chip,.comparador .chip{border-color:var(--linha-clara);color:var(--tinta-2)}
@@ -486,7 +486,7 @@ html{scroll-behavior:smooth}
 .res-grade{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;border-top:1px solid var(--tinta)}
 .res-dado{padding:28px 28px 28px 0;border-bottom:1px solid var(--linha-clara);display:grid;gap:10px;align-content:start;min-width:0}
 .res-dado dt{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--tinta-2)}
-.res-dado dd{margin:0;font-family:var(--f-display);font-size:clamp(2rem,3.4vw,2.8rem);font-weight:300;line-height:1.05;overflow-wrap:anywhere}
+.res-dado dd{margin:0;font-family:var(--f-display);font-size:clamp(2rem,3.4vw,2.8rem);font-weight:400;line-height:1.05;overflow-wrap:anywhere}
 .res-dado.longo{grid-column:1/-1}
 .res-dado.longo dd{font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.3;max-width:48rem}
 .res-fonte{font-size:.74rem;color:var(--tinta-2);letter-spacing:.02em}
@@ -527,3 +527,84 @@ html{scroll-behavior:smooth}
   .res-hero .cena::after{background:linear-gradient(180deg,rgba(8,9,9,.75) 0%,rgba(8,9,9,.6) 40%,rgba(8,9,9,.92) 100%)}
   .escuro-cards .cond .cena,.res-outros .cond .cena{aspect-ratio:16/10}
 }
+
+/* ===== Legibilidade (17/11/2026) ===== */
+.menu a,.topo .contato,.menu-movel summary{font-size:.78rem;letter-spacing:.1em;font-weight:500}
+.campo dt,.res-dado dt,.form label > span:first-child,.form.lead legend,thead th,.comp td:first-child,.migalha,.hero-rodape,.selo,.busca label,.chip,.seg-claro button,.busca .seg button,.estilo .temas,.rodape h2,.cond .ver,.preco small,.imovel .selo-dl,.res-chips li,.autor small,.autoria small,.indice li::before{letter-spacing:.08em !important}
+.campo dt,.res-dado dt,.form label > span:first-child,.form.lead legend,thead th,.comp td:first-child,.migalha,.busca label,.selo,.rodape h2{font-size:.72rem !important;font-weight:600}
+.texto p,.texto li,.prosa p,.prosa li,.res-viver-texto > p{font-size:1.15rem;line-height:1.75;color:#262927}
+.lead{font-size:1.15rem}
+.sec-txt{line-height:1.7}
+.specs{font-size:.86rem;letter-spacing:.02em}
+.nota-vitrine,.mercado-fonte,.res-fonte,.res-faltando{font-size:.86rem}
+h1{letter-spacing:-.015em}
+
+/* ===== Home (17/11/2026) ===== */
+.busca{grid-template-columns:auto repeat(3,minmax(0,1fr)) auto}
+.hero-contagem{margin-top:18px;color:var(--sobre-noite-2);font-size:1rem}
+.hero-contagem strong{color:var(--sobre-noite);font-weight:600}
+.hero-atalhos{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.hero-atalhos a{display:inline-block;border:1px solid var(--linha-escura);background:rgba(14,16,15,.5);padding:9px 14px;font-size:.86rem;text-decoration:none}
+.hero-atalhos a:hover{border-color:var(--champanhe);color:var(--champanhe)}
+.dores-cab{display:grid;gap:16px;max-width:46rem;margin-bottom:clamp(36px,5vw,56px)}
+.dores-cab h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+.dores-lista{list-style:none;margin:0 0 36px;padding:0;display:grid;border-top:1px solid var(--tinta)}
+.dores-lista li{display:grid;grid-template-columns:4rem minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);padding-block:26px;border-bottom:1px solid var(--linha-clara);align-items:baseline}
+.dores-num{font-family:var(--f-display);font-size:1.6rem;color:var(--bronze)}
+.dores-dor{font-family:var(--f-display);font-size:1.35rem;line-height:1.35}
+.dores-saida{color:var(--tinta-2);font-size:1.02rem;line-height:1.65}
+.mercado{padding-top:0}
+.mercado .wrap{border-top:1px solid var(--linha-clara);padding-top:clamp(56px,7vw,96px)}
+.mercado-cab{display:grid;gap:12px;margin-bottom:28px}
+.mercado-cab h2{font-size:clamp(2rem,4vw,3.2rem);max-width:22ch}
+.mercado-numeros{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--tinta)}
+.mercado-numeros div{padding:24px 24px 24px 0;border-bottom:1px solid var(--linha-clara);display:grid;gap:8px}
+.mercado-numeros dt{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--tinta-2)}
+.mercado-numeros dd{margin:0;font-family:var(--f-display);font-size:clamp(2rem,4vw,3.2rem);line-height:1.05}
+.mercado-numeros dd span{font-size:.5em;color:var(--tinta-2)}
+.mercado-fonte{margin-top:16px;color:var(--tinta-2);max-width:48rem}
+.lista-res{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.lista-res a{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr) auto;gap:clamp(16px,3vw,36px);align-items:center;text-decoration:none;border:1px solid var(--linha-clara);background:var(--marfim-2);padding:12px}
+.lista-res a:hover{border-color:var(--bronze)}
+.lista-res .cena{aspect-ratio:16/10}
+.lista-res-txt{display:grid;gap:8px}
+.lista-res-txt h3{font-size:1.8rem}
+.lista-res-txt p{color:var(--tinta-2);font-size:1rem}
+.lista-res-casas{text-align:center;padding-inline:20px;display:grid;gap:2px;min-width:8rem}
+.lista-res-casas b{font-family:var(--f-display);font-weight:500;font-size:2.4rem;line-height:1}
+.lista-res-casas span{font-size:.82rem;color:var(--tinta-2)}
+.caminhos-grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.caminho{border:1px solid var(--linha-escura);padding:26px;display:grid;gap:12px;align-content:start;text-decoration:none}
+.caminho:hover{border-color:var(--champanhe)}
+.caminho h3{font-size:1.6rem}
+.caminho p{color:var(--sobre-noite-2);font-size:.98rem}
+.caminho-ir{font-size:.86rem;color:var(--champanhe);margin-top:4px}
+.equipe .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.equipe-txt{display:grid;gap:18px}
+.equipe-txt h2{font-size:clamp(2rem,4vw,3.2rem)}
+.equipe-lista{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.equipe-lista li{display:grid;gap:4px}
+.equipe-lista img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;margin-bottom:10px;filter:grayscale(.15)}
+.equipe-lista strong{font-family:var(--f-display);font-weight:500;font-size:1.25rem}
+.equipe-lista span{font-size:.88rem;color:var(--tinta-2)}
+@media (max-width:980px){
+  .busca{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .busca label:nth-of-type(3){border-right:0}
+  .caminhos-grade{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .equipe .wrap{grid-template-columns:minmax(0,1fr)}
+  .lista-res a{grid-template-columns:minmax(0,200px) minmax(0,1fr)}
+  .lista-res-casas{grid-column:1/-1;text-align:left;display:flex;gap:8px;align-items:baseline;padding:0 0 4px}
+}
+@media (max-width:700px){
+  .dores-lista li{grid-template-columns:minmax(0,1fr);gap:8px}
+  .mercado-numeros{grid-template-columns:minmax(0,1fr)}
+  .caminhos-grade{grid-template-columns:minmax(0,1fr)}
+  .lista-res a{grid-template-columns:minmax(0,1fr)}
+  .lista-res-casas b{font-size:1.8rem}
+}
+@media (max-width:600px){
+  .busca{grid-template-columns:minmax(0,1fr)}
+}
+.mercado-numeros dd.faixa{font-size:clamp(1.6rem,3vw,2.5rem)}
+.mercado-numeros dd .nw{white-space:nowrap;font-size:1em;color:inherit}
+.mercado-numeros dd .e{font-size:.6em;color:var(--tinta-2)}

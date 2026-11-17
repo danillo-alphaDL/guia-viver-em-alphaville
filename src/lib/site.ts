@@ -54,3 +54,9 @@ export const pilares = {
 
 export type Pilar = keyof typeof pilares;
 export const listaPilares = Object.keys(pilares) as Pilar[];
+
+/** Corretores da Alpha DL que atendem quem chega pelo guia (dados públicos em alphadl.com.br/sobre). */
+export const equipe = [
+  { nome: "Danillo de Almeida Santos", creci: "CRECI/SP 271275-F", papel: "Sócio da Alpha DL", foto: "/equipe/danillo.webp" },
+  { nome: "Luciana Coltro", creci: "CRECI/SP 258225-F", papel: "Sócia da Alpha DL", foto: "/equipe/luciana.webp" },
+] as const;

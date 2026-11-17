@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Newsreader, Figtree } from "next/font/google";
 import "./globals.css";
 import { Cabecalho } from "@/components/Cabecalho";
 import { Rodape } from "@/components/Rodape";
@@ -8,8 +8,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { ldOrganizacao, ldWebsite } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-const display = Cormorant_Garamond({ subsets: ["latin"], weight: ["300", "400", "500"], style: ["normal", "italic"], variable: "--fonte-display", display: "swap" });
-const texto = Jost({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--fonte-texto", display: "swap" });
+// Títulos: Newsreader, serifa editorial desenhada para leitura em tela. Texto: Figtree, sans de x-altura alta e boa leitura longa.
+const display = Newsreader({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--fonte-display", display: "swap" });
+const texto = Figtree({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--fonte-texto", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
