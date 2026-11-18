@@ -15,7 +15,7 @@ import { GuiaResidencial } from "@/components/GuiaResidencial";
 import { artigo, artigoPorSlug, artigos, autor as buscaAutor, condominio, condominios, type Artigo, type CondominioComp } from "@/lib/content";
 import { CAMPOS_CONDOMINIO, type CampoCondominio } from "@/lib/schema";
 import { ldArtigo, ldCondominio, ldFaq, ldRevisao, meta } from "@/lib/seo";
-import { imoveisPorFaixa, linkAlphaDL, linkWhatsApp } from "@/lib/alphadl";
+import { imoveisPorFaixa, linkAlphaDL } from "@/lib/alphadl";
 import { equipe, pilares, type Pilar } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -49,7 +49,6 @@ export default async function Pagina({ params }: Props) {
 }
 
 function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeof imoveisPorFaixa>> }) {
-  const whats = linkWhatsApp(`Olá! Li o artigo "${a.titulo}" no Guia Viver em Alphaville e quero conversar com um especialista.`);
   const au = buscaAutor(a.autor);
   const rev = a.revisor ? buscaAutor(a.revisor) : undefined;
   const relacionados = a.relacionados.map(artigoPorSlug).filter(Boolean) as Artigo[];
@@ -210,18 +209,6 @@ function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeo
         </div>
       </div>
       <LeituraEngajada slug={a.slug} pilar={a.pilar} />
-      <div className="res-barra">
-        <span>Fale com a Alpha DL</span>
-        {whats ? (
-          <LinkRastreado className="btn cheio" href={whats} ctaId={`art-barra-${a.slug}`} evento="whatsapp_click">
-            WhatsApp
-          </LinkRastreado>
-        ) : (
-          <Link className="btn cheio" href={`/selecao-personalizada?origem=${a.slug}`}>
-            Contato
-          </Link>
-        )}
-      </div>
       <JsonLd dados={[ldArtigo(a, au), ldRevisao(a, rev), ldFaq(a.faq)]} />
     </article>
   );

@@ -8,7 +8,8 @@
     "build": "npm run content:check && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "content:check": "node --experimental-strip-types scripts/content-check.mts"
+    "content:check": "node --experimental-strip-types scripts/content-check.mts",
+    "testar-whatsapp": "node --experimental-strip-types scripts/testar-whatsapp.mts"
   },
   "engines": {
     "node": ">=20.9"

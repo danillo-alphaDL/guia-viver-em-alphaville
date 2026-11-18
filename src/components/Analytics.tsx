@@ -32,6 +32,11 @@ export function Analytics({ gaId }: { gaId: string }) {
     else setPendente(true);
   }, []);
 
+  // Enquanto o aviso de privacidade está na tela, a barra do WhatsApp espera (globals.css).
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-consentimento-pendente", pendente && Boolean(gaId));
+  }, [pendente, gaId]);
+
   function decidir(aceito: boolean) {
     try {
       localStorage.setItem(CHAVE, aceito ? "aceito" : "recusado");

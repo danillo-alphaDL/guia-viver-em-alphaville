@@ -12,6 +12,7 @@ export function LinkRastreado({ evento = "cta_click", ctaId, href = "", children
       href={href}
       {...(externo ? { target: "_blank", rel: "noopener" } : {})}
       {...resto}
+      data-rastreado=""
       onClick={() => track(evento, { cta_id: ctaId, destination: href.split("?")[0] })}
     >
       {children}
