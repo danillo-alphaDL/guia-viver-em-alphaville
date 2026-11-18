@@ -242,7 +242,11 @@ export default async function Home() {
                   ctaId={`home-vitrine-${i}`}
                   evento="outbound_alphadl"
                 >
-                  <Cena nome={["i1", "i2", "i3", "g1", "g2", "g4"][i % 6]} credito={false}>
+                  <Cena
+                    nome={["i1", "i2", "i3", "g1", "g2", "g4"][i % 6]}
+                    credito={!im.foto}
+                    foto={im.foto ? { src: im.foto, alt: `${im.titulo}, ${im.local}`, sizes: "(max-width: 700px) 100vw, 380px" } : undefined}
+                  >
                     <span className="selo-dl">Alpha DL</span>
                   </Cena>
                   <div>
@@ -261,7 +265,7 @@ export default async function Home() {
                 </LinkRastreado>
               ))}
             </div>
-            <p className="nota-vitrine">Preço pedido no anúncio. As imagens são ilustrativas: as fotos de cada casa são apresentadas no atendimento.</p>
+            <p className="nota-vitrine">Preço pedido no anúncio. Fotos do anúncio da Alpha DL; casa sem foto publicada aparece com ilustração.</p>
           </div>
         </section>
       )}

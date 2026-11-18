@@ -55,7 +55,7 @@ export type ImovelPortfolio = {
   condominio?: string;
 };
 
-export type ImovelVitrine = { titulo: string; local: string; caminho: string; preco: string; finalidade: "venda" | "locacao"; specs: string[] };
+export type ImovelVitrine = { titulo: string; local: string; caminho: string; preco: string; finalidade: "venda" | "locacao"; specs: string[]; /** Foto de capa do anúncio na Alpha DL, quando existe. */ foto: string | null };
 
 const FEED_PADRAO = "https://www.alphadl.com.br/api/vitrine";
 const PRECO_MINIMO = 3_000_000;
@@ -80,12 +80,13 @@ export function selecionarVitrine(portfolio: ImovelPortfolio[], quantos = 3): Im
   return portfolio
     .map((p, idx) => ({ p, idx }))
     .filter(({ p }) => p.fin === "venda" && p.tipo === "casa" && p.preco >= PRECO_MINIMO && ["Barueri", "Santana de Parnaíba"].includes(p.cidade))
-    .sort((a, b) => b.p.preco - a.p.preco)
+    .sort((a, b) => Number(Boolean(b.p.capaUrl)) - Number(Boolean(a.p.capaUrl)) || b.p.preco - a.p.preco)
     .slice(0, quantos)
     .map(({ p, idx }) => ({
       titulo: `Casa com ${p.q} quartos`,
       local: `${p.condominio || p.bairro} · ${p.cidade}`,
       caminho: caminhoImovel(p, idx),
+      foto: p.capaUrl ?? null,
       preco: p.fin === "venda" ? `R$ ${p.preco.toLocaleString("pt-BR")}` : `R$ ${p.preco.toLocaleString("pt-BR")}/mês`,
       finalidade: p.fin === "venda" ? "venda" : "locacao",
       specs: [`${p.q} quartos`, `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],
@@ -138,7 +139,7 @@ export async function imoveisDoResidencial(nome: string): Promise<ImovelResidenc
     .map((p, idx) => ({ p, idx }))
     .filter(({ p }) => p.fin === "venda" && (p.tipo === "casa" || p.tipo === "terreno"))
     .filter(({ p }) => normaliza(p.condominio || "") === alvo || normaliza(p.bairro || "") === alvo)
-    .sort((a, b) => b.p.preco - a.p.preco)
+    .sort((a, b) => Number(Boolean(b.p.capaUrl)) - Number(Boolean(a.p.capaUrl)) || b.p.preco - a.p.preco)
     .map(({ p, idx }) => ({
       tipo: p.tipo,
       precoNumero: p.preco,
@@ -146,6 +147,7 @@ export async function imoveisDoResidencial(nome: string): Promise<ImovelResidenc
       titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
       local: `${p.condominio || p.bairro} · ${p.cidade}`,
       caminho: caminhoImovel(p, idx),
+      foto: p.capaUrl ?? null,
       preco: `R$ ${p.preco.toLocaleString("pt-BR")}`,
       finalidade: "venda" as const,
       specs:
@@ -251,7 +253,7 @@ export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number;
     .filter(({ p }) => (!f.precoMin || p.preco >= f.precoMin) && (!f.precoMax || p.preco <= f.precoMax))
     .filter(({ p }) => !f.quartosMin || p.q >= f.quartosMin)
     .filter(({ p }) => !f.residenciais?.length || f.residenciais.map(normaliza).some((r) => r === normaliza(p.condominio || "") || r === normaliza(p.bairro || "")))
-    .sort((a, b) => b.p.preco - a.p.preco)
+    .sort((a, b) => Number(Boolean(b.p.capaUrl)) - Number(Boolean(a.p.capaUrl)) || b.p.preco - a.p.preco)
     .slice(0, quantos)
     .map(({ p, idx }) => ({
       tipo: p.tipo,
@@ -260,6 +262,7 @@ export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number;
       titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
       local: `${p.condominio || p.bairro} · ${p.cidade}`,
       caminho: caminhoImovel(p, idx),
+      foto: p.capaUrl ?? null,
       preco: `R$ ${p.preco.toLocaleString("pt-BR")}`,
       finalidade: "venda" as const,
       specs: p.tipo === "terreno" ? [`${p.area.toLocaleString("pt-BR")} m²`] : [`${p.q} quartos`, `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],

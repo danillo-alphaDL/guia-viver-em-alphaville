@@ -11,7 +11,11 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   trailingSlash: false,
-  images: { formats: ["image/avif", "image/webp"] },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    // Fotos de capa dos anúncios, servidas pelo armazenamento do site da Alpha DL.
+    remotePatterns: [{ protocol: "https", hostname: "mhptizucyt6qs46p.public.blob.vercel-storage.com", pathname: "/imoveis/**" }],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
