@@ -510,7 +510,6 @@ html{scroll-behavior:smooth}
 .res-final .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
 .res-final h2{margin-block:14px 16px}
 .res-final .res-acoes{justify-content:flex-end}
-.res-barra{display:none}
 @media (max-width:980px){
   .res-viver .wrap,.res-final .wrap{grid-template-columns:minmax(0,1fr)}
   .res-final .res-acoes{justify-content:flex-start}
@@ -519,10 +518,6 @@ html{scroll-behavior:smooth}
   .res-hero{min-height:0}
   .res-hero .wrap{padding-block:130px 48px}
   .res-acoes .btn{flex:1 1 100%}
-  .res-barra{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;align-items:center;justify-content:space-between;gap:12px;background:var(--noite);color:var(--sobre-noite);border-top:1px solid var(--linha-escura);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-  .res-barra span{font-family:var(--f-display);font-size:1.15rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .res-barra .btn{padding:13px 18px;flex:none}
-  body:has(.res-barra){padding-bottom:70px}
 }
 @media (max-width:700px){
   .res-hero .cena::after{background:linear-gradient(180deg,rgba(8,9,9,.75) 0%,rgba(8,9,9,.6) 40%,rgba(8,9,9,.92) 100%)}
@@ -666,3 +661,37 @@ h1{letter-spacing:-.015em}
   .hero.com-foto .hero-txt{margin-top:-120px;padding-top:0;padding-bottom:48px}
   .pg-hero.com-foto .wrap{position:relative;margin-top:-110px;padding-top:0;padding-bottom:40px}
 }
+
+/* ---------- WhatsApp: botão flutuante e barra de rodapé (components/WhatsAppFlutuante.tsx) ---------- */
+.wa-flutuante{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:45;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.28);text-decoration:none;transition:transform .25s,bottom .3s}
+.wa-flutuante svg{width:32px;height:32px}
+.wa-flutuante:hover{transform:scale(1.06)}
+.wa-flutuante:focus-visible{outline:3px solid var(--champanhe);outline-offset:3px}
+.barra-wa{position:fixed;left:0;right:0;bottom:0;z-index:44;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:20px;background:rgba(9,10,10,.97);color:var(--sobre-noite);border-top:1px solid rgba(214,168,94,.35);box-shadow:0 -12px 30px rgba(0,0,0,.25);padding:16px max(24px,calc((100vw - 1200px)/2)) calc(16px + env(safe-area-inset-bottom,0px));transform:translateY(110%);visibility:hidden;transition:transform .35s ease,visibility 0s .35s}
+.barra-wa.visivel{transform:none;visibility:visible;transition:transform .35s ease}
+.barra-wa-txt{display:grid;gap:2px;min-width:0}
+.barra-wa-txt strong{font-family:var(--f-display);font-weight:400;font-size:1.3rem;line-height:1.2}
+.barra-wa-txt span{font-size:.9rem;color:var(--sobre-noite-2)}
+.barra-wa-botao{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#06150b;font-weight:600;font-size:.95rem;padding:14px 22px;border-radius:2px;text-decoration:none;white-space:nowrap}
+.barra-wa-botao svg{width:20px;height:20px}
+.barra-wa-botao:hover{background:#2ee072}
+.barra-wa-botao:focus-visible,.barra-wa-fechar:focus-visible{outline:3px solid var(--champanhe);outline-offset:3px}
+.barra-wa-fechar{background:none;border:0;color:var(--sobre-noite-2);font-size:1.7rem;line-height:1;width:44px;height:44px;cursor:pointer}
+.barra-wa-fechar:hover{color:var(--sobre-noite)}
+/* Desktop: o botão flutuante sobe acima da barra. */
+.wa-flutuante.com-barra{bottom:calc(104px + env(safe-area-inset-bottom,0px))}
+/* Enquanto o aviso de privacidade está na tela, a barra espera e o botão não o cobre. */
+html[data-consentimento-pendente] .barra-wa{display:none}
+html[data-consentimento-pendente] .wa-flutuante{display:none}
+@media (max-width:700px){
+  .barra-wa{grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px))}
+  .barra-wa-txt{grid-column:1/2}
+  .barra-wa-txt strong{font-size:1.08rem}
+  .barra-wa-txt span{display:none}
+  .barra-wa-botao{grid-column:1/-1;grid-row:2;justify-content:center;padding:14px 18px}
+  .barra-wa-fechar{grid-column:2;grid-row:1;width:40px;height:40px}
+  /* No celular a barra já é o WhatsApp: o botão flutuante sai enquanto ela está na tela. */
+  .wa-flutuante.com-barra{opacity:0;pointer-events:none}
+  .wa-flutuante{width:54px;height:54px}
+}
+@media (prefers-reduced-motion:reduce){.barra-wa,.barra-wa.visivel,.wa-flutuante{transition:none}}

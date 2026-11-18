@@ -15,7 +15,10 @@ export type Evento =
   | "tool_complete"
   | "form_start"
   | "form_submit"
-  | "engaged_read";
+  | "engaged_read"
+  | "cta_view"
+  | "cta_dismiss"
+  | "ui_click";
 
 /** Envia evento ao GA4. Sem consentimento, o Consent Mode descarta cookies e identificadores. */
 export function track(evento: Evento, params: Record<string, string | number | undefined> = {}) {

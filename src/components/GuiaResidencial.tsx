@@ -323,12 +323,6 @@ export async function GuiaResidencial({ c }: { c: CondominioComp }) {
         </div>
       </section>
 
-      <div className="res-barra" aria-hidden="false">
-        <span>{c.nome}</span>
-        <LinkRastreado className="btn cheio" href={linkResidencial} ctaId={`res-barra-${c.slug}`} evento="outbound_alphadl">
-          Ver casas
-        </LinkRastreado>
-      </div>
 
       <JsonLd dados={[ldCondominio(c), ldFaq(faq)]} />
     </>

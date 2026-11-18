@@ -4,6 +4,10 @@ import "./globals.css";
 import { Cabecalho } from "@/components/Cabecalho";
 import { Rodape } from "@/components/Rodape";
 import { Analytics } from "@/components/Analytics";
+import { WhatsAppFlutuante } from "@/components/WhatsAppFlutuante";
+import { RastreioCliques } from "@/components/RastreioCliques";
+import { artigos, condominios } from "@/lib/content";
+import type { MapaContextos } from "@/lib/contexto-whatsapp";
 import { JsonLd } from "@/components/JsonLd";
 import { ldOrganizacao, ldWebsite } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -26,6 +30,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#0E100F", width: "device-width", initialScale: 1 };
 
+/** Título de cada artigo e nome de cada residencial, para a barra do WhatsApp falar da página certa. */
+function mapaContextos(): MapaContextos {
+  const mapa: MapaContextos = {};
+  for (const a of artigos()) mapa[`/${a.pilar}/${a.slug}`] = { tipo: "artigo", titulo: a.titulo, pilar: a.pilar };
+  for (const c of condominios()) mapa[`/condominios/${c.slug}`] = { tipo: "residencial", nome: c.nome };
+  return mapa;
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${display.variable} ${texto.variable}`}>
@@ -39,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <Rodape />
         <JsonLd dados={[ldOrganizacao(), ldWebsite()]} />
+        <WhatsAppFlutuante numero={site.whatsapp} mapa={mapaContextos()} />
+        <RastreioCliques />
         <Analytics gaId={site.gaId} />
       </body>
     </html>
