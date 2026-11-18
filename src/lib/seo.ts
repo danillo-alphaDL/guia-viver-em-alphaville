@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "./site";
+import { IMAGEM_SOCIAL } from "./marca";
 import type { Artigo, CondominioComp } from "./content";
 import type { Autor } from "./schema";
 
@@ -18,9 +19,10 @@ export function meta({ titulo, descricao, caminho, rascunho, tipo = "website", p
       url: caminho,
       siteName: site.nome,
       locale: "pt_BR",
+      images: [IMAGEM_SOCIAL],
       ...(tipo === "article" ? { publishedTime: publicado ?? undefined, modifiedTime: atualizado ?? undefined } : {}),
     },
-    twitter: { card: "summary_large_image", title: titulo, description: descricao },
+    twitter: { card: "summary_large_image", title: titulo, description: descricao, images: [IMAGEM_SOCIAL] },
   };
 }
 
@@ -33,6 +35,7 @@ export const ldOrganizacao = () => ({
   name: site.nome,
   url: site.url,
   description: site.descricao,
+  logo: { "@type": "ImageObject", url: abs("/branding/icone-512x512.png"), width: 512, height: 512 },
   parentOrganization: { "@type": "RealEstateAgent", name: site.mantenedor.nome, url: site.mantenedor.url },
 });
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Marca } from "./Cabecalho";
+import Image from "next/image";
+import logoPrincipal from "../../public/branding/logo-principal.png";
 import { site } from "@/lib/site";
 import { linkAlphaDL } from "@/lib/alphadl";
 
@@ -9,7 +10,9 @@ export function Rodape() {
       <div className="wrap">
         <div className="grade">
           <div>
-            <Marca />
+            <Link className="marca-rodape" href="/" aria-label="Guia Viver em Alphaville, página inicial">
+              <Image src={logoPrincipal} alt="Guia Viver em Alphaville" sizes="(max-width: 600px) 92vw, 440px" />
+            </Link>
             <p className="sobre">
               {site.dominio} é um projeto editorial mantido pela Alpha DL, imobiliária de alto padrão da região. Não é afiliado à Alphaville Urbanismo S.A. nem às
               associações dos residenciais.
