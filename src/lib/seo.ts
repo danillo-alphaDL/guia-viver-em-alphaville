@@ -52,6 +52,17 @@ export const ldBreadcrumb = (itens: { nome: string; caminho: string }[]) => ({
   itemListElement: itens.map((i, n) => ({ "@type": "ListItem", position: n + 1, name: i.nome, item: abs(i.caminho) })),
 });
 
+export const ldRevisao = (a: Artigo, revisor?: Autor) =>
+  revisor
+    ? {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        url: abs(a.url),
+        reviewedBy: { "@type": "Person", name: revisor.nome, url: abs(`/autores/${revisor.slug}`) },
+        lastReviewed: a.atualizadoEm ?? a.publicadoEm ?? undefined,
+      }
+    : null;
+
 export const ldArtigo = (a: Artigo, autor?: Autor) => ({
   "@context": "https://schema.org",
   "@type": "Article",
