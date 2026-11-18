@@ -21,7 +21,7 @@ export default async function PaginaAutor({ params }: Props) {
   if (!a) notFound();
   const textos = artigos().filter((t) => t.autor === a.slug || t.revisor === a.slug);
   return (
-    <PaginaSimples rotulo={a.nome} titulo={a.nome} lead={`${a.cargo}${a.creci ? ` · CRECI ${a.creci}` : ""}`} caminho={`/autores/${a.slug}`}>
+    <PaginaSimples rotulo={a.nome} titulo={a.nome} lead={`${a.cargo}${a.creci ? ` · ${a.creci}` : ""}`} caminho={`/autores/${a.slug}`}>
       <div style={{ display: "grid", gap: 64 }}>
         <p className="prosa" style={{ fontSize: "1.15rem" }}>{a.bio}</p>
         {textos.length > 0 && (

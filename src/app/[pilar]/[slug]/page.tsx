@@ -14,7 +14,7 @@ import { LeituraEngajada } from "@/components/LeituraEngajada";
 import { GuiaResidencial } from "@/components/GuiaResidencial";
 import { artigo, artigoPorSlug, artigos, autor as buscaAutor, condominio, condominios, type Artigo, type CondominioComp } from "@/lib/content";
 import { CAMPOS_CONDOMINIO, type CampoCondominio } from "@/lib/schema";
-import { ldArtigo, ldCondominio, ldFaq, meta } from "@/lib/seo";
+import { ldArtigo, ldCondominio, ldFaq, ldRevisao, meta } from "@/lib/seo";
 import { imoveisPorFaixa, linkAlphaDL, linkWhatsApp } from "@/lib/alphadl";
 import { equipe, pilares, type Pilar } from "@/lib/site";
 
@@ -74,14 +74,18 @@ function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeo
                 <div>
                   <small>Texto</small>
                   <Link href={`/autores/${au.slug}`}>{au.nome}</Link>
-                  {au.creci && ` · CRECI ${au.creci}`}
+                  {au.creci && ` · ${au.creci}`}
                 </div>
               </div>
             )}
             {rev && (
-              <div>
-                <small>Revisão factual</small>
-                {rev.nome}
+              <div className="autor">
+                {rev.foto && <Image src={rev.foto} alt={`Foto de ${rev.nome}`} width={46} height={58} className="avatar-foto" />}
+                <div>
+                  <small>Revisão</small>
+                  <Link href={`/autores/${rev.slug}`}>{rev.nome}</Link>
+                  {rev.creci && ` · ${rev.creci}`}
+                </div>
               </div>
             )}
             {(a.atualizadoEm || a.publicadoEm) && (
@@ -218,7 +222,7 @@ function PaginaArtigo({ a, casas }: { a: Artigo; casas: Awaited<ReturnType<typeo
           </Link>
         )}
       </div>
-      <JsonLd dados={[ldArtigo(a, au), ldFaq(a.faq)]} />
+      <JsonLd dados={[ldArtigo(a, au), ldRevisao(a, rev), ldFaq(a.faq)]} />
     </article>
   );
 }
