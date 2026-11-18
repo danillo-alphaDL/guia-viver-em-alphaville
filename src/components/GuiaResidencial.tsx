@@ -145,13 +145,13 @@ export async function GuiaResidencial({ c }: { c: CondominioComp }) {
                     <Cena
                     nome={["i1", "i2", "i3", "g1", "g2", "g4"][i % 6]}
                     credito={!im.foto}
-                    foto={im.foto ? { src: im.foto, alt: `${im.titulo}, ${im.local}`, sizes: "(max-width: 700px) 100vw, 380px" } : undefined}
+                    foto={im.foto ? { src: im.foto, alt: im.alt, sizes: "(max-width: 700px) 100vw, 380px" } : undefined}
                   >
                       <span className="selo-dl">Alpha DL</span>
                     </Cena>
                     <div>
                       <span className="rot dourado">Código {im.codigo}</span>
-                      <h3>{im.titulo}</h3>
+                      <h3>{im.resumo}</h3>
                     </div>
                     <div className="specs num">
                       {im.specs.map((s) => (
@@ -160,7 +160,7 @@ export async function GuiaResidencial({ c }: { c: CondominioComp }) {
                     </div>
                     <div className="preco">
                       <b className="num">{im.preco}</b>
-                      <small>Ver anúncio →</small>
+                      <small>Ver fotos e detalhes →</small>
                     </div>
                   </LinkRastreado>
                 ))}

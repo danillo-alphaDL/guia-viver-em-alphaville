@@ -43,6 +43,9 @@ export type ImovelPortfolio = {
   codigo?: string;
   slug?: string;
   capaUrl?: string | null;
+  suites?: number;
+  /** Área do terreno, quando o anúncio informa. */
+  areaTotal?: number;
   tipo: string;
   fin: string;
   q: number;
@@ -55,7 +58,7 @@ export type ImovelPortfolio = {
   condominio?: string;
 };
 
-export type ImovelVitrine = { titulo: string; local: string; caminho: string; preco: string; finalidade: "venda" | "locacao"; specs: string[]; /** Foto de capa do anúncio na Alpha DL, quando existe. */ foto: string | null };
+export type ImovelVitrine = { titulo: string; local: string; caminho: string; preco: string; finalidade: "venda" | "locacao"; specs: string[]; /** Foto de capa do anúncio na Alpha DL, quando existe. */ foto: string | null; /** Título sem o lugar, para páginas que já são do residencial. */ resumo: string; /** Texto alternativo da foto. */ alt: string; cidade: string };
 
 const FEED_PADRAO = "https://www.alphadl.com.br/api/vitrine";
 const PRECO_MINIMO = 3_000_000;
@@ -75,6 +78,62 @@ export function caminhoImovel(p: ImovelPortfolio, idx: number) {
   return `/imovel/${slugify(`${p.tipo}-${local}-${p.cidade}`)}-adl-${String(idx + 1).padStart(4, "0")}`;
 }
 
+
+/* ---------- Texto dos cartões de imóvel ---------- */
+// O que as pessoas digitam no Google (autocompletar, 18/11/2026): "casa alphaville residencial 1",
+// "casa alphaville 4 quartos", "casa alphaville 4 barueri". Por isso o título leva o tipo, a venda,
+// os quartos e o residencial, e a cidade fica no rótulo de cima: há dezenas de Alphavilles no país.
+// Nada é inventado: cada parte sai de um campo do anúncio, e o que falta não entra.
+
+const num = (n: number) => n.toLocaleString("pt-BR");
+
+/** Nome do residencial como as pessoas buscam ("Alphaville Residencial 1"), a partir do cadastro. */
+export function nomeLocal(p: Pick<ImovelPortfolio, "condominio" | "bairro">): string {
+  const bruto = (p.condominio || "").trim();
+  if (bruto) {
+    const m = bruto.match(/^(?:alphaville\s+)?residencial\s+(?:alpha(?:ville)?\s+)?(\d+|zero)$/i);
+    if (m) return `Alphaville Residencial ${m[1].toLowerCase() === "zero" ? "0" : m[1]}`;
+    return bruto;
+  }
+  return (p.bairro || "").replace(/\s*\(.*\)$/, "").trim();
+}
+
+function quartosTexto(p: ImovelPortfolio): string {
+  const s = p.suites ?? 0;
+  if (s > 0 && s >= p.q) return `${p.q} suítes`;
+  if (s > 0) return `${p.q} quartos (${s} ${s === 1 ? "suíte" : "suítes"})`;
+  return `${p.q} quartos`;
+}
+
+export function textoCartao(p: ImovelPortfolio) {
+  const local = nomeLocal(p);
+  const venda = p.fin === "venda" ? "à venda" : "para alugar";
+  if (p.tipo === "terreno") {
+    const resumo = `Terreno ${venda} de ${num(p.area)} m²`;
+    return {
+      titulo: local ? `${resumo} no ${local}` : resumo,
+      resumo,
+      rotulo: [local, p.cidade].filter(Boolean).join(" · "),
+      specs: [`${num(p.area)} m² de terreno`],
+      alt: `${resumo}${local ? ` no ${local}` : ""}, ${p.cidade}`,
+    };
+  }
+  const tipo = p.tipo === "apartamento" ? "Apartamento" : "Casa";
+  const resumo = p.q > 0 ? `${tipo} ${venda} com ${quartosTexto(p)}` : `${tipo} ${venda}`;
+  const specs = [
+    `${num(p.area)} m² construídos`,
+    ...(p.areaTotal && p.areaTotal > p.area ? [`terreno de ${num(p.areaTotal)} m²`] : []),
+    ...(p.vg ? [`${p.vg} vagas`] : []),
+  ];
+  return {
+    titulo: local ? `${resumo} no ${local}` : resumo,
+    resumo: `${resumo} e ${num(p.area)} m²`,
+    rotulo: [local, p.cidade].filter(Boolean).join(" · "),
+    specs,
+    alt: `${tipo} ${venda} ${local ? `no ${local}, ` : "em "}${p.cidade}: ${quartosTexto(p)}, ${num(p.area)} m² construídos`,
+  };
+}
+
 /** Escolhe as casas de alto padrão da região para a vitrine, da mais cara para a mais barata. */
 export function selecionarVitrine(portfolio: ImovelPortfolio[], quantos = 3): ImovelVitrine[] {
   return portfolio
@@ -82,14 +141,18 @@ export function selecionarVitrine(portfolio: ImovelPortfolio[], quantos = 3): Im
     .filter(({ p }) => p.fin === "venda" && p.tipo === "casa" && p.preco >= PRECO_MINIMO && ["Barueri", "Santana de Parnaíba"].includes(p.cidade))
     .sort((a, b) => Number(Boolean(b.p.capaUrl)) - Number(Boolean(a.p.capaUrl)) || b.p.preco - a.p.preco)
     .slice(0, quantos)
-    .map(({ p, idx }) => ({
-      titulo: `Casa com ${p.q} quartos`,
-      local: `${p.condominio || p.bairro} · ${p.cidade}`,
+    .map(({ p, idx }) => ({ p, idx, t: textoCartao(p) }))
+    .map(({ p, idx, t }) => ({
+      titulo: t.titulo,
+      resumo: t.resumo,
+      alt: t.alt,
+      cidade: p.cidade,
+      local: t.rotulo,
       caminho: caminhoImovel(p, idx),
       foto: p.capaUrl ?? null,
       preco: p.fin === "venda" ? `R$ ${p.preco.toLocaleString("pt-BR")}` : `R$ ${p.preco.toLocaleString("pt-BR")}/mês`,
       finalidade: p.fin === "venda" ? "venda" : "locacao",
-      specs: [`${p.q} quartos`, `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],
+      specs: t.specs,
     }));
 }
 
@@ -140,20 +203,21 @@ export async function imoveisDoResidencial(nome: string): Promise<ImovelResidenc
     .filter(({ p }) => p.fin === "venda" && (p.tipo === "casa" || p.tipo === "terreno"))
     .filter(({ p }) => normaliza(p.condominio || "") === alvo || normaliza(p.bairro || "") === alvo)
     .sort((a, b) => Number(Boolean(b.p.capaUrl)) - Number(Boolean(a.p.capaUrl)) || b.p.preco - a.p.preco)
-    .map(({ p, idx }) => ({
+    .map(({ p, idx }) => ({ p, idx, t: textoCartao(p) }))
+    .map(({ p, idx, t }) => ({
       tipo: p.tipo,
       precoNumero: p.preco,
       codigo: p.codigo ?? `ADL-${String(idx + 1).padStart(4, "0")}`,
-      titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
-      local: `${p.condominio || p.bairro} · ${p.cidade}`,
+      titulo: t.titulo,
+      resumo: t.resumo,
+      alt: t.alt,
+      cidade: p.cidade,
+      local: t.rotulo,
       caminho: caminhoImovel(p, idx),
       foto: p.capaUrl ?? null,
       preco: `R$ ${p.preco.toLocaleString("pt-BR")}`,
       finalidade: "venda" as const,
-      specs:
-        p.tipo === "terreno"
-          ? [`${p.area.toLocaleString("pt-BR")} m² de terreno`]
-          : [`${p.q} quartos`, ...(p.ban ? [`${p.ban} banheiros`] : []), `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],
+      specs: t.specs,
     }));
 }
 
@@ -255,16 +319,20 @@ export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number;
     .filter(({ p }) => !f.residenciais?.length || f.residenciais.map(normaliza).some((r) => r === normaliza(p.condominio || "") || r === normaliza(p.bairro || "")))
     .sort((a, b) => Number(Boolean(b.p.capaUrl)) - Number(Boolean(a.p.capaUrl)) || b.p.preco - a.p.preco)
     .slice(0, quantos)
-    .map(({ p, idx }) => ({
+    .map(({ p, idx }) => ({ p, idx, t: textoCartao(p) }))
+    .map(({ p, idx, t }) => ({
       tipo: p.tipo,
       precoNumero: p.preco,
       codigo: p.codigo ?? `ADL-${String(idx + 1).padStart(4, "0")}`,
-      titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
-      local: `${p.condominio || p.bairro} · ${p.cidade}`,
+      titulo: t.titulo,
+      resumo: t.resumo,
+      alt: t.alt,
+      cidade: p.cidade,
+      local: t.rotulo,
       caminho: caminhoImovel(p, idx),
       foto: p.capaUrl ?? null,
       preco: `R$ ${p.preco.toLocaleString("pt-BR")}`,
       finalidade: "venda" as const,
-      specs: p.tipo === "terreno" ? [`${p.area.toLocaleString("pt-BR")} m²`] : [`${p.q} quartos`, `${p.area.toLocaleString("pt-BR")} m²`, ...(p.vg ? [`${p.vg} vagas`] : [])],
+      specs: t.specs,
     }));
 }
