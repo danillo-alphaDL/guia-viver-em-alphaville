@@ -124,6 +124,8 @@ export const condominioSchema = z
     atualizadoEm: data.nullable().default(null),
     revisarAte: data.nullable().default(null),
     cena: z.string().default("c1"),
+    /** Imagem de capa em public/capas (ilustrativa, não é foto do residencial). */
+    capa: z.string().optional(),
     notasInternas: z.string().optional(),
   })
   .superRefine((c, ctx) => {

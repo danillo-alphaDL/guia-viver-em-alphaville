@@ -1,58 +1,33 @@
-import { useId } from "react";
-import { svgPlanta, VIEWBOX_PLANTA, type ParametrosPlanta } from "@/lib/planta";
+import Image from "next/image";
 import type { CondominioComp } from "@/lib/content";
 
-const valor = (c: CondominioComp, k: keyof CondominioComp["campos"]) => {
-  const d = c.campos[k];
-  return d && d.valor && (d.estado === "verificado" || d.estado === "estimativa") ? d.valor : "";
+/**
+ * Capas dos residenciais: imagens do acervo da Alpha DL, ilustrativas.
+ * Não são fotos do residencial; a legenda diz isso.
+ * `hd: false` marca imagem pequena demais para o topo da página: lá entra a alternativa.
+ */
+const CAPAS: Record<string, { src: string; alt: string; hd: boolean }> = {
+  "aerea-cidade": { src: "/capas/aerea-cidade.webp", alt: "Vista aérea de Alphaville ao entardecer, com lago e prédios ao fundo", hd: true },
+  "casa-por-do-sol": { src: "/capas/casa-por-do-sol.webp", alt: "Casa de alto padrão com piscina de borda infinita ao pôr do sol", hd: false },
+  "casa-piscina": { src: "/capas/casa-piscina.webp", alt: "Casa moderna de alto padrão com piscina e jardim", hd: true },
+  "lounge-piscina": { src: "/capas/lounge-piscina.webp", alt: "Lounge externo com sofás e espelho d'água ao entardecer", hd: true },
+  "aerea-lago": { src: "/capas/aerea-lago.webp", alt: "Vista aérea de residencial com lago e áreas verdes ao pôr do sol", hd: true },
 };
+const ORDEM = Object.keys(CAPAS);
 
-/** Parâmetros da planta a partir dos dados conferidos da ficha. */
-export function parametrosDe(c: CondominioComp): ParametrosPlanta {
-  const lotes = Number(valor(c, "lotes").match(/^[\d.]+/)?.[0]?.replace(/\./g, "")) || undefined;
-  const verdePct = Number(`${valor(c, "lotes")} ${valor(c, "clube")} ${c.resumo}`.match(/(\d+)% da área|(\d+)% de vegeta/)?.slice(1).find(Boolean));
-  const mun = valor(c, "municipio");
-  const ano = Number(valor(c, "implantacao").match(/\d{4}/)?.[0]);
-  const partes = mun.replace(/\s*\([^)]*\)/g, "").split(/\s+e\s+/);
-  return {
-    semente: c.slug,
-    lotes,
-    verde: verdePct ? verdePct / 100 : undefined,
-    lago: /\blago\b/i.test(`${c.resumo} ${valor(c, "clube")}`),
-    clube: !!valor(c, "clube"),
-    divisa: partes.length === 2 ? [partes[0], partes[1]] : undefined,
-    antigo: !!ano && ano < 1985,
-  };
-}
-
-/** Número ou sigla do residencial, usado como marca na capa. */
-export function siglaDe(nome: string) {
-  const m = nome.match(/(?:Residencial|Tamboré|Valville)\s+(\d+|Zero|[IVX]+)$/i) || nome.match(/\s([IVX]+)$/);
-  if (m) return m[1].toLowerCase() === "zero" ? "0" : m[1];
-  return nome
-    .split(/\s+/)
-    .filter((p) => /^[A-ZÁÉÍÓÚÂÊÔ]/.test(p))
-    .map((p) => p[0])
-    .join("")
-    .slice(0, 2);
+function capaDe(c: CondominioComp) {
+  if (c.capa && CAPAS[c.capa]) return CAPAS[c.capa];
+  const h = [...c.slug].reduce((a, ch) => a + ch.charCodeAt(0), 0);
+  return CAPAS[ORDEM[h % ORDEM.length]];
 }
 
 export function CapaResidencial({ c, grande = false, className }: { c: CondominioComp; grande?: boolean; className?: string }) {
-  const id = "p" + useId().replace(/[^a-zA-Z0-9]/g, "");
-  const p = parametrosDe(c);
+  let capa = capaDe(c);
+  if (grande && !capa.hd) capa = CAPAS["aerea-cidade"];
   return (
     <div className={`cena capa-res${grande ? " grande" : ""} ${className ?? ""}`}>
-      <svg viewBox={VIEWBOX_PLANTA} preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" dangerouslySetInnerHTML={{ __html: svgPlanta(p, id) }} />
-      <span className="capa-sigla" aria-hidden="true">
-        {siglaDe(c.nome)}
-      </span>
-      {p.divisa && (
-        <span className="capa-divisa" aria-hidden="true">
-          <span>{p.divisa[0]}</span>
-          <span>{p.divisa[1]}</span>
-        </span>
-      )}
-      <span className="credito">Planta ilustrativa, fora de escala</span>
+      <Image src={capa.src} alt={capa.alt} fill priority={grande} sizes={grande ? "100vw" : "(max-width: 700px) 100vw, 420px"} style={{ objectFit: "cover" }} />
+      <span className="credito">Imagem ilustrativa</span>
     </div>
   );
 }
