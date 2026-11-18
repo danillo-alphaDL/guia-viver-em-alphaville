@@ -245,12 +245,12 @@ export default async function Home() {
                   <Cena
                     nome={["i1", "i2", "i3", "g1", "g2", "g4"][i % 6]}
                     credito={!im.foto}
-                    foto={im.foto ? { src: im.foto, alt: `${im.titulo}, ${im.local}`, sizes: "(max-width: 700px) 100vw, 380px" } : undefined}
+                    foto={im.foto ? { src: im.foto, alt: im.alt, sizes: "(max-width: 700px) 100vw, 380px" } : undefined}
                   >
                     <span className="selo-dl">Alpha DL</span>
                   </Cena>
                   <div>
-                    <span className="rot dourado">{im.local}</span>
+                    <span className="rot dourado">{im.cidade}</span>
                     <h3>{im.titulo}</h3>
                   </div>
                   <div className="specs num">
@@ -260,7 +260,7 @@ export default async function Home() {
                   </div>
                   <div className="preco">
                     <b className="num">{im.preco}</b>
-                    <small>Ver anúncio →</small>
+                    <small>Ver fotos e detalhes →</small>
                   </div>
                 </LinkRastreado>
               ))}
