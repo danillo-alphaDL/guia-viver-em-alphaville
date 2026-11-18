@@ -37,8 +37,12 @@ export function leituras(pilar: Pilar): Leitura[] {
 
 /* ---------- Vitrine: imóveis do portfólio da Alpha DL ---------- */
 
-/** Formato do arquivo de portfólio publicado em alphadl.com.br. */
+/** Formato de cada imóvel da vitrine pública de alphadl.com.br (/api/vitrine). */
 export type ImovelPortfolio = {
+  /** Código do anúncio (ADL-0000) e endereço da página, vindos do banco da Alpha DL. */
+  codigo?: string;
+  slug?: string;
+  capaUrl?: string | null;
   tipo: string;
   fin: string;
   q: number;
@@ -53,7 +57,7 @@ export type ImovelPortfolio = {
 
 export type ImovelVitrine = { titulo: string; local: string; caminho: string; preco: string; finalidade: "venda" | "locacao"; specs: string[] };
 
-const FEED_PADRAO = "https://www.alphadl.com.br/portfolio-alphadl-60-imoveis.json";
+const FEED_PADRAO = "https://www.alphadl.com.br/api/vitrine";
 const PRECO_MINIMO = 3_000_000;
 
 const slugify = (s: string) =>
@@ -64,8 +68,9 @@ const slugify = (s: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-/** Mesma regra de endereço usada pelo site da Alpha DL (scripts/gerar-paginas-imoveis.mjs). */
+/** Endereço da página do imóvel: o slug real do banco; sem ele, a regra antiga do arquivo da fase 1. */
 export function caminhoImovel(p: ImovelPortfolio, idx: number) {
+  if (p.slug) return `/imovel/${p.slug}`;
   const local = p.condominio || p.bairro;
   return `/imovel/${slugify(`${p.tipo}-${local}-${p.cidade}`)}-adl-${String(idx + 1).padStart(4, "0")}`;
 }
@@ -74,7 +79,7 @@ export function caminhoImovel(p: ImovelPortfolio, idx: number) {
 export function selecionarVitrine(portfolio: ImovelPortfolio[], quantos = 3): ImovelVitrine[] {
   return portfolio
     .map((p, idx) => ({ p, idx }))
-    .filter(({ p }) => p.tipo === "casa" && p.preco >= PRECO_MINIMO && ["Barueri", "Santana de Parnaíba"].includes(p.cidade))
+    .filter(({ p }) => p.fin === "venda" && p.tipo === "casa" && p.preco >= PRECO_MINIMO && ["Barueri", "Santana de Parnaíba"].includes(p.cidade))
     .sort((a, b) => b.p.preco - a.p.preco)
     .slice(0, quantos)
     .map(({ p, idx }) => ({
@@ -93,8 +98,10 @@ export async function portfolioAlphaDL(): Promise<ImovelPortfolio[]> {
   try {
     const r = await fetch(url, { next: { revalidate: 3600 }, signal: AbortSignal.timeout(8000) });
     if (!r.ok) return [];
-    const dados = (await r.json()) as ImovelPortfolio[];
-    return Array.isArray(dados) ? dados : [];
+    // /api/vitrine responde { imoveis: [...] }; o arquivo antigo era a lista pura.
+    const dados = (await r.json()) as ImovelPortfolio[] | { imoveis?: ImovelPortfolio[] };
+    const lista = Array.isArray(dados) ? dados : dados.imoveis;
+    return Array.isArray(lista) ? lista : [];
   } catch {
     return [];
   }
@@ -135,7 +142,7 @@ export async function imoveisDoResidencial(nome: string): Promise<ImovelResidenc
     .map(({ p, idx }) => ({
       tipo: p.tipo,
       precoNumero: p.preco,
-      codigo: `ADL-${String(idx + 1).padStart(4, "0")}`,
+      codigo: p.codigo ?? `ADL-${String(idx + 1).padStart(4, "0")}`,
       titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
       local: `${p.condominio || p.bairro} · ${p.cidade}`,
       caminho: caminhoImovel(p, idx),
@@ -249,7 +256,7 @@ export async function imoveisPorFaixa(f: { precoMin?: number; precoMax?: number;
     .map(({ p, idx }) => ({
       tipo: p.tipo,
       precoNumero: p.preco,
-      codigo: `ADL-${String(idx + 1).padStart(4, "0")}`,
+      codigo: p.codigo ?? `ADL-${String(idx + 1).padStart(4, "0")}`,
       titulo: p.tipo === "terreno" ? `Terreno de ${p.area.toLocaleString("pt-BR")} m²` : `Casa com ${p.q} quartos`,
       local: `${p.condominio || p.bairro} · ${p.cidade}`,
       caminho: caminhoImovel(p, idx),
