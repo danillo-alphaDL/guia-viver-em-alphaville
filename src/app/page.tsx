@@ -6,6 +6,7 @@ import { LinkRastreado } from "@/components/LinkRastreado";
 import { JsonLd } from "@/components/JsonLd";
 import { artigos, condominios } from "@/lib/content";
 import { CardArtigo } from "@/components/Cards";
+import { CapaResidencial } from "@/components/CapaResidencial";
 import {
   catalogoAlphaDL,
   contarPorResidencial,
@@ -284,7 +285,7 @@ export default async function Home() {
                 return (
                   <li key={r.slug}>
                     <Link href={r.url}>
-                      <Cena nome={r.cena} credito={false} />
+                      <CapaResidencial c={r} />
                       <div className="lista-res-txt">
                         <span className="rot bronze">{mun}</span>
                         <h3>{r.nome}</h3>

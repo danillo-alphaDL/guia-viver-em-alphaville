@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Cena } from "./Cena";
+import { CapaResidencial } from "./CapaResidencial";
 import { Migalha } from "./Migalha";
 import { JsonLd } from "./JsonLd";
 import { AvisoRascunho } from "./Rascunho";
@@ -93,7 +94,7 @@ export async function GuiaResidencial({ c }: { c: CondominioComp }) {
       {c.rascunho && <AvisoRascunho status={c.status} />}
 
       <section className="res-hero">
-        <Cena nome={c.cena} />
+        <CapaResidencial c={c} grande />
         <div className="wrap">
           <Migalha itens={[{ nome: "Residenciais", caminho: "/condominios" }, { nome: c.nome, caminho: c.url }]} />
           <span className="rot dourado">Guia de residencial{mun ? ` · ${mun.replace(/\s*\([^)]*\)/g, "")}` : ""}</span>

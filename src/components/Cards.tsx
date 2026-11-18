@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Cena } from "./Cena";
+import { CapaResidencial } from "./CapaResidencial";
 import type { Artigo, CondominioComp } from "@/lib/content";
 import { pilares } from "@/lib/site";
 
@@ -24,10 +25,10 @@ export function CardArtigo({ a }: { a: Artigo }) {
 }
 
 export function CardCondominio({ c, destaque }: { c: CondominioComp; destaque?: boolean }) {
-  const municipio = c.campos.municipio?.estado === "verificado" ? c.campos.municipio.valor : c.regiao === "tambore" ? "Tamboré" : "Alphaville";
+  const municipio = c.campos.municipio?.estado === "verificado" ? (c.campos.municipio.valor ?? "").replace(/\s*\([^)]*\)/g, "") : c.regiao === "tambore" ? "Tamboré" : "Alphaville";
   return (
     <Link className={`cond${destaque ? " destaque" : ""}`} href={c.url}>
-      <Cena nome={c.cena} credito={false} />
+      <CapaResidencial c={c} />
       <div className="info">
         <div>
           <span className="rot dourado">
