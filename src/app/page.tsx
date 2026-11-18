@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CAPA_HOME } from "@/lib/capas-paginas";
 import Image from "next/image";
 import { Cena } from "@/components/Cena";
 import { BuscaHome } from "@/components/BuscaHome";
@@ -106,8 +107,11 @@ export default async function Home() {
 
   return (
     <>
-      <section className="hero">
-        <Cena nome="hero" />
+      <section
+        className="hero com-foto"
+        style={{ "--pos": CAPA_HOME.pos, "--pos-movel": CAPA_HOME.posMovel } as React.CSSProperties}
+      >
+        <Cena nome="hero" foto={{ src: CAPA_HOME.src, alt: CAPA_HOME.alt, prioridade: true }} />
         <div className="hero-txt">
           <div className="wrap">
             <span className="rot dourado">Alphaville · Tamboré · Barueri · Santana de Parnaíba</span>

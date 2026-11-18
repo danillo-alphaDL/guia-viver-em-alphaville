@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { CAPAS_PILARES } from "@/lib/capas-paginas";
 import Link from "next/link";
 import { Cena } from "@/components/Cena";
 import { Migalha } from "@/components/Migalha";
@@ -33,8 +34,11 @@ export default async function PaginaPilar({ params }: Props) {
 
   return (
     <>
-      <section className="pg-hero">
-        <Cena nome={p.cena} />
+      <section
+        className="pg-hero com-foto"
+        style={{ "--pos": CAPAS_PILARES[pilar].pos, "--pos-movel": CAPAS_PILARES[pilar].posMovel } as React.CSSProperties}
+      >
+        <Cena nome={p.cena} foto={{ src: CAPAS_PILARES[pilar].src, alt: CAPAS_PILARES[pilar].alt, prioridade: true }} />
         <div className="wrap">
           <Migalha itens={[{ nome: p.menu, caminho: `/${pilar}` }]} />
           <h1>{p.titulo}</h1>
