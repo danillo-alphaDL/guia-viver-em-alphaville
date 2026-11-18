@@ -7,6 +7,7 @@ import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 import { ldOrganizacao, ldWebsite } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { ICONES, IMAGEM_SOCIAL } from "@/lib/marca";
 
 // Títulos: Newsreader, serifa editorial desenhada para leitura em tela. Texto: Figtree, sans de x-altura alta e boa leitura longa.
 const display = Newsreader({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--fonte-display", display: "swap" });
@@ -17,7 +18,9 @@ export const metadata: Metadata = {
   title: { default: `${site.nome}: morar, comprar e alugar em Alphaville`, template: `%s | ${site.nome}` },
   description: site.descricao,
   applicationName: site.nome,
-  openGraph: { siteName: site.nome, locale: "pt_BR", type: "website" },
+  openGraph: { siteName: site.nome, locale: "pt_BR", type: "website", images: [IMAGEM_SOCIAL] },
+  twitter: { card: "summary_large_image", images: [IMAGEM_SOCIAL] },
+  icons: ICONES,
   formatDetection: { telephone: false },
 };
 

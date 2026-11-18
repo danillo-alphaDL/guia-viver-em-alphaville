@@ -1,13 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import { listaPilares, pilares } from "@/lib/site";
+import logoCabecalho from "../../public/branding/logo-cabecalho.png";
 
+/**
+ * Letreiro do cabeçalho: "GUIA" e o nome, da versão transparente do kit (public/branding/).
+ * O slogan fica de fora aqui porque, na altura do cabeçalho, sairia com cerca de 4 px; ele aparece
+ * no logo completo do rodapé. A altura vem do CSS e a largura acompanha, sem distorcer.
+ */
 export function Marca({ className }: { className?: string }) {
   return (
     <Link className={`marca ${className ?? ""}`} href="/" aria-label="Guia Viver em Alphaville, página inicial">
-      <small>GUIA</small>
-      <span>
-        Viver em <i>Alphaville</i>
-      </span>
+      <Image src={logoCabecalho} alt="Guia Viver em Alphaville" loading="eager" sizes="(max-width: 600px) 220px, 300px" />
     </Link>
   );
 }
