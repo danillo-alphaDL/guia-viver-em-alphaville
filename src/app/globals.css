@@ -648,3 +648,21 @@ h1{letter-spacing:-.015em}
 .lista-res .credito{display:none}
 .cond .capa-res img{transition:transform .8s}
 .cond:hover .capa-res img{transform:scale(1.03)}
+
+/* ---------- Capas fotográficas das páginas principais (.com-foto) ---------- */
+.com-foto{background:var(--noite)}
+.com-foto .cena img{object-position:var(--pos,50% 50%)}
+.hero.com-foto .cena::after{background:linear-gradient(90deg,rgba(8,9,9,.92) 0%,rgba(8,9,9,.74) 34%,rgba(8,9,9,.3) 56%,rgba(8,9,9,0) 76%),linear-gradient(180deg,rgba(8,9,9,.6) 0%,rgba(8,9,9,0) 26%,rgba(8,9,9,0) 58%,rgba(8,9,9,.92) 100%)}
+.pg-hero.com-foto .cena::after{background:linear-gradient(90deg,rgba(8,9,9,.8) 0%,rgba(8,9,9,.35) 50%,rgba(8,9,9,0) 78%),linear-gradient(180deg,rgba(8,9,9,.6) 0%,rgba(8,9,9,0) 30%,rgba(8,9,9,.9) 100%)}
+.com-foto .cena .credito{top:auto;bottom:12px}
+/* Celular: a foto vira uma faixa no topo e o texto desce para o fundo escuro, sem disputar com a imagem. */
+@media (max-width:700px){
+  .hero.com-foto,.pg-hero.com-foto{display:block;min-height:0}
+  .com-foto .cena img{object-position:var(--pos-movel,var(--pos,50% 50%))}
+  .hero.com-foto .cena{position:relative;inset:auto;height:62svh;min-height:380px;max-height:560px}
+  .pg-hero.com-foto .cena{position:relative !important;inset:auto;height:50svh !important;min-height:320px;max-height:460px}
+  .com-foto .cena::after{background:linear-gradient(180deg,rgba(8,9,9,.62) 0%,rgba(8,9,9,0) 24%,rgba(8,9,9,0) 52%,var(--noite) 100%) !important}
+  .com-foto .cena .credito{top:auto;bottom:auto;top:calc(100% - 128px);right:12px}
+  .hero.com-foto .hero-txt{margin-top:-120px;padding-top:0;padding-bottom:48px}
+  .pg-hero.com-foto .wrap{position:relative;margin-top:-110px;padding-top:0;padding-bottom:40px}
+}

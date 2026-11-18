@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useId } from "react";
 import { svgCena, VIEWBOX } from "@/lib/cena";
 
@@ -7,7 +7,7 @@ type Props = {
   className?: string;
   style?: React.CSSProperties;
   /** Fotografia licenciada. Quando existir, substitui a ilustração. */
-  foto?: { src: string; alt: string; prioridade?: boolean; sizes?: string };
+  foto?: { src: string | StaticImageData; alt: string; prioridade?: boolean; sizes?: string };
   credito?: boolean;
   children?: React.ReactNode;
 };
@@ -17,7 +17,10 @@ export function Cena({ nome, className, style, foto, credito = true, children }:
   return (
     <div className={`cena ${className ?? ""}`} style={style}>
       {foto ? (
-        <Image src={foto.src} alt={foto.alt} fill sizes={foto.sizes ?? "100vw"} priority={foto.prioridade} style={{ objectFit: "cover" }} />
+        <>
+          <Image src={foto.src} alt={foto.alt} fill sizes={foto.sizes ?? "100vw"} priority={foto.prioridade} style={{ objectFit: "cover" }} />
+          {credito && <span className="credito">Imagem ilustrativa</span>}
+        </>
       ) : (
         <>
           <svg viewBox={VIEWBOX} preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" dangerouslySetInnerHTML={{ __html: svgCena(nome, id) }} />
