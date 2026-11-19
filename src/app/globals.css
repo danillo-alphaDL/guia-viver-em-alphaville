@@ -695,3 +695,10 @@ html[data-consentimento-pendente] .wa-flutuante{display:none}
   .wa-flutuante{width:54px;height:54px}
 }
 @media (prefers-reduced-motion:reduce){.barra-wa,.barra-wa.visivel,.wa-flutuante{transition:none}}
+
+/* Celular: as tabelas dos artigos cabem na tela (o texto da célula quebra a linha), em vez de esconder a última coluna atrás de uma rolagem lateral. */
+@media (max-width:600px){
+  .texto .tabela-box table{min-width:0}
+  .texto td,.texto th{font-size:.9rem;padding-right:10px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+  .texto thead th{letter-spacing:.04em !important}
+}
