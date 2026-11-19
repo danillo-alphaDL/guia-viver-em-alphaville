@@ -39,8 +39,9 @@
       "data": "2026-09-02"
     },
     "taxaCondominial": {
-      "valor": null,
-      "estado": "a-verificar"
+      "valor": "R$ 1.472/mês (mediana)",
+      "estado": "estimativa",
+      "metodo": "mediana da taxa informada em 5 anúncios de casas à venda da Alpha DL, 19/11/2026 (metade entre R$ 1.350 e R$ 1.660)"
     },
     "faixaPreco": {
       "valor": null,
@@ -58,7 +59,7 @@
   "pros": [],
   "contras": [],
   "especialista": null,
-  "atualizadoEm": "2026-11-17",
+  "atualizadoEm": "2026-11-19",
   "revisarAte": "2027-05-17",
   "cena": "g1",
   "notasInternas": "Publicado em 17/11/2026 por decisão do cliente, com os campos do registro da Alpha DL (lotes, implantação, lazer) ainda na data de 09/2026. Reconfirmar esses campos na fonte na próxima revisão. Prós, contras: escrever com o corretor. Associação (nome, CNPJ, fundação) conferida em 17/11/2026 no Mapa das OSC (Ipea), que reproduz o cadastro de CNPJ da Receita Federal. Fatos estruturais vindos do registro de residenciais da Alpha DL (sistema/lib/condominios.ts do repositório alphadl-site), com a fonte original indicada em cada campo. A data de verificação (02/09/2026) é a do registro da Alpha DL: reconfirmar cada campo na fonte antes de publicar. Taxa, faixas de preço e de aluguel ficam em apuração: o export do Canal Pro não traz o residencial, e o residencial confirmado está no banco da Alpha DL (regra: só casa à venda, mínimo de 5 casas, P25 a P75 do preço pedido). Prós e contras: escrever com o corretor que atende o residencial. Não copiar os textos das páginas da Alpha DL.",
